@@ -1,0 +1,48 @@
+name: Publish signed CPP browser observations
+
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cpp-radar-observation-publisher
+  cancel-in-progress: false
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Validate public source registry
+        run: |
+          node scripts/harvest-cpp-browser-sources.mjs --self-test
+          node scripts/harvest-cpp-browser-sources.mjs --validate-only
+
+      - name: Harvest and sign approved browser sources
+        env:
+          VZI_CPP_MANIFEST_SIGNING_KEY: ${{ secrets.VZI_CPP_MANIFEST_SIGNING_KEY }}
+        run: node scripts/harvest-cpp-browser-sources.mjs
+
+      - name: Publish latest signed manifest
+        run: |
+          mkdir -p data
+          cp build/cpp-browser-observations.json data/cpp-browser-observations.json
+          git config user.name "vzi-cpp-radar[bot]"
+          git config user.email "vzi-cpp-radar[bot]@users.noreply.github.com"
+          git add data/cpp-browser-observations.json
+          if git diff --cached --quiet; then
+            echo "Signed observation manifest is unchanged."
+            exit 0
+          fi
+          git commit -m "chore: publish signed CPP observations"
+          git push origin HEAD:main
