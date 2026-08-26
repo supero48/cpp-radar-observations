@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "school_id": 3103,
+      "school_name": "Zavod Modrivoznik.Si",
+      "school_locality": "Maribor",
+      "school_location": "Cafova ulica 5, Maribor",
+      "domain": "modrivoznik.si",
+      "homepage_url": "https://modrivoznik.si/avtosola/maribor",
+      "url": "https://modrivoznik.si/avtosola/maribor",
+      "selectors": ["button"],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3137,
+      "school_name": "Relax Trans, podjetje za prevoze in izobraževanje",
+      "school_locality": "Muta",
+      "school_location": "Ob polju 7, 2366 Muta",
+      "domain": "solavoznje-relax.si",
+      "homepage_url": "https://solavoznje-relax.si/",
+      "url": "https://solavoznje-relax.si/sl/termini-tecajev",
+      "selectors": ["a[href*=\"/termin=\"]"],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "relax-registration-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    }
+  ]
+}
