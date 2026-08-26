@@ -9,10 +9,11 @@ import { spawn } from "node:child_process";
 const registryPath = process.env.VZI_CPP_BROWSER_REGISTRY || "config/cpp-browser-sources.json";
 const registryBody = fs.readFileSync(registryPath, "utf8");
 const registry = JSON.parse(registryBody);
+const registryCanonical = JSON.stringify(registry);
 const manifestPath = process.env.VZI_CPP_BROWSER_MANIFEST || "build/cpp-browser-observations.json";
 const userAgent =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 " +
-  "Chrome/150.0.0.0 Safari/537.36 VZICourseRadar/0.1.10 (+https://vozniski-izpit.com/)";
+  "Chrome/150.0.0.0 Safari/537.36 VZICourseRadar/0.1.11 (+https://vozniski-izpit.com/)";
 const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const slovenianMonths = new Map([
   ["januar", 1], ["januarja", 1], ["jan", 1],
@@ -551,7 +552,7 @@ try {
   const manifest = {
     version: 1,
     generated_at: generatedAt,
-    registry_sha256: crypto.createHash("sha256").update(registryBody).digest("hex"),
+    registry_sha256: crypto.createHash("sha256").update(registryCanonical).digest("hex"),
     observations
   };
   const signingKey = process.env.VZI_CPP_MANIFEST_SIGNING_KEY;
