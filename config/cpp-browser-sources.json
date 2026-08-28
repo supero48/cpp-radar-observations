@@ -32,6 +32,54 @@
       "priority": 2,
       "approved": true,
       "enabled": true
+    },
+    {
+      "school_id": 3113,
+      "school_name": "Formula Maribor",
+      "school_locality": "Maribor",
+      "school_location": "Cesta k Tamu 6, Maribor",
+      "domain": "www.formula.si",
+      "homepage_url": "https://www.formula.si/",
+      "url": "https://www.formula.si/sola-voznje/",
+      "selectors": [".table-row"],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3129,
+      "school_name": "Avtošola Nino",
+      "school_locality": "Logatec",
+      "school_location": "Notranjska cesta 14, Logatec",
+      "domain": "avtosola-nino.si",
+      "homepage_url": "https://avtosola-nino.si/",
+      "url": "https://avtosola-nino.si/",
+      "selectors": ["#termini-cpp .term-card"],
+      "context_text": "Termini tečajev CPP",
+      "max_nodes": 20,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3175,
+      "school_name": "Alfa Go",
+      "school_locality": "Novo mesto",
+      "school_location": "Novi trg 7, Novo mesto",
+      "domain": "alfago.si",
+      "homepage_url": "https://alfago.si/",
+      "url": "https://alfago.si/urniki-tecajev/",
+      "selectors": ["h3"],
+      "context_text": "Urniki tečajev CPP",
+      "max_nodes": 10,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
     }
   ]
 }
