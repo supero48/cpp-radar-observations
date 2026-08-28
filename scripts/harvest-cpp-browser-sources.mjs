@@ -29,6 +29,7 @@ const slovenianMonths = new Map([
   ["november", 11], ["novembra", 11], ["nov", 11],
   ["december", 12], ["decembra", 12], ["dec", 12]
 ]);
+const dateBearingNamedPattern = String.raw`\b\d{1,2}\.\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\.?(?:\s*[–—-]\s*\d{1,2}\.|\s+20\d{2}\b)`;
 
 function monthNumber(value) {
   return slovenianMonths.get(String(value).trim().toLocaleLowerCase("sl-SI").replace(/\.$/, "")) || null;
@@ -301,6 +302,7 @@ if (process.argv.includes("--self-test")) {
   const tiliaCourse = dateNodePayloadItem({
     text: "21.9.2026 (September) - B kategorija Vsi tečaji se začnejo v ponedeljek ob 17:00"
   });
+  const browserNamedDate = new RegExp(dateBearingNamedPattern, "iu");
   const signatureFixture = {
     version: 2,
     generated_at: "2026-08-26T19:21:06.283Z",
@@ -351,6 +353,8 @@ if (process.argv.includes("--self-test")) {
     relaxRejected === null,
     dateNodeAdditional?.courseType === "CPP_ADDITIONAL" && dateNodeAdditional?.dates.startDate === "2026-09-23",
     tiliaCourse?.dates.startDate === "2026-09-21" && tiliaCourse?.times.startTime === "17:00:00",
+    browserNamedDate.test("Ponedeljek, 7. September 2026 Cesta Staneta Žagarja 27a, 4000 Kranj"),
+    browserNamedDate.test("23. sep. – 29. sep. 2026 Termin poln"),
     crypto.verify(null, fixtureMessage, signatureKeys.publicKey, fixtureSignature),
     manifestSignatureMessage(signatureFixture).startsWith("vzi-cpp-browser-manifest-v2\n"),
     signatureFixture.registry === registry,
@@ -529,7 +533,7 @@ async function harvestSource(cdp, source) {
     const selectors = ${JSON.stringify(source.selectors)};
     const maxNodes = ${source.max_nodes};
     const extractor = ${JSON.stringify(source.extractor || 'date-nodes-v1')};
-    const named = /\\b\\d{1,2}\\.\\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\\.?\\s*[–—-]\\s*\\d{1,2}\\./iu;
+    const named = new RegExp(${JSON.stringify(dateBearingNamedPattern)}, 'iu');
     const numeric = /\\b\\d{1,2}\\s*[.\\/-]\\s*\\d{1,2}\\s*[.\\/-]\\s*20\\d{2}\\b/u;
     const found = [];
     for (const selector of selectors) {
