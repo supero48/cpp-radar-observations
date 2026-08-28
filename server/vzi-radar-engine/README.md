@@ -22,6 +22,9 @@ potrebuje skrivnosti. GitHub ostaja vir kode, pregledov in izdaj.
 - omejeni outbox hrani največ 100 saniranih dogodkov brez URL-jev, HTML-ja,
   osebnih podatkov ali skrivnosti;
 - način je vedno `shadow`: brez produkcijskih WordPress zapisov.
+- po vsakem zajemu nastane še saniran acceptance zapis `PASS` ali `HOLD`;
+  gate zahteva svež celovit zajem, nič trdih napak in privzeto najmanj 65 %
+  uspešnih virov, vendar sam nikoli ne objavlja ali spreminja WordPressa.
 
 ## Lokalni preizkus
 
@@ -39,10 +42,20 @@ Stanje in sanirani outbox se privzeto zapišeta ob poročilo kot
 `VZI_RADAR_STATE_OUTPUT` in `VZI_RADAR_EVENT_OUTBOX`. Outbox nastane šele ob
 dejanskem prehodu v ponovljeno napako ali ob obnovitvi.
 
+Acceptance rezultat se zapiše v `shadow-acceptance.json`; drugo pot določi
+`VZI_RADAR_ACCEPTANCE_OUTPUT`. Prag je mogoče nastaviti z
+`VZI_RADAR_ACCEPT_MIN_SUCCESS_RATIO` (0–1). Celovit zajem vseh omogočenih virov
+je privzeto obvezen; samo za diagnostične rotacijske zagone ga je mogoče
+izklopiti z `VZI_RADAR_ACCEPT_REQUIRE_FULL_COVERAGE=0`. Izhod vsebuje le varne
+agregate, kode razlogov in ID-je uspešnih šol — nikoli imen, URL-jev, HTML-ja,
+vzorcev kandidatov ali skrivnosti.
+
 ## Prehod v produkcijo
 
 Shadow pilot mora najprej zbrati primerljive rezultate brez vpliva na javno
-stran. Šele nato sledi ločen podpisni ključ strežnika, podpisan manifest,
-WordPress trust gate in povratni kanal napak v GitHub. Browser/JavaScript viri
-ostanejo na omejenem GitHub fallbacku, dokler strežniško okolje ne zagotovi
-enakovrednega renderiranja.
+stran. `PASS` je dokaz pripravljenosti, ne dovoljenje za samodejen preklop.
+Šele nato sledi ločen podpisni ključ strežnika, podpisan manifest in WordPress
+trust gate. Povratni kanal zdravstvenih prehodov je ločen od rutinskih zajemov,
+zato GitHub Actions minut ne porablja, kadar ni dejanske napake ali obnovitve.
+Browser/JavaScript viri ostanejo na omejenem GitHub fallbacku, dokler
+strežniško okolje ne zagotovi enakovrednega renderiranja.
