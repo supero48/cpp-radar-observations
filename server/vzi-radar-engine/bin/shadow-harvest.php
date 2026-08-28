@@ -21,7 +21,7 @@ function normalizeText(string $value): string
 function containsDate(string $text): bool
 {
     $months = 'januar(?:ja)?|februar(?:ja)?|marec|marca|april(?:a)?|maj(?:a)?|junij(?:a)?|julij(?:a)?|avgust(?:a)?|september|septembra|oktober|oktobra|november|novembra|december|decembra';
-    return (bool) preg_match('/\b(?:[0-3]?\d)[.\/-](?:0?\d|1[0-2])(?:[.\/-](?:20)?\d{2})?\b/u', $text)
+    return (bool) preg_match('/\b(?:[0-3]?\d)\s*[.\/-]\s*(?:0?\d|1[0-2])(?:\s*[.\/-]\s*(?:20)?\d{2})?\b/u', $text)
         || (bool) preg_match('/\b(?:[0-3]?\d)\.\s*(?:' . $months . ')(?:\s+20\d{2})?\b/ui', $text)
         || (bool) preg_match('/\b20\d{2}-[01]\d-[0-3]\d\b/u', $text);
 }
@@ -467,4 +467,3 @@ try {
     flock($lock, LOCK_UN);
     fclose($lock);
 }
-
