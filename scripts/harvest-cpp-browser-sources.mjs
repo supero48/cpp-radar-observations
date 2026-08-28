@@ -118,12 +118,15 @@ function dateNodePayloadItem(item) {
   const text = String(item.text);
   const dates = canonicalDateRange(text);
   if (!dates) return null;
+  const courseType = /\bsplošni\s+del\b/iu.test(text)
+    ? "CPP_GENERAL"
+    : /\bdodatni\s+del\b/iu.test(text) ? "CPP_ADDITIONAL" : "CPP_GENERAL";
   return {
     text,
     dates,
     times: canonicalTimeRange(text),
     location: canonicalLocation(text),
-    courseType: /\bdodatni\s+del\b/iu.test(text) ? "CPP_ADDITIONAL" : "CPP_GENERAL",
+    courseType,
     categoryText: "",
     mode: /\bna\s+daljavo\b/iu.test(text) ? "ONLINE" : null
   };
@@ -299,6 +302,9 @@ if (process.argv.includes("--self-test")) {
   const dateNodeAdditional = dateNodePayloadItem({
     text: "Sreda, 23.09.2026 Začetek ob 18:00 Tečaj CPP dodatni del A"
   });
+  const dateNodeGeneralThenAdditional = dateNodePayloadItem({
+    text: "Splošni del za B - 28. september 2026 ob 15.00. Takoj bo sledil dodatni del za B."
+  });
   const tiliaCourse = dateNodePayloadItem({
     text: "21.9.2026 (September) - B kategorija Vsi tečaji se začnejo v ponedeljek ob 17:00"
   });
@@ -353,6 +359,7 @@ if (process.argv.includes("--self-test")) {
     relaxAdditional?.courseType === "CPP_ADDITIONAL" && relaxAdditional?.mode === "ONLINE" && relaxAdditional?.categoryText === "A1, A2, A",
     relaxRejected === null,
     dateNodeAdditional?.courseType === "CPP_ADDITIONAL" && dateNodeAdditional?.dates.startDate === "2026-09-23",
+    dateNodeGeneralThenAdditional?.courseType === "CPP_GENERAL" && dateNodeGeneralThenAdditional?.dates.startDate === "2026-09-28",
     tiliaCourse?.dates.startDate === "2026-09-21" && tiliaCourse?.times.startTime === "17:00:00",
     browserNamedDate.test("Ponedeljek, 7. September 2026 Cesta Staneta Žagarja 27a, 4000 Kranj"),
     browserNamedDate.test("23. sep. – 29. sep. 2026 Termin poln"),
