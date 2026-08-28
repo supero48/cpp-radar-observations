@@ -3,7 +3,7 @@
 
 declare(strict_types=1);
 
-const VZI_RADAR_ENGINE_VERSION = '0.1.0-shadow';
+const VZI_RADAR_ENGINE_VERSION = '0.2.0-shadow';
 const VZI_RADAR_USER_AGENT = 'VZICourseRadar/0.1 (+https://vozniski-izpit.com/nova/termini-tecajev/)';
 
 function fail(string $message, int $code = 1): never
@@ -373,6 +373,142 @@ function atomicWriteJson(string $path, array $payload): void
     }
 }
 
+function readStateJson(string $path, array $default): array
+{
+    if (!is_file($path)) {
+        return $default;
+    }
+    $size = filesize($path);
+    if ($size === false || $size < 1 || $size > 1_000_000) {
+        throw new RuntimeException('STATE_FILE_SIZE_INVALID');
+    }
+    $decoded = json_decode((string) file_get_contents($path), true, 64, JSON_THROW_ON_ERROR);
+    if (!is_array($decoded) || (int) ($decoded['schema_version'] ?? 0) !== 1) {
+        throw new RuntimeException('STATE_FILE_SCHEMA_INVALID');
+    }
+    return $decoded;
+}
+
+function healthTransition(array $previousState, array $report): array
+{
+    $schools = is_array($previousState['schools'] ?? null) ? $previousState['schools'] : [];
+    $events = [];
+    $finishedAt = (string) ($report['finished_at'] ?? gmdate('c'));
+
+    foreach (($report['results'] ?? []) as $result) {
+        if (!is_array($result)) {
+            continue;
+        }
+        $schoolId = (int) ($result['school_id'] ?? 0);
+        if ($schoolId < 1) {
+            continue;
+        }
+        $key = (string) $schoolId;
+        $previous = is_array($schools[$key] ?? null) ? $schools[$key] : [];
+        $status = (string) ($result['status'] ?? 'error');
+        if (!in_array($status, ['success', 'review', 'error'], true)) {
+            $status = 'error';
+        }
+        $previousStatus = (string) ($previous['status'] ?? '');
+        $problemStreak = $status === 'success'
+            ? 0
+            : ($previousStatus === $status ? (int) ($previous['problem_streak'] ?? 0) + 1 : 1);
+        $activeProblem = (string) ($previous['active_problem'] ?? '');
+        $transitionSeq = max(0, (int) ($previous['transition_seq'] ?? 0));
+        $event = null;
+
+        // A single network failure is treated as transient. Only two consecutive
+        // hard errors become an outbound health event. Static-parser "review"
+        // results are intentionally left to the existing browser fallback.
+        if ($status === 'error' && $problemStreak >= 2 && $activeProblem !== 'error') {
+            $transitionSeq++;
+            $activeProblem = 'error';
+            $event = [
+                'kind' => 'source_degraded',
+                'severity' => 'error',
+                'status' => 'error',
+                'problem_streak' => $problemStreak,
+                'error_code' => mb_substr((string) ($result['error_code'] ?? 'UNKNOWN'), 0, 160),
+            ];
+        } elseif ($status === 'success' && $activeProblem !== '') {
+            $transitionSeq++;
+            $event = [
+                'kind' => 'source_recovered',
+                'severity' => 'info',
+                'status' => 'success',
+                'previous_problem' => $activeProblem,
+                'problem_streak' => 0,
+            ];
+            $activeProblem = '';
+        }
+
+        $lastSuccessAt = (string) ($previous['last_success_at'] ?? '');
+        if ($status === 'success') {
+            $lastSuccessAt = $finishedAt;
+        }
+        $schools[$key] = [
+            'school_id' => $schoolId,
+            'school_name' => mb_substr((string) ($result['school_name'] ?? ''), 0, 160),
+            'status' => $status,
+            'problem_streak' => $problemStreak,
+            'active_problem' => $activeProblem,
+            'transition_seq' => $transitionSeq,
+            'last_checked_at' => $finishedAt,
+            'last_success_at' => $lastSuccessAt,
+            'source_url_sha256' => hash('sha256', (string) ($result['source_url'] ?? '')),
+        ];
+
+        if ($event !== null) {
+            $eventIdentity = implode(':', [$schoolId, $transitionSeq, $event['kind'], $event['status']]);
+            $events[] = array_merge([
+                'event_id' => 'vzi-radar-' . $schoolId . '-' . $transitionSeq . '-' . substr(hash('sha256', $eventIdentity), 0, 12),
+                'generated_at' => time(),
+                'run_finished_at' => $finishedAt,
+                'engine_version' => VZI_RADAR_ENGINE_VERSION,
+                'mode' => 'shadow',
+                'school_id' => $schoolId,
+                'school_name' => mb_substr((string) ($result['school_name'] ?? ''), 0, 160),
+                'source_url_sha256' => hash('sha256', (string) ($result['source_url'] ?? '')),
+            ], $event);
+        }
+    }
+
+    ksort($schools, SORT_NATURAL);
+    return [[
+        'schema_version' => 1,
+        'engine_version' => VZI_RADAR_ENGINE_VERSION,
+        'updated_at' => $finishedAt,
+        'schools' => $schools,
+    ], $events];
+}
+
+function mergeOutbox(array $previousOutbox, array $newEvents): array
+{
+    $eventsById = [];
+    foreach (array_merge($previousOutbox['events'] ?? [], $newEvents) as $event) {
+        if (!is_array($event)) {
+            continue;
+        }
+        $eventId = (string) ($event['event_id'] ?? '');
+        if (!preg_match('/^vzi-radar-[0-9]+-[0-9]+-[a-f0-9]{12}$/', $eventId)) {
+            continue;
+        }
+        $eventsById[$eventId] = $event;
+    }
+    $events = array_values($eventsById);
+    usort($events, static fn(array $a, array $b): int => [(int) ($a['generated_at'] ?? 0), (string) $a['event_id']] <=> [(int) ($b['generated_at'] ?? 0), (string) $b['event_id']]);
+    if (count($events) > 100) {
+        $events = array_slice($events, -100);
+    }
+    return [
+        'schema_version' => 1,
+        'project' => 'VOZNISKI-IZPIT.COM',
+        'scope' => 'radar_health_only',
+        'updated_at' => gmdate('c'),
+        'events' => $events,
+    ];
+}
+
 function runSelfTest(): void
 {
     $checks = 0;
@@ -401,6 +537,28 @@ function runSelfTest(): void
     $assert(!robotsAllows("User-agent: *\nDisallow: /private", '/private/course'), 'robots disallow');
     $html = '<div class="ideal-vrstica">Tečaj CPP 18. 9. 2026 ob 17:00</div><div class="ideal-vrstica">Vsa mesta so zasedena 20. 9. 2026</div>';
     $assert(count(extractCandidates($html, ['.ideal-vrstica'], 10)) === 1, 'candidate extraction');
+    $baseReport = ['finished_at' => '2026-08-28T03:07:00+00:00', 'results' => [[
+        'school_id' => 42, 'school_name' => 'Test', 'source_url' => 'https://example.com/cpp',
+        'status' => 'error', 'error_code' => 'HTTP_STATUS_503',
+    ]]];
+    [$state1, $events1] = healthTransition(['schema_version' => 1, 'schools' => []], $baseReport);
+    $assert($events1 === [] && $state1['schools']['42']['problem_streak'] === 1, 'first error is transient');
+    [$state2, $events2] = healthTransition($state1, $baseReport);
+    $assert(count($events2) === 1 && $events2[0]['kind'] === 'source_degraded', 'second error alerts');
+    [$state3, $events3] = healthTransition($state2, $baseReport);
+    $assert($events3 === [] && $state3['schools']['42']['problem_streak'] === 3, 'persistent error does not repeat');
+    $successReport = $baseReport;
+    $successReport['results'][0]['status'] = 'success';
+    unset($successReport['results'][0]['error_code']);
+    [$state4, $events4] = healthTransition($state3, $successReport);
+    $assert(count($events4) === 1 && $events4[0]['kind'] === 'source_recovered' && $state4['schools']['42']['active_problem'] === '', 'recovery alerts once');
+    $reviewReport = $baseReport;
+    $reviewReport['results'][0]['status'] = 'review';
+    unset($reviewReport['results'][0]['error_code']);
+    [, $reviewEvents] = healthTransition(['schema_version' => 1, 'schools' => []], $reviewReport);
+    $assert($reviewEvents === [], 'review stays on browser fallback');
+    $outbox = mergeOutbox(['schema_version' => 1, 'events' => $events2], $events2);
+    $assert(count($outbox['events']) === 1, 'outbox event idempotence');
     fwrite(STDOUT, "VZI Radar Engine self-test PASS: {$checks} checks." . PHP_EOL);
 }
 
@@ -412,6 +570,8 @@ if (in_array('--self-test', $argv, true)) {
 $root = dirname(__DIR__, 3);
 $registryPath = getenv('VZI_RADAR_REGISTRY') ?: $root . '/config/cpp-browser-sources.json';
 $outputPath = getenv('VZI_RADAR_SHADOW_OUTPUT') ?: dirname(__DIR__) . '/var/shadow-report.json';
+$statePath = getenv('VZI_RADAR_STATE_OUTPUT') ?: dirname($outputPath) . '/shadow-state.json';
+$outboxPath = getenv('VZI_RADAR_EVENT_OUTBOX') ?: dirname($outputPath) . '/shadow-alert-outbox.json';
 $redirectConfigPath = getenv('VZI_RADAR_REDIRECT_HOSTS') ?: dirname(__DIR__) . '/config/redirect-hosts.json';
 $maxSources = filter_var(getenv('VZI_RADAR_MAX_SOURCES') ?: '5', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 100]]) ?: 5;
 $rotationValue = getenv('VZI_RADAR_ROTATION_SLOT');
@@ -488,6 +648,13 @@ try {
         'results' => $results,
     ];
     atomicWriteJson($outputPath, $report);
+    $previousState = readStateJson($statePath, ['schema_version' => 1, 'schools' => []]);
+    [$nextState, $newEvents] = healthTransition($previousState, $report);
+    if ($newEvents !== []) {
+        $previousOutbox = readStateJson($outboxPath, ['schema_version' => 1, 'events' => []]);
+        atomicWriteJson($outboxPath, mergeOutbox($previousOutbox, $newEvents));
+    }
+    atomicWriteJson($statePath, $nextState);
     fwrite(STDOUT, json_encode($report['summary'], JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR) . PHP_EOL);
 } catch (Throwable $error) {
     fail('VZI Radar Engine fatal: ' . $error->getMessage());
