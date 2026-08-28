@@ -15,6 +15,13 @@ public key, verifies the registry SHA-256, validates the bounded schema and the
 exact observation-to-registry identity, and only then performs audited
 create/update/unchanged upserts for approved and enabled sources.
 
+The harvester processes at most 20 approved and enabled sources in one run. At
+larger registry sizes it advances through a deterministic daily UTC rotation,
+so every source is revisited without allowing one workflow to grow without a
+bound. `VZI_CPP_ROTATION_SLOT` can select a deterministic batch for diagnostics.
+The signed manifest always carries the full reviewed registry and observations
+only for the batch harvested in that run.
+
 The channel cannot delete WordPress sources, execute remote commands, or publish
 unreviewed sources. It contains no WordPress credentials, private application
 data or personal data. The private signing key exists only as an encrypted

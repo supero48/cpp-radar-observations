@@ -38,6 +38,7 @@ jobs:
       - name: Harvest and sign approved browser sources
         env:
           VZI_CPP_MANIFEST_SIGNING_KEY: ${{ secrets.VZI_CPP_MANIFEST_SIGNING_KEY }}
+          VZI_CPP_MAX_SOURCES_PER_RUN: "20"
         run: node scripts/harvest-cpp-browser-sources.mjs
 
       - name: Publish latest signed manifest

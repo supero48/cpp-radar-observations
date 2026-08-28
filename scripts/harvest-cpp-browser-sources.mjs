@@ -87,14 +87,25 @@ function canonicalTimeRange(value) {
 }
 
 function canonicalLocation(value) {
-  const match = String(value).match(/([A-ZČŠŽ][\p{L}.'-]+\s+(?:ulica|cesta|trg|pot)\s+\d+[a-z]?,\s*[A-ZČŠŽ][\p{L} .'-]{1,60})\s*[·|]\s*\d{1,2}[:.]\d{2}/iu);
-  if (!match) return null;
-  const name = match[1].replace(/\s+/g, " ").trim();
-  const separator = name.lastIndexOf(",");
+  const text = String(value).replace(/\s+/g, " ").trim();
+  const timed = text.match(/([A-ZČŠŽ][\p{L}.'-]+\s+(?:ulica|cesta|trg|pot)\s+\d+[a-z]?,\s*[A-ZČŠŽ][\p{L} .'-]{1,60})\s*[·|]\s*\d{1,2}[:.]\d{2}/iu);
+  if (timed) {
+    const name = timed[1].replace(/\s+/g, " ").trim();
+    const separator = name.lastIndexOf(",");
+    return {
+      name,
+      streetAddress: separator > 0 ? name.slice(0, separator).trim() : name,
+      addressLocality: separator > 0 ? name.slice(separator + 1).trim() : ""
+    };
+  }
+  const inline = text.match(/\b((?:(?:Ulica|Cesta|Trg|Pot)\s+[A-ZČŠŽ][\p{L}.'-]+(?:\s+[\p{L}.'-]+){0,4}|[A-ZČŠŽ][\p{L}.'-]+(?:\s+[\p{L}.'-]+){0,4}\s+(?:ulica|cesta|trg|pot))\s+\d+[a-z]?),\s*(?:\d{4}\s+)?([A-ZČŠŽ][\p{L}.'-]+(?:\s+[\p{L}.'-]+){0,2})/iu);
+  if (!inline) return null;
+  const streetAddress = inline[1].replace(/\s+/g, " ").trim();
+  const addressLocality = inline[2].replace(/\s+/g, " ").trim();
   return {
-    name,
-    streetAddress: separator > 0 ? name.slice(0, separator).trim() : name,
-    addressLocality: separator > 0 ? name.slice(separator + 1).trim() : ""
+    name: `${streetAddress}, ${addressLocality}`,
+    streetAddress,
+    addressLocality
   };
 }
 
@@ -191,7 +202,7 @@ function validateRegistry(value) {
     if (!Number.isInteger(source.max_nodes) || source.max_nodes < 1 || source.max_nodes > 100) {
       failures.push(`${prefix}.max_nodes must be between 1 and 100`);
     }
-    if (!['date-nodes-v1', 'relax-registration-v1'].includes(source.extractor || 'date-nodes-v1')) {
+    if (!['date-nodes-v1', 'relax-registration-v1', 'tilia-course-v1'].includes(source.extractor || 'date-nodes-v1')) {
       failures.push(`${prefix}.extractor is not approved`);
     }
     if (typeof source.domain !== "string" || !source.domain.trim()) failures.push(`${prefix}.domain is required`);
@@ -204,6 +215,40 @@ function validateRegistry(value) {
     identities.add(identity);
   }
   if (failures.length) throw new Error(`Invalid browser source registry:\n- ${failures.join("\n- ")}`);
+}
+
+function positiveInteger(value, fallback, name) {
+  if (value === undefined || value === null || value === "") return fallback;
+  if (!/^\d+$/u.test(String(value)) || Number(value) < 1 || Number(value) > 1000) {
+    throw new Error(`${name} must be an integer between 1 and 1000`);
+  }
+  return Number(value);
+}
+
+function nonNegativeInteger(value, fallback, name) {
+  if (value === undefined || value === null || value === "") return fallback;
+  if (!/^\d+$/u.test(String(value))) {
+    throw new Error(`${name} must be a non-negative integer`);
+  }
+  return Number(value);
+}
+
+function selectHarvestBatch(sources, maxSources, rotationSlot) {
+  const eligible = sources.filter((source) => source.approved && source.enabled);
+  if (eligible.length === 0) throw new Error("Registry contains no approved and enabled browser sources");
+  const selectedCount = Math.min(maxSources, eligible.length);
+  const startIndex = eligible.length <= maxSources ? 0 : (rotationSlot * maxSources) % eligible.length;
+  const selected = Array.from(
+    { length: selectedCount },
+    (_, offset) => eligible[(startIndex + offset) % eligible.length]
+  );
+  return {
+    selected,
+    totalEligible: eligible.length,
+    maxSources,
+    rotationSlot,
+    startIndex
+  };
 }
 
 function manifestSignatureMessage(manifest) {
@@ -233,6 +278,8 @@ if (process.argv.includes("--self-test")) {
   const times = canonicalTimeRange("Cafova ulica 5, Maribor · 16:00–19:15");
   const singleTime = canonicalTimeRange("27. 8. 2026 ob 16.00 PRIJAVA");
   const location = canonicalLocation("15. okt. – 21. okt. 2026 Cafova ulica 5, Maribor · 16:00–19:15");
+  const leadingStreetLocation = canonicalLocation("Ponedeljek, 7. September 2026 Cesta Staneta Žagarja 27a, 4000 Kranj");
+  const labelledLocation = canonicalLocation("21.9.2026 (lokacija: Zagrebška cesta 25, 2000 Maribor, Datumi: 21. in 22. september)");
   const relaxGeneral = relaxPayloadItem({
     text: "08. 9. 2026 ob 16.00 PRIJAVA",
     branch: "PE MARIBOR",
@@ -251,6 +298,9 @@ if (process.argv.includes("--self-test")) {
   const dateNodeAdditional = dateNodePayloadItem({
     text: "Sreda, 23.09.2026 Začetek ob 18:00 Tečaj CPP dodatni del A"
   });
+  const tiliaCourse = dateNodePayloadItem({
+    text: "21.9.2026 (September) - B kategorija Vsi tečaji se začnejo v ponedeljek ob 17:00"
+  });
   const signatureFixture = {
     version: 2,
     generated_at: "2026-08-26T19:21:06.283Z",
@@ -266,6 +316,24 @@ if (process.argv.includes("--self-test")) {
   const signatureKeys = crypto.generateKeyPairSync("ed25519");
   const fixtureMessage = Buffer.from(manifestSignatureMessage(signatureFixture), "utf8");
   const fixtureSignature = crypto.sign(null, fixtureMessage, signatureKeys.privateKey);
+  const rotationSources = Array.from({ length: 45 }, (_, index) => ({
+    school_id: index + 1,
+    approved: true,
+    enabled: true
+  }));
+  const firstBatch = selectHarvestBatch(rotationSources, 20, 0);
+  const secondBatch = selectHarvestBatch(rotationSources, 20, 1);
+  const thirdBatch = selectHarvestBatch(rotationSources, 20, 2);
+  const rotationCoverage = new Set([
+    ...firstBatch.selected,
+    ...secondBatch.selected,
+    ...thirdBatch.selected
+  ].map((source) => source.school_id));
+  const filteredBatch = selectHarvestBatch([
+    { school_id: 1, approved: true, enabled: true },
+    { school_id: 2, approved: false, enabled: true },
+    { school_id: 3, approved: true, enabled: false }
+  ], 20, 0);
   const checks = [
     firstRange?.startDate === "2026-09-23" && firstRange?.endDate === "2026-09-29",
     secondRange?.startDate === "2026-10-15" && secondRange?.endDate === "2026-10-21",
@@ -273,6 +341,8 @@ if (process.argv.includes("--self-test")) {
     times.startTime === "16:00:00" && times.endTime === "19:15:00",
     singleTime.startTime === "16:00:00" && singleTime.endTime === null,
     location?.name === "Cafova ulica 5, Maribor" && location?.addressLocality === "Maribor",
+    leadingStreetLocation?.name === "Cesta Staneta Žagarja 27a, Kranj" && leadingStreetLocation?.addressLocality === "Kranj",
+    labelledLocation?.name === "Zagrebška cesta 25, Maribor" && labelledLocation?.addressLocality === "Maribor",
     isUnavailableTerm("23. sep. – 29. sep. 2026 Termin poln"),
     isUnavailableTerm("Četrtek, 03. 09. 2026 Začetek ob 18:00 Ni več prostih mest"),
     !isUnavailableTerm("15. okt. – 21. okt. 2026"),
@@ -280,9 +350,17 @@ if (process.argv.includes("--self-test")) {
     relaxAdditional?.courseType === "CPP_ADDITIONAL" && relaxAdditional?.mode === "ONLINE" && relaxAdditional?.categoryText === "A1, A2, A",
     relaxRejected === null,
     dateNodeAdditional?.courseType === "CPP_ADDITIONAL" && dateNodeAdditional?.dates.startDate === "2026-09-23",
+    tiliaCourse?.dates.startDate === "2026-09-21" && tiliaCourse?.times.startTime === "17:00:00",
     crypto.verify(null, fixtureMessage, signatureKeys.publicKey, fixtureSignature),
     manifestSignatureMessage(signatureFixture).startsWith("vzi-cpp-browser-manifest-v2\n"),
-    signatureFixture.registry === registry
+    signatureFixture.registry === registry,
+    firstBatch.selected.map((source) => source.school_id).join(",") === Array.from({ length: 20 }, (_, index) => index + 1).join(","),
+    secondBatch.selected.map((source) => source.school_id).join(",") === Array.from({ length: 20 }, (_, index) => index + 21).join(","),
+    thirdBatch.selected.map((source) => source.school_id).join(",") === [...Array.from({ length: 5 }, (_, index) => index + 41), ...Array.from({ length: 15 }, (_, index) => index + 1)].join(","),
+    rotationCoverage.size === 45,
+    filteredBatch.totalEligible === 1 && filteredBatch.selected[0]?.school_id === 1,
+    positiveInteger("20", 10, "test") === 20,
+    nonNegativeInteger("0", 5, "test") === 0
   ];
   if (checks.some((passed) => !passed)) throw new Error("Browser structured-event self-test failed");
   process.stdout.write(`Browser structured-event self-test PASS: ${checks.length} checks.\n`);
@@ -465,6 +543,10 @@ async function harvestSource(cdp, source) {
           const branchNode = node.closest('.comment')?.querySelector('a:not([href*="/termin="])');
           text = (eventNode?.innerText || '').replace(/\\s+/g, ' ').trim();
           item = { text, href: new URL(href, document.baseURI).href, branch: (branchNode?.innerText || '').replace(/\\s+/g, ' ').trim() };
+        } else if (extractor === 'tilia-course-v1') {
+          const prompt = node.closest('#nf-field-15-wrap')?.querySelector('.nf-field-label')?.innerText || '';
+          text = [text, prompt].join(' ').replace(/\\s+/g, ' ').trim();
+          item = { text };
         }
         if (!text || text.length > 800 || (!named.test(text) && !numeric.test(text))) continue;
         if (!found.some((existing) => (item.href || item.text) === (existing.href || existing.text))) found.push(item);
@@ -539,8 +621,12 @@ async function harvestSource(cdp, source) {
 const runtime = await startChrome();
 const results = [];
 const observations = [];
+const maxSources = positiveInteger(process.env.VZI_CPP_MAX_SOURCES_PER_RUN, 20, "VZI_CPP_MAX_SOURCES_PER_RUN");
+const defaultRotationSlot = Math.floor(Date.now() / 86400000);
+const rotationSlot = nonNegativeInteger(process.env.VZI_CPP_ROTATION_SLOT, defaultRotationSlot, "VZI_CPP_ROTATION_SLOT");
+const batch = selectHarvestBatch(registry.sources, maxSources, rotationSlot);
 try {
-  for (const source of registry.sources) {
+  for (const source of batch.selected) {
     try {
       const harvested = await harvestSource(runtime.cdp, source);
       const observedAt = new Date().toISOString();
@@ -594,6 +680,14 @@ try {
   process.stdout.write(`${JSON.stringify({
     status: failed === 0 ? "PASS" : "PASS_WITH_ERRORS",
     registry: { status: "preconfigured", source_count: registry.sources.length, sha256: manifest.registry_sha256 },
+    batch: {
+      eligible_source_count: batch.totalEligible,
+      selected_source_count: batch.selected.length,
+      max_sources_per_run: batch.maxSources,
+      rotation_slot: batch.rotationSlot,
+      start_index: batch.startIndex,
+      school_ids: batch.selected.map((source) => source.school_id)
+    },
     manifest: { path: manifestPath, generated_at: generatedAt, observation_count: observations.length },
     sources: results
   })}\n`);
