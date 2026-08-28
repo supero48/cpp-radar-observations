@@ -111,7 +111,7 @@ function canonicalLocation(value) {
 }
 
 function isUnavailableTerm(value) {
-  return /\b(?:termin\s+(?:je\s+)?poln|razprodano|zapolnjen[ao]?|ni\s+(?:ve\u010d\s+)?prostih\s+mest)\b/iu.test(String(value));
+  return /\b(?:termin\s+(?:je\s+)?poln|razprodano|zapolnjen[ao]?|ni\s+(?:ve\u010d\s+)?prostih\s+mest|vsa\s+mesta\s+so\s+zasedena)\b/iu.test(String(value));
 }
 
 function dateNodePayloadItem(item) {
@@ -347,6 +347,7 @@ if (process.argv.includes("--self-test")) {
     labelledLocation?.name === "Zagrebška cesta 25, Maribor" && labelledLocation?.addressLocality === "Maribor",
     isUnavailableTerm("23. sep. – 29. sep. 2026 Termin poln"),
     isUnavailableTerm("Četrtek, 03. 09. 2026 Začetek ob 18:00 Ni več prostih mest"),
+    isUnavailableTerm("27.7.2026 ob 9:00 VSA MESTA SO ZASEDENA"),
     !isUnavailableTerm("15. okt. – 21. okt. 2026"),
     relaxGeneral?.courseType === "CPP_GENERAL" && relaxGeneral?.location?.addressLocality === "Maribor",
     relaxAdditional?.courseType === "CPP_ADDITIONAL" && relaxAdditional?.mode === "ONLINE" && relaxAdditional?.categoryText === "A1, A2, A",
