@@ -284,7 +284,7 @@ function extractCandidates(string $html, array $selectors, int $maxNodes): array
     return array_values($candidates);
 }
 
-function sourceHosts(array $source): array
+function sourceHosts(array $source, array $redirectHosts = []): array
 {
     $hosts = [];
     foreach (['domain', 'url', 'homepage_url'] as $key) {
@@ -294,14 +294,22 @@ function sourceHosts(array $source): array
             $hosts[] = strtolower(rtrim($host, '.'));
         }
     }
+    $canonicalDomain = preg_replace('/^www\./', '', strtolower((string) ($source['domain'] ?? '')));
+    foreach ($redirectHosts as $host) {
+        $host = strtolower(rtrim((string) $host, '.'));
+        if ($host === '' || ($host !== $canonicalDomain && !str_ends_with($host, '.' . $canonicalDomain))) {
+            throw new RuntimeException('REDIRECT_HOST_OUTSIDE_SOURCE_DOMAIN');
+        }
+        $hosts[] = $host;
+    }
     return array_values(array_unique($hosts));
 }
 
-function harvestSource(array $source, array &$robotsCache): array
+function harvestSource(array $source, array &$robotsCache, array $redirectHosts = []): array
 {
     $started = microtime(true);
     $url = (string) ($source['url'] ?? '');
-    $hosts = sourceHosts($source);
+    $hosts = sourceHosts($source, $redirectHosts);
     [$host] = validateTargetUrl($url, $hosts);
     $robotsUrl = 'https://' . $host . '/robots.txt';
     if (!array_key_exists($robotsUrl, $robotsCache)) {
@@ -382,6 +390,13 @@ function runSelfTest(): void
     $assert(str_contains(cssToXpath('a[href*="/termin="]'), "contains(@href, '/termin=')"), 'attribute selector');
     $assert(str_contains(cssToXpath('#nf-field-15-wrap .nf-field-element label'), "@id='nf-field-15-wrap'"), 'descendant selector');
     $assert(str_contains(cssToXpath('.blog-content.courses .col-lg-10 > p'), '/p'), 'child selector');
+    $assert(in_array('prijave.formula.si', sourceHosts(['domain' => 'www.formula.si'], ['prijave.formula.si']), true), 'same-domain redirect host');
+    try {
+        sourceHosts(['domain' => 'formula.si'], ['example.net']);
+        $assert(false, 'foreign redirect host rejected');
+    } catch (RuntimeException $error) {
+        $assert($error->getMessage() === 'REDIRECT_HOST_OUTSIDE_SOURCE_DOMAIN', 'foreign redirect host rejected');
+    }
     $assert(robotsAllows("User-agent: *\nDisallow: /private\nAllow: /private/public", '/private/public/course'), 'robots allow precedence');
     $assert(!robotsAllows("User-agent: *\nDisallow: /private", '/private/course'), 'robots disallow');
     $html = '<div class="ideal-vrstica">Tečaj CPP 18. 9. 2026 ob 17:00</div><div class="ideal-vrstica">Vsa mesta so zasedena 20. 9. 2026</div>';
@@ -397,6 +412,7 @@ if (in_array('--self-test', $argv, true)) {
 $root = dirname(__DIR__, 3);
 $registryPath = getenv('VZI_RADAR_REGISTRY') ?: $root . '/config/cpp-browser-sources.json';
 $outputPath = getenv('VZI_RADAR_SHADOW_OUTPUT') ?: dirname(__DIR__) . '/var/shadow-report.json';
+$redirectConfigPath = getenv('VZI_RADAR_REDIRECT_HOSTS') ?: dirname(__DIR__) . '/config/redirect-hosts.json';
 $maxSources = filter_var(getenv('VZI_RADAR_MAX_SOURCES') ?: '5', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 100]]) ?: 5;
 $rotationValue = getenv('VZI_RADAR_ROTATION_SLOT');
 $rotationValue = $rotationValue === false || $rotationValue === '' ? (string) intdiv(time(), 86400) : $rotationValue;
@@ -416,6 +432,12 @@ try {
     if (!is_array($registry['sources'] ?? null)) {
         throw new RuntimeException('INVALID_SOURCE_REGISTRY');
     }
+    $redirectConfig = is_file($redirectConfigPath)
+        ? json_decode((string) file_get_contents($redirectConfigPath), true, 16, JSON_THROW_ON_ERROR)
+        : ['version' => 1, 'sources' => []];
+    if ((int) ($redirectConfig['version'] ?? 0) !== 1 || !is_array($redirectConfig['sources'] ?? null)) {
+        throw new RuntimeException('INVALID_REDIRECT_HOST_CONFIG');
+    }
     $sources = array_values(array_filter($registry['sources'], static fn($source): bool => is_array($source) && !empty($source['approved']) && !empty($source['enabled'])));
     if ($sources === []) {
         throw new RuntimeException('NO_ENABLED_SOURCES');
@@ -432,7 +454,11 @@ try {
     $robotsCache = [];
     foreach ($batch as $source) {
         try {
-            $results[] = harvestSource($source, $robotsCache);
+            $sourceRedirectHosts = $redirectConfig['sources'][(string) ($source['school_id'] ?? '')] ?? [];
+            if (!is_array($sourceRedirectHosts) || count($sourceRedirectHosts) > 4) {
+                throw new RuntimeException('INVALID_SOURCE_REDIRECT_HOSTS');
+            }
+            $results[] = harvestSource($source, $robotsCache, $sourceRedirectHosts);
         } catch (Throwable $error) {
             $results[] = [
                 'school_id' => (int) ($source['school_id'] ?? 0),
