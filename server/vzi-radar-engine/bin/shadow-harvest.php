@@ -3,7 +3,8 @@
 
 declare(strict_types=1);
 
-const VZI_RADAR_ENGINE_VERSION = '0.2.0-shadow';
+const VZI_RADAR_ENGINE_VERSION = '0.3.0-shadow';
+const VZI_RADAR_ACCEPTANCE_GATE_VERSION = '1.0.0';
 const VZI_RADAR_USER_AGENT = 'VZICourseRadar/0.1 (+https://vozniski-izpit.com/nova/termini-tecajev/)';
 
 function fail(string $message, int $code = 1): never
@@ -509,6 +510,102 @@ function mergeOutbox(array $previousOutbox, array $newEvents): array
     ];
 }
 
+function evaluateShadowAcceptance(array $report, int $evaluatedAt, float $minimumSuccessRatio = 0.65, bool $requireFullCoverage = true): array
+{
+    $reasons = [];
+    $results = is_array($report['results'] ?? null) ? $report['results'] : [];
+    $summary = is_array($report['summary'] ?? null) ? $report['summary'] : [];
+    $sourceCount = (int) ($report['source_count'] ?? -1);
+    $batchSize = (int) ($report['batch_size'] ?? -1);
+
+    if ((int) ($report['schema_version'] ?? 0) !== 1) {
+        $reasons[] = 'REPORT_SCHEMA_INVALID';
+    }
+    if ((string) ($report['engine_version'] ?? '') !== VZI_RADAR_ENGINE_VERSION) {
+        $reasons[] = 'ENGINE_VERSION_MISMATCH';
+    }
+    if ((string) ($report['mode'] ?? '') !== 'shadow') {
+        $reasons[] = 'MODE_NOT_SHADOW';
+    }
+    if ($sourceCount < 1 || $batchSize < 1 || $batchSize > $sourceCount || count($results) !== $batchSize) {
+        $reasons[] = 'REPORT_COUNTS_INVALID';
+    }
+    if ($requireFullCoverage && $batchSize !== $sourceCount) {
+        $reasons[] = 'FULL_COVERAGE_REQUIRED';
+    }
+
+    $startedAt = strtotime((string) ($report['started_at'] ?? ''));
+    $finishedAt = strtotime((string) ($report['finished_at'] ?? ''));
+    if ($startedAt === false || $finishedAt === false || $finishedAt < $startedAt || ($finishedAt - $startedAt) > 1800) {
+        $reasons[] = 'REPORT_TIME_INVALID';
+    } elseif (($evaluatedAt - $finishedAt) > 129600 || ($finishedAt - $evaluatedAt) > 300) {
+        $reasons[] = 'REPORT_NOT_FRESH';
+    }
+
+    $calculated = ['success' => 0, 'review' => 0, 'error' => 0];
+    $seenSchoolIds = [];
+    $approvedSchoolIds = [];
+    foreach ($results as $result) {
+        if (!is_array($result)) {
+            $reasons[] = 'RESULT_INVALID';
+            continue;
+        }
+        $schoolId = (int) ($result['school_id'] ?? 0);
+        $status = (string) ($result['status'] ?? '');
+        if ($schoolId < 1 || isset($seenSchoolIds[$schoolId])) {
+            $reasons[] = 'SCHOOL_ID_INVALID_OR_DUPLICATE';
+        } else {
+            $seenSchoolIds[$schoolId] = true;
+        }
+        if (!array_key_exists($status, $calculated)) {
+            $reasons[] = 'RESULT_STATUS_INVALID';
+            continue;
+        }
+        $calculated[$status]++;
+        if ($status === 'success') {
+            if ((int) ($result['candidate_count'] ?? 0) < 1 || empty($result['context_seen']) || (int) ($result['http_status'] ?? 0) < 200 || (int) ($result['http_status'] ?? 0) >= 300) {
+                $reasons[] = 'SUCCESS_EVIDENCE_INVALID';
+            } elseif ($schoolId > 0) {
+                $approvedSchoolIds[] = $schoolId;
+            }
+        }
+    }
+
+    foreach ($calculated as $status => $count) {
+        if ((int) ($summary[$status] ?? -1) !== $count) {
+            $reasons[] = 'SUMMARY_MISMATCH';
+            break;
+        }
+    }
+    if ($calculated['error'] > 0) {
+        $reasons[] = 'HARD_ERRORS_PRESENT';
+    }
+    $successRatio = $batchSize > 0 ? $calculated['success'] / $batchSize : 0.0;
+    if ($successRatio < $minimumSuccessRatio) {
+        $reasons[] = 'SUCCESS_RATIO_BELOW_THRESHOLD';
+    }
+
+    $reasons = array_values(array_unique($reasons));
+    sort($reasons, SORT_STRING);
+    sort($approvedSchoolIds, SORT_NUMERIC);
+    return [
+        'schema_version' => 1,
+        'project' => 'VOZNISKI-IZPIT.COM',
+        'gate_version' => VZI_RADAR_ACCEPTANCE_GATE_VERSION,
+        'engine_version' => VZI_RADAR_ENGINE_VERSION,
+        'evaluated_at' => gmdate('c', $evaluatedAt),
+        'mode' => 'shadow',
+        'report_finished_at' => is_string($report['finished_at'] ?? null) ? $report['finished_at'] : '',
+        'source_count' => max(0, $sourceCount),
+        'batch_size' => max(0, $batchSize),
+        'summary' => $calculated,
+        'success_ratio' => round($successRatio, 4),
+        'status' => $reasons === [] ? 'PASS' : 'HOLD',
+        'reasons' => $reasons,
+        'approved_school_ids' => $approvedSchoolIds,
+    ];
+}
+
 function runSelfTest(): void
 {
     $checks = 0;
@@ -559,6 +656,32 @@ function runSelfTest(): void
     $assert($reviewEvents === [], 'review stays on browser fallback');
     $outbox = mergeOutbox(['schema_version' => 1, 'events' => $events2], $events2);
     $assert(count($outbox['events']) === 1, 'outbox event idempotence');
+    $acceptanceReport = [
+        'schema_version' => 1,
+        'engine_version' => VZI_RADAR_ENGINE_VERSION,
+        'mode' => 'shadow',
+        'started_at' => '2026-08-28T03:07:00+00:00',
+        'finished_at' => '2026-08-28T03:08:00+00:00',
+        'source_count' => 3,
+        'batch_size' => 3,
+        'summary' => ['success' => 2, 'review' => 1, 'error' => 0],
+        'results' => [
+            ['school_id' => 1, 'status' => 'success', 'candidate_count' => 1, 'context_seen' => true, 'http_status' => 200],
+            ['school_id' => 2, 'status' => 'success', 'candidate_count' => 2, 'context_seen' => true, 'http_status' => 200],
+            ['school_id' => 3, 'status' => 'review', 'candidate_count' => 0, 'context_seen' => true, 'http_status' => 200],
+        ],
+    ];
+    $gatePass = evaluateShadowAcceptance($acceptanceReport, strtotime('2026-08-28T03:09:00+00:00'));
+    $assert($gatePass['status'] === 'PASS' && $gatePass['approved_school_ids'] === [1, 2], 'acceptance pass');
+    $acceptanceReport['summary'] = ['success' => 2, 'review' => 0, 'error' => 1];
+    $acceptanceReport['results'][2] = ['school_id' => 3, 'status' => 'error', 'error_code' => 'HTTP_STATUS_503'];
+    $gateError = evaluateShadowAcceptance($acceptanceReport, strtotime('2026-08-28T03:09:00+00:00'));
+    $assert($gateError['status'] === 'HOLD' && in_array('HARD_ERRORS_PRESENT', $gateError['reasons'], true), 'acceptance blocks hard errors');
+    $acceptanceReport['summary'] = ['success' => 1, 'review' => 1, 'error' => 0];
+    $acceptanceReport['results'] = array_slice($acceptanceReport['results'], 0, 2);
+    $acceptanceReport['batch_size'] = 2;
+    $gateCoverage = evaluateShadowAcceptance($acceptanceReport, strtotime('2026-08-28T03:09:00+00:00'));
+    $assert($gateCoverage['status'] === 'HOLD' && in_array('FULL_COVERAGE_REQUIRED', $gateCoverage['reasons'], true), 'acceptance requires full coverage');
     fwrite(STDOUT, "VZI Radar Engine self-test PASS: {$checks} checks." . PHP_EOL);
 }
 
@@ -570,10 +693,17 @@ if (in_array('--self-test', $argv, true)) {
 $root = dirname(__DIR__, 3);
 $registryPath = getenv('VZI_RADAR_REGISTRY') ?: $root . '/config/cpp-browser-sources.json';
 $outputPath = getenv('VZI_RADAR_SHADOW_OUTPUT') ?: dirname(__DIR__) . '/var/shadow-report.json';
+$acceptancePath = getenv('VZI_RADAR_ACCEPTANCE_OUTPUT') ?: dirname($outputPath) . '/shadow-acceptance.json';
 $statePath = getenv('VZI_RADAR_STATE_OUTPUT') ?: dirname($outputPath) . '/shadow-state.json';
 $outboxPath = getenv('VZI_RADAR_EVENT_OUTBOX') ?: dirname($outputPath) . '/shadow-alert-outbox.json';
 $redirectConfigPath = getenv('VZI_RADAR_REDIRECT_HOSTS') ?: dirname(__DIR__) . '/config/redirect-hosts.json';
 $maxSources = filter_var(getenv('VZI_RADAR_MAX_SOURCES') ?: '5', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 100]]) ?: 5;
+$minimumSuccessRatioValue = getenv('VZI_RADAR_ACCEPT_MIN_SUCCESS_RATIO');
+$minimumSuccessRatio = $minimumSuccessRatioValue === false || $minimumSuccessRatioValue === '' ? 0.65 : filter_var($minimumSuccessRatioValue, FILTER_VALIDATE_FLOAT);
+if ($minimumSuccessRatio === false || $minimumSuccessRatio < 0.0 || $minimumSuccessRatio > 1.0) {
+    fail('VZI_RADAR_ACCEPT_MIN_SUCCESS_RATIO must be between 0 and 1.');
+}
+$requireFullCoverage = (getenv('VZI_RADAR_ACCEPT_REQUIRE_FULL_COVERAGE') ?: '1') !== '0';
 $rotationValue = getenv('VZI_RADAR_ROTATION_SLOT');
 $rotationValue = $rotationValue === false || $rotationValue === '' ? (string) intdiv(time(), 86400) : $rotationValue;
 $rotationSlot = filter_var($rotationValue, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
@@ -648,6 +778,7 @@ try {
         'results' => $results,
     ];
     atomicWriteJson($outputPath, $report);
+    atomicWriteJson($acceptancePath, evaluateShadowAcceptance($report, time(), (float) $minimumSuccessRatio, $requireFullCoverage));
     $previousState = readStateJson($statePath, ['schema_version' => 1, 'schools' => []]);
     [$nextState, $newEvents] = healthTransition($previousState, $report);
     if ($newEvents !== []) {
