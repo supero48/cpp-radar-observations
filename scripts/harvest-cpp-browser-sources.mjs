@@ -13,7 +13,7 @@ const registryCanonical = JSON.stringify(registry);
 const manifestPath = process.env.VZI_CPP_BROWSER_MANIFEST || "build/cpp-browser-observations.json";
 const userAgent =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 " +
-  "Chrome/150.0.0.0 Safari/537.36 VZICourseRadar/0.1.11 (+https://vozniski-izpit.com/)";
+  "Chrome/150.0.0.0 Safari/537.36 VZICourseRadar/0.1.13 (+https://vozniski-izpit.com/)";
 const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const slovenianMonths = new Map([
   ["januar", 1], ["januarja", 1], ["jan", 1],
@@ -99,7 +99,22 @@ function canonicalLocation(value) {
 }
 
 function isUnavailableTerm(value) {
-  return /\b(?:termin\s+(?:je\s+)?poln|razprodano|zapolnjen[ao]?|ni\s+prostih\s+mest)\b/iu.test(String(value));
+  return /\b(?:termin\s+(?:je\s+)?poln|razprodano|zapolnjen[ao]?|ni\s+(?:ve\u010d\s+)?prostih\s+mest)\b/iu.test(String(value));
+}
+
+function dateNodePayloadItem(item) {
+  const text = String(item.text);
+  const dates = canonicalDateRange(text);
+  if (!dates) return null;
+  return {
+    text,
+    dates,
+    times: canonicalTimeRange(text),
+    location: canonicalLocation(text),
+    courseType: /\bdodatni\s+del\b/iu.test(text) ? "CPP_ADDITIONAL" : "CPP_GENERAL",
+    categoryText: "",
+    mode: /\bna\s+daljavo\b/iu.test(text) ? "ONLINE" : null
+  };
 }
 
 function titleCaseLocality(value) {
@@ -192,8 +207,9 @@ function validateRegistry(value) {
 }
 
 function manifestSignatureMessage(manifest) {
+  const version = Number(manifest.version || 1);
   const lines = [
-    "vzi-cpp-browser-manifest-v1",
+    `vzi-cpp-browser-manifest-v${version}`,
     String(manifest.generated_at),
     String(manifest.registry_sha256),
     String(manifest.observations.length)
@@ -232,8 +248,13 @@ if (process.argv.includes("--self-test")) {
     branch: "PE MUTA",
     href: "https://solavoznje-relax.si/sl/poslovne-enote/pe-muta/termin=531/enota=8/tip=3/c=3"
   });
+  const dateNodeAdditional = dateNodePayloadItem({
+    text: "Sreda, 23.09.2026 Začetek ob 18:00 Tečaj CPP dodatni del A"
+  });
   const signatureFixture = {
+    version: 2,
     generated_at: "2026-08-26T19:21:06.283Z",
+    registry,
     registry_sha256: "a".repeat(64),
     observations: [{
       school_id: 3103,
@@ -253,11 +274,15 @@ if (process.argv.includes("--self-test")) {
     singleTime.startTime === "16:00:00" && singleTime.endTime === null,
     location?.name === "Cafova ulica 5, Maribor" && location?.addressLocality === "Maribor",
     isUnavailableTerm("23. sep. – 29. sep. 2026 Termin poln"),
+    isUnavailableTerm("Četrtek, 03. 09. 2026 Začetek ob 18:00 Ni več prostih mest"),
     !isUnavailableTerm("15. okt. – 21. okt. 2026"),
     relaxGeneral?.courseType === "CPP_GENERAL" && relaxGeneral?.location?.addressLocality === "Maribor",
     relaxAdditional?.courseType === "CPP_ADDITIONAL" && relaxAdditional?.mode === "ONLINE" && relaxAdditional?.categoryText === "A1, A2, A",
     relaxRejected === null,
-    crypto.verify(null, fixtureMessage, signatureKeys.publicKey, fixtureSignature)
+    dateNodeAdditional?.courseType === "CPP_ADDITIONAL" && dateNodeAdditional?.dates.startDate === "2026-09-23",
+    crypto.verify(null, fixtureMessage, signatureKeys.publicKey, fixtureSignature),
+    manifestSignatureMessage(signatureFixture).startsWith("vzi-cpp-browser-manifest-v2\n"),
+    signatureFixture.registry === registry
   ];
   if (checks.some((passed) => !passed)) throw new Error("Browser structured-event self-test failed");
   process.stdout.write(`Browser structured-event self-test PASS: ${checks.length} checks.\n`);
@@ -463,7 +488,7 @@ async function harvestSource(cdp, source) {
   }
   const payloadItems = availableItems.map((item) => source.extractor === 'relax-registration-v1'
     ? relaxPayloadItem(item)
-    : ({ text: item.text, dates: canonicalDateRange(item.text), times: canonicalTimeRange(item.text), location: canonicalLocation(item.text) }))
+    : dateNodePayloadItem(item))
     .filter((item) => item !== null && item.dates !== null);
   if (payloadItems.length === 0) {
     throw new Error(`${source.school_name}: rendered date-bearing nodes could not be normalized`);
@@ -550,8 +575,9 @@ try {
   }
   const generatedAt = new Date().toISOString();
   const manifest = {
-    version: 1,
+    version: 2,
     generated_at: generatedAt,
+    registry,
     registry_sha256: crypto.createHash("sha256").update(registryCanonical).digest("hex"),
     observations
   };

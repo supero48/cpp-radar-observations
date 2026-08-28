@@ -1,6 +1,13 @@
 name: Publish signed CPP browser observations
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "config/cpp-browser-sources.json"
+      - "scripts/harvest-cpp-browser-sources.mjs"
+      - ".github/workflows/harvest.yml"
   schedule:
     - cron: "17 2 * * *"
   workflow_dispatch:
