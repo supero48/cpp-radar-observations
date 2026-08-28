@@ -9,6 +9,8 @@ potrebuje skrivnosti. GitHub ostaja vir kode, pregledov in izdaj.
 - dovoljen je samo HTTPS do vnaprej potrjenih gostiteljev iz registra;
 - zasebni in rezervirani IP-naslovi so zavrnjeni pred vsakim zahtevkom;
 - preusmeritve se preverijo posamično in ostanejo znotraj allowlista;
+- pregledane preusmeritvene poddomene so ločeno zapisane v
+  `config/redirect-hosts.json` in morajo ostati znotraj iste osnovne domene;
 - `robots.txt` se preveri pred virom;
 - največ 5 MB HTML-ja, omejeni timeouti, rotacijski paket in procesna ključavnica;
 - shranijo se samo hash, kratki kandidati in status, ne celoten HTML;
@@ -33,4 +35,3 @@ stran. Šele nato sledi ločen podpisni ključ strežnika, podpisan manifest,
 WordPress trust gate in povratni kanal napak v GitHub. Browser/JavaScript viri
 ostanejo na omejenem GitHub fallbacku, dokler strežniško okolje ne zagotovi
 enakovrednega renderiranja.
-
