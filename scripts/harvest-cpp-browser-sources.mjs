@@ -712,5 +712,13 @@ try {
   runtime.cdp.close();
   await wait(250);
   if (runtime.child.exitCode === null) runtime.child.kill("SIGKILL");
-  fs.rmSync(runtime.profile, { recursive: true, force: true });
+  // Chromium can briefly keep profile files open after Browser.close. Node's
+  // recursive removal otherwise fails nondeterministically with ENOTEMPTY and
+  // turns a successfully signed harvest into a failed workflow.
+  fs.rmSync(runtime.profile, {
+    recursive: true,
+    force: true,
+    maxRetries: 8,
+    retryDelay: 250
+  });
 }
