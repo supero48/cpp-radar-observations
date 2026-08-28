@@ -140,7 +140,7 @@
       "selectors": ["#nf-field-15-wrap .nf-field-element label"],
       "context_text": "Termini tečajev CPP",
       "max_nodes": 10,
-      "extractor": "tilia-course-v1",
+      "extractor": "date-nodes-v1",
       "priority": 2,
       "approved": true,
       "enabled": true
