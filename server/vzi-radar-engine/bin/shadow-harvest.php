@@ -398,7 +398,9 @@ $root = dirname(__DIR__, 3);
 $registryPath = getenv('VZI_RADAR_REGISTRY') ?: $root . '/config/cpp-browser-sources.json';
 $outputPath = getenv('VZI_RADAR_SHADOW_OUTPUT') ?: dirname(__DIR__) . '/var/shadow-report.json';
 $maxSources = filter_var(getenv('VZI_RADAR_MAX_SOURCES') ?: '5', FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 100]]) ?: 5;
-$rotationSlot = filter_var(getenv('VZI_RADAR_ROTATION_SLOT') ?: (string) intdiv(time(), 86400), FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+$rotationValue = getenv('VZI_RADAR_ROTATION_SLOT');
+$rotationValue = $rotationValue === false || $rotationValue === '' ? (string) intdiv(time(), 86400) : $rotationValue;
+$rotationSlot = filter_var($rotationValue, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
 if ($rotationSlot === false) {
     fail('VZI_RADAR_ROTATION_SLOT must be a non-negative integer.');
 }
