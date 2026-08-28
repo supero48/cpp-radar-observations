@@ -144,6 +144,54 @@
       "priority": 2,
       "approved": true,
       "enabled": true
+    },
+    {
+      "school_id": 3126,
+      "school_name": "Šola vožnje Andrej",
+      "school_locality": "Deskle",
+      "school_location": "Ulica Gradnikove brigade 6, Nova Gorica",
+      "domain": "www.solavoznjeandrej.si",
+      "homepage_url": "https://www.solavoznjeandrej.si/",
+      "url": "https://www.solavoznjeandrej.si/tecaji",
+      "selectors": [".blog-content.courses .col-lg-10 > p"],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 20,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3119,
+      "school_name": "Šola vožnje BUSKO",
+      "school_locality": "Murska Sobota",
+      "school_location": "Bakovska ulica 29a, Murska Sobota",
+      "domain": "www.solavoznjemurskasobota.si",
+      "homepage_url": "https://www.solavoznjemurskasobota.si/",
+      "url": "https://www.solavoznjemurskasobota.si/App/Vsebina/urnik-predavanj-o-cestno-prometnih-predpisih/Podrobno",
+      "selectors": ["li"],
+      "context_text": "Urnik predavanj CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3107,
+      "school_name": "Lešnik & Zemljič",
+      "school_locality": "Sv. Trojica v Slov. Goricah",
+      "school_location": "Kraigherjeva ulica 4, Lenart",
+      "domain": "leze.si",
+      "homepage_url": "https://leze.si/",
+      "url": "https://leze.si/",
+      "selectors": ["article.category-sola-voznje .elementor-post__title"],
+      "context_text": "Pričetek tečaja CPP",
+      "max_nodes": 10,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
     }
   ]
 }
