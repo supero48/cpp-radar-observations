@@ -30,6 +30,11 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Validate server shadow worker
+        run: |
+          php -l server/vzi-radar-engine/bin/shadow-harvest.php
+          php server/vzi-radar-engine/bin/shadow-harvest.php --self-test
+
       - name: Validate public source registry
         run: |
           node scripts/harvest-cpp-browser-sources.mjs --self-test
