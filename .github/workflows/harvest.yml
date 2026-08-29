@@ -9,6 +9,12 @@ on:
       - "scripts/harvest-cpp-browser-sources.mjs"
       - "server/vzi-radar-engine/**"
       - ".github/workflows/harvest.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "server/vzi-radar-engine/**"
+      - ".github/workflows/harvest.yml"
   schedule:
     - cron: "17 2 * * *"
   workflow_dispatch:
@@ -35,6 +41,8 @@ jobs:
         run: |
           php -l server/vzi-radar-engine/bin/shadow-harvest.php
           php server/vzi-radar-engine/bin/shadow-harvest.php --self-test
+          php -l server/vzi-radar-engine/bin/first-aid-radar.php
+          php server/vzi-radar-engine/bin/first-aid-radar.php --self-test
 
       - name: Validate public source registry
         run: |
@@ -42,12 +50,14 @@ jobs:
           node scripts/harvest-cpp-browser-sources.mjs --validate-only
 
       - name: Harvest and sign approved browser sources
+        if: github.event_name != 'pull_request'
         env:
           VZI_CPP_MANIFEST_SIGNING_KEY: ${{ secrets.VZI_CPP_MANIFEST_SIGNING_KEY }}
           VZI_CPP_MAX_SOURCES_PER_RUN: "20"
         run: node scripts/harvest-cpp-browser-sources.mjs
 
       - name: Publish latest signed manifest
+        if: github.event_name != 'pull_request'
         run: |
           mkdir -p data
           cp build/cpp-browser-observations.json data/cpp-browser-observations.json
