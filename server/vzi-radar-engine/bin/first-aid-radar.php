@@ -4,7 +4,7 @@
 declare(strict_types=1);
 
 const VZI_FA_ENGINE_VERSION = '0.1.0-shadow';
-const VZI_FA_GATE_VERSION = '1.0.0';
+const VZI_FA_GATE_VERSION = '1.0.1';
 const VZI_FA_WP_ROOT = '/home/ocnk11/domains/vozniski-izpit.com/public_html/nova';
 const VZI_FA_PLUGIN_REL = 'vzi-prva-pomoc-radar/vzi-prva-pomoc-radar.php';
 const VZI_FA_PLUGIN_VERSION = '0.1.1';
@@ -325,7 +325,7 @@ try {
     if (!is_wp_error($public)) {
         $snapshot['public_http_status'] = (int) wp_remote_retrieve_response_code($public);
         $body = (string) wp_remote_retrieve_body($public);
-        $snapshot['public_card_count'] = substr_count($body, 'class="vzi-pp-card"');
+        $snapshot['public_card_count'] = substr_count($body, 'class="vzi-pp-term-card"');
     }
 
     $now = time();
