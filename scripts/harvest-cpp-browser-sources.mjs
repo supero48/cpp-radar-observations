@@ -772,7 +772,7 @@ async function assertRobotsAllowed(source) {
 
 async function evaluate(cdp, expression) {
   const result = await cdp.call("Runtime.evaluate", { expression, awaitPromise: true, returnByValue: true });
-  if (result.exceptionDetails) throw new Error(result.exceptionDetails.text || "Chrome evaluation failed");
+  if (result.exceptionDetails) throw new Error(result.exceptionDetails.exception?.description || result.exceptionDetails.text || "Chrome evaluation failed");
   return result.result?.value;
 }
 
@@ -900,6 +900,7 @@ async function harvestSource(cdp, source) {
   await assertRobotsAllowed(source);
   await navigate(cdp, source.url, [3063,3190].includes(source.school_id)?8000:3500);
   const expression = `(() => {
+    const clean=value=>String(value||'').replace(/\\s+/gu,' ').trim();
     const selectors = ${JSON.stringify(source.selectors)};
     const maxNodes = ${source.max_nodes};
     const extractor = ${JSON.stringify(source.extractor || 'date-nodes-v1')};
