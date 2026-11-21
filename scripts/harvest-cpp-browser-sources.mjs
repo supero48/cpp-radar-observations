@@ -523,7 +523,15 @@ if (process.argv.includes("--self-test")) {
     dateNodePayloadItem({text:'Tečaj CPP — kategorije A, A1, A2, AM 13/1/2027 19:15 Na daljavo'}).times.startTime === '19:15:00',
     dateNodePayloadItem({text:'Tečaj CPP — kategorija B 04.1.2026 ob 15:00'}).dates.startDate === '2026-01-04',
     dateNodePayloadItem({text:'Tečaj CPP — kategorija CE 16.12.2026 ob 15.30 (možno tudi online)'}).categoryText === 'CE',
-    dateNodePayloadItem({text:'30.11.2026 ob 16:00',titleText:'Tečaj CPP — B kategorija',explicitLocation:{name:'Tolmin',streetAddress:'',addressLocality:'Tolmin'}}).location.addressLocality === 'Tolmin'
+    dateNodePayloadItem({text:'30.11.2026 ob 16:00',titleText:'Tečaj CPP — B kategorija',explicitLocation:{name:'Tolmin',streetAddress:'',addressLocality:'Tolmin'}}).location.addressLocality === 'Tolmin',
+    censusLinkScore({text:'CPP tečaji',url:'https://neja74.wixsite.com/website/cpp-te%C4%8Daji'}) > censusLinkScore({text:'Urnik pouka',url:'https://school.example/izobrazevanje-odraslih/urnik/'}),
+    censusLinkScore({text:'Zaščita prijaviteljev',url:'https://school.example/zascita-prijaviteljev/'}) < 0,
+    censusLinkScore({text:'CPP urnik PDF',url:'https://school.example/files/cpp.pdf'}) >= 100,
+    censusLinkScore({text:'Prijava na CPP',url:'https://forms.gle/public-form',nearby:'Tečaj CPP'}) >= 100,
+    !censusCourseEvidence('Šola se z 31.12.2026 poslavlja.', 'Tečaj CPP'),
+    !censusCourseEvidence('EKO semenarjenje 25.04.2025 - 25.04.2028','Center biotehnike'),
+    censusCourseEvidence('7. 12. 2026', 'Začetki tečajev CPP Kategorija B'),
+    censusLinkScore({text:'Redno usposabljanje KODA 95',url:'https://school.example/koda95-termini'}) < 0
   ];
   if (checks.some((passed) => !passed)) throw new Error('Browser structured-event self-test failed: ' + checks.flatMap((passed, index) => passed ? [] : [index + 1]).join(', '));
   process.stdout.write(`Browser structured-event self-test PASS: ${checks.length} checks.\n`);
@@ -1074,94 +1082,174 @@ async function harvestSource(cdp, source) {
 }
 
 
-async function auditCandidateSites() {
-  const candidates = JSON.parse(fs.readFileSync("config/cpp-browser-candidates.json", "utf8"));
-  if (!Array.isArray(candidates) || candidates.length > 150) throw new Error("Invalid candidate inventory");
-  const runtime = await startChrome();
-  const results = [];
-  const today = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Ljubljana" });
-  try {
-    for (const source of candidates) {
-      const result = { school_id: source.school_id, school_name: source.school_name, source_url: source.url, pages: [], status: "READ_FAILED" };
-      try {
-        if (!source.url) {
-          result.status = "WEBSITE_NOT_VERIFIED";
-          results.push(result);
-          process.stdout.write(JSON.stringify({audit_progress:results.length,total:candidates.length,school_id:source.school_id,status:result.status})+"\n");
-          continue;
-        }
-        const initialHost = new URL(source.url).hostname.replace(/^www\./u, "");
-        const urls = [source.url];
-        for (let index = 0; index < urls.length && index < 3; index += 1) {
-          const url = urls[index];
-          await assertRobotsAllowed({ ...source, url });
-          await Promise.race([navigate(runtime.cdp, url, 2200), wait(15000).then(() => { throw new Error("Navigation timeout"); })]);
-          const expression = `(() => {
-            const clean = s => String(s || '').replace(/\\s+/g, ' ').trim();
-            const body = clean(document.body?.innerText);
-            const blocked = /verify.{0,30}(?:human|browser)|checking your browser|please wait while your request is being verified|access denied|just a moment/iu.test(body.slice(0,1200));
-            const dated = /\\b\\d{1,2}\\s*[.\\/-]\\s*\\d{1,2}\\s*[.\\/-]\\s*(?:20\\d{2}|\\d{2})\\b|\\b\\d{1,2}\\.?\\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\\.?\\s*,?\\s*20\\d{2}\\b/iu;
-            const nodes = [];
-            if (!blocked) for (const node of document.querySelectorAll('h1,h2,h3,h4,h5,p,li,label,option,button,td,.table-row,.term-card,.urnik2,.slot-item__date,rs-layer,[data-testid="richTextElement"],.prihajam-half')) {
-              const text = clean(node.innerText || node.textContent);
-              if (!text || text.length > 700 || !dated.test(text)) continue;
-              if (nodes.some(n => n.text === text)) continue;
-              let heading = '';
-              let parent = node;
-              for (let depth=0; parent && depth<3 && !heading; depth++,parent=parent.parentElement) {
-                for (let previous=parent.previousElementSibling; previous; previous=previous.previousElementSibling) {
-                  if (/^H[1-6]$/u.test(previous.tagName)) { heading=clean(previous.innerText);break; }
-                }
-              }
-              const hint = node.id ? '#' + CSS.escape(node.id) : node.tagName.toLowerCase() + Array.from(node.classList).slice(0,2).map(c=>'.'+CSS.escape(c)).join('');
-              nodes.push({ text, heading, selector: hint, nearby: clean(node.parentElement?.innerText).slice(0,800) });
-              if (nodes.length >= 24) break;
-            }
-            const links = Array.from(document.querySelectorAll('a[href]')).filter(a=>/cpp|cestno|termin|urnik|prijav/iu.test(a.textContent+' '+a.getAttribute('href'))).map(a=>({text:clean(a.textContent).slice(0,100),url:a.href})).filter(a=>/^https?:/u.test(a.url)).slice(0,20);
-            return { url:location.href, title:document.title, blocked, nodes, links };
-          })()`;
-          const page = await evaluate(runtime.cdp, expression);
-          if (page?.url?.startsWith('chrome-error:')) throw new Error('Public page did not load');
-          if (!page || page.blocked) {
-            result.status = "VERIFICATION_REQUIRED";
-            result.pages.push({ url, title: page?.title || "", blocked: true });
-            break;
-          }
-          const parsed = page.nodes.map(node => ({ ...node, date: canonicalDateRange(node.text) }));
-          const upcoming = parsed.filter(node => node.date && (node.date.endDate || node.date.startDate) >= today);
-          result.pages.push({ url: page.url, title: page.title, upcoming: upcoming.slice(0,12), other_dated_count: parsed.length-upcoming.length, cpp_links: page.links.slice(0,8) });
-          result.status = upcoming.length ? "UPCOMING_EVIDENCE" : result.status === "UPCOMING_EVIDENCE" ? result.status : "NO_UPCOMING_IN_READ_PAGES";
-          if (index === 0 && upcoming.length === 0) {
-            for (const link of page.links) {
-              const parsedUrl = new URL(link.url);
-              if (parsedUrl.hostname.replace(/^www\./u, "") !== initialHost || !/cpp|cestno|termin|urnik/iu.test(link.text+' '+parsedUrl.pathname)) continue;
-              parsedUrl.hash = "";
-              if (!urls.includes(parsedUrl.href)) urls.push(parsedUrl.href);
-              if (urls.length >= 3) break;
-            }
-          }
-        }
-      } catch (error) {
-        result.error = String(error?.message || error).slice(0,300);
-        result.status = /robots\.txt/iu.test(result.error) ? "ROBOTS_RESTRICTED" : result.status;
-        try { await runtime.cdp.call("Page.stopLoading"); } catch {}
+function censusLinkScore(link) {
+  const value = [link.text, link.url, link.nearby].filter(Boolean).join(' ');
+  const direct = [link.text, link.url].filter(Boolean).join(' ');
+  if (/mailto:|tel:|javascript:|\/login|\/wp-admin|shareArticle|\/share\b|prijavitelj|koda.?95|temeljnih.?kvalifikacij|tahograf|ADR\b|prv[aeo].?pomo|varn[aoe].?vožnj|gradivo|testi.in|izpitn[ei].?rok|zascita|zaščita/iu.test(direct)) return -100;
+  let score = /cpp|cestno.?promet/iu.test(direct) ? 100 : /prijav/iu.test(direct) ? 55 : /termin|urnik|tečaj|tecaj/iu.test(direct) ? 35 : 0;
+  if (/CPP|cestno.?promet/iu.test(link.nearby || '')) score += 25;
+  if (/event-details|prijav|termin|urnik/iu.test(direct)) score += 15;
+  if (/\.pdf(?:[?#]|$)/iu.test(link.url || '') && /cpp|cestno|tečaj|tecaj|urnik|termin/iu.test(value)) score += 35;
+  return score;
+}
+
+function censusCourseEvidence(text, context = '') {
+  if (/poslavlja|zaključ(?:ek|ujemo|uje).{0,30}delovan|izpisni list|prenehanj.{0,30}delovan|prijave.{0,20}do:|rok.{0,15}prijav/iu.test(text)) return false;
+  return /\bCPP\b|cestno.?promet/iu.test(text + ' ' + context);
+}
+
+function censusDOMObservation() {
+  const clean = value => String(value || '').replace(/\s+/gu,' ').trim();
+  const body = clean(document.body?.innerText);
+  const blocked = /verify.{0,30}(?:human|browser)|checking your browser|please wait while your request is being verified|access denied|just a moment/iu.test(body.slice(0,1600));
+  const loginWall = body.length < 2500 && /log in to (?:continue|facebook)|you must log in|prijavite se za nadaljevanje/iu.test(body);
+  const dated = /\b\d{1,2}\s*[.\/-]\s*\d{1,2}\s*[.\/-]\s*(?:20\d{2}|\d{2})\b|\b\d{1,2}\.?\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\.?\s*,?\s*20\d{2}\b/iu;
+  const shortDate = /\b\d{1,2}\.\s*(?:\d{1,2}\.|jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)/iu;
+  const nodes = [], yearless = [];
+  if (!blocked && !loginWall) for (const node of document.querySelectorAll('h1,h2,h3,h4,h5,h6,p,li,label,option,button,td,tr,div,span,time')) {
+    if (/^(?:DIV|SPAN)$/u.test(node.tagName) && node.children.length > 6) continue;
+    if (node.closest('script,style,nav,footer,#wpadminbar')) continue;
+    let text = clean(node.innerText || node.textContent);
+    if (!text || text.length > 1100 || (!dated.test(text) && !shortDate.test(text))) continue;
+    let heading = '';
+    for (let parent=node,depth=0; parent && depth<4 && !heading;parent=parent.parentElement,depth++) {
+      for(let previous=parent.previousElementSibling;previous;previous=previous.previousElementSibling) {
+        if (/^H[1-6]$/u.test(previous.tagName)) {heading=clean(previous.innerText);break;}
       }
-      results.push(result);
-      process.stdout.write(JSON.stringify({audit_progress:results.length,total:candidates.length,school_id:source.school_id,status:result.status})+"\n");
-      await wait(500);
     }
-    const output = { generated_at:new Date().toISOString(), source_count:results.length, methodology:"Read-only public website inspection. Evidence is not an automatic approval to publish a course.", results };
-    fs.mkdirSync("build",{recursive:true});
-    fs.writeFileSync("build/cpp-source-audit.json",JSON.stringify(output,null,2)+"\n");
-    process.stdout.write(JSON.stringify({audit:"COMPLETE",source_count:results.length,upcoming_evidence:results.filter(r=>r.status==="UPCOMING_EVIDENCE").length})+"\n");
+    const nearby = clean(node.parentElement?.innerText).slice(0,1300);
+    const selector = node.id ? '#'+CSS.escape(node.id) : node.tagName.toLowerCase()+Array.from(node.classList).slice(0,3).map(x=>'.'+CSS.escape(x)).join('');
+    const item={text,heading,selector,nearby};
+    const list=dated.test(text)?nodes:yearless;
+    if(!list.some(x=>x.text===text)) list.push(item);
+    if(nodes.length>=100) break;
+  }
+  const links=Array.from(document.querySelectorAll('a[href],iframe[src]')).map(node=>({
+    text:clean(node.textContent || node.getAttribute('title')).slice(0,160),
+    url:node.tagName==='IFRAME'?node.src:node.href,
+    nearby:clean(node.parentElement?.innerText).slice(0,600),
+    kind:node.tagName==='IFRAME'?'iframe':'link'
+  })).filter(x=>/^https?:/u.test(x.url)&&!/recaptcha|googletagmanager|doubleclick|youtube|google\.com\/maps/iu.test(x.url)).filter(x=>/cpp|cestno|prijav|termin|urnik|tečaj|tecaj|\.pdf\b/iu.test(x.text+' '+x.url+' '+x.nearby));
+  const images=Array.from(document.querySelectorAll('img[src]')).map(node=>({url:node.currentSrc||node.src,alt:clean(node.alt),nearby:clean(node.parentElement?.innerText).slice(0,650)})).filter(x=>/^https?:/u.test(x.url)&&/CPP|cestno|urnik|termin|tečaj|tecaj|20(?:26|27)/iu.test(x.alt+' '+x.nearby+' '+x.url)&&!/logo|icon|avatar|placeholder/iu.test(x.alt+' '+x.url)).slice(0,20);
+  const structured=[];
+  for(const node of document.querySelectorAll('script[type="application/ld+json"]')) {
+    try {
+      const walk=value=>{if(Array.isArray(value)){for(const x of value)walk(x);return;}if(!value||typeof value!=='object')return;if(value.startDate&&/Event/iu.test(String(value['@type'])))structured.push({name:clean(value.name),startDate:value.startDate,endDate:value.endDate,url:value.url,location:value.location});for(const x of Object.values(value))if(x&&typeof x==='object')walk(x);};
+      walk(JSON.parse(node.textContent));
+    } catch {}
+  }
+  return {url:location.href,title:document.title,ready:document.readyState,blocked,loginWall,nodes,yearless:yearless.slice(0,25),links,images,structured:structured.slice(0,60),text_excerpt:body.slice(0,350)};
+}
+
+async function censusPublicPdf(source, url) {
+  await assertRobotsAllowed({...source,url});
+  const response=await fetch(url,{headers:{'User-Agent':userAgent,Accept:'application/pdf'},signal:AbortSignal.timeout(15000)});
+  if(!response.ok)throw new Error('PDF HTTP '+response.status);
+  if(Number(response.headers.get('content-length')||0)>15000000)throw new Error('PDF exceeds 15 MB');
+  const bytes=Buffer.from(await response.arrayBuffer());
+  if(bytes.length>15000000 || bytes.subarray(0,5).toString()!=='%PDF-')throw new Error('Not a supported public PDF');
+  return new Promise((resolve,reject)=>{
+    const child=spawn('pdftotext',['-layout','-','-'],{stdio:['pipe','pipe','pipe']});
+    const chunks=[];let size=0;let error='';
+    const timer=setTimeout(()=>{child.kill('SIGKILL');reject(new Error('PDF text extraction timeout'));},15000);
+    child.on('error',e=>{clearTimeout(timer);reject(e);});
+    child.stdout.on('data',data=>{size+=data.length;if(size<800000)chunks.push(data);});
+    child.stderr.on('data',data=>{error+=data.toString().slice(0,200);});
+    child.on('close',code=>{clearTimeout(timer);if(code!==0)reject(new Error('PDF text extraction failed: '+error));else resolve(Buffer.concat(chunks).toString('utf8'));});
+    child.stdin.on('error',()=>{});child.stdin.end(bytes);
+  });
+}
+
+async function auditCandidateSites() {
+  const candidates=JSON.parse(fs.readFileSync('config/cpp-browser-candidates.json','utf8'));
+  if(!Array.isArray(candidates)||candidates.length>500)throw new Error('Invalid candidate inventory');
+  const maxPages=positiveInteger(process.env.VZI_CPP_CENSUS_MAX_PAGES,8,'VZI_CPP_CENSUS_MAX_PAGES');
+  const runtime=await startChrome();const results=[];
+  const today=new Date().toLocaleDateString('en-CA',{timeZone:'Europe/Ljubljana'});
+  try {
+    for(const source of candidates) {
+      const result={school_id:source.school_id,school_name:source.school_name,source_url:source.url,pages:[],errors:[],pages_read:0,status:'READ_FAILED'};
+      if(!source.url){result.status='WEBSITE_NOT_VERIFIED';results.push(result);continue;}
+      const queue=[{url:source.url,score:1000,kind:'link'}],seen=new Set(),allowedHosts=new Set([new URL(source.url).hostname.replace(/^www\./u,'')]),blockedHosts=new Set();
+      let externalHosts=0;
+      while(queue.length&&seen.size<maxPages) {
+        queue.sort((a,b)=>b.score-a.score);
+        const candidate=queue.shift();const url=candidate.url;
+        if(seen.has(url))continue;seen.add(url);
+        const host=new URL(url).hostname.replace(/^www\./u,'');
+        if(blockedHosts.has(host))continue;
+        try {
+          if(/\.pdf(?:[?#]|$)/iu.test(url)) {
+            const text=await censusPublicPdf(source,url);
+            const lines=text.split(/\n/u),nodes=[];
+            for(let i=0;i<lines.length;i++) {
+              const context=lines.slice(Math.max(0,i-2),Math.min(lines.length,i+3)).join(' ').replace(/\s+/gu,' ').trim();
+              if(canonicalDateRange(lines[i])&&censusCourseEvidence(context))nodes.push({text:context.slice(0,1000),date:canonicalDateRange(lines[i])});
+            }
+            const upcoming=nodes.filter(x=>x.date.startDate>=today);
+            result.pages.push({url,kind:'pdf',title:'Public PDF',upcoming:upcoming.slice(0,25),dated_cpp_count:nodes.length,text_available:!!text.trim()});
+            if(upcoming.length)result.status='UPCOMING_EVIDENCE';
+            continue;
+          }
+          await assertRobotsAllowed({...source,url});
+          await Promise.race([navigate(runtime.cdp,url,2600),wait(18000).then(()=>{throw new Error('Navigation timeout');})]);
+          const expression='('+censusDOMObservation.toString()+')()';
+          let page=await evaluate(runtime.cdp,expression);
+          if(!page||page.url?.startsWith('chrome-error:'))throw new Error('Public page did not load');
+          if(!page.blocked&&!page.loginWall&&(page.ready!=='complete'||page.nodes.length===0)) {await wait(3000);page=await evaluate(runtime.cdp,expression);}
+          if(page.blocked||page.loginWall){blockedHosts.add(host);result.pages.push({url:page.url,title:page.title,blocked:page.blocked,login_required:page.loginWall});continue;}
+          const finalUrl=new URL(page.url);allowedHosts.add(finalUrl.hostname.replace(/^www\./u,''));
+          const parsed=page.nodes.map(node=>({...node,date:canonicalDateRange(node.text)})).filter(node=>node.date&&censusCourseEvidence(node.text,node.heading+' '+node.nearby+' '+page.title));
+          const upcoming=parsed.filter(node=>node.date.startDate>=today);
+          const yearless=page.yearless.filter(node=>censusCourseEvidence(node.text,node.heading+' '+node.nearby+' '+page.title));
+          const links=page.links.map(link=>({...link,score:censusLinkScore(link)})).filter(link=>link.score>=50).sort((a,b)=>b.score-a.score);
+          result.pages.push({url:page.url,title:page.title,upcoming:upcoming.slice(0,25),other_dated_count:parsed.length-upcoming.length,yearless:yearless.slice(0,12),images:page.images,structured_events:page.structured,cpp_links:links.slice(0,25)});
+          if(upcoming.length)result.status='UPCOMING_EVIDENCE';
+          // A published date never stops traversal: linked forms can contain other courses.
+          if(result.pages.length===1) {
+            const home=new URL(finalUrl.href);home.search='';home.hash='';home.pathname=/\.wixsite\.com$/u.test(home.hostname)?'/'+home.pathname.split('/').filter(Boolean)[0]+'/':'/';
+            if(home.href!==finalUrl.href&&!seen.has(home.href))queue.push({url:home.href,score:65,kind:'link'});
+          }
+          for(const link of links) {
+            let target;try{target=new URL(link.url);}catch{continue;}
+            target.hash='';
+            if(seen.has(target.href)||queue.some(x=>x.url===target.href))continue;
+            if(/(?:\/user\b|\/login\b|\/wp-admin\b|prijava-uporabnika)/iu.test(target.pathname))continue;
+            const targetHost=target.hostname.replace(/^www\./u,'');
+            if(!allowedHosts.has(targetHost)) {
+              if(externalHosts>=2||link.score<100||/gov\.si$|e-uprava|facebook|instagram|tiktok|twitter|youtube/iu.test(targetHost))continue;
+              // Only explicitly linked public CPP destinations; no private RPO or login.
+              allowedHosts.add(targetHost);externalHosts++;
+            }
+            if(/\.wixsite\.com$/u.test(target.hostname)&&target.pathname.split('/').filter(Boolean)[0]!==finalUrl.pathname.split('/').filter(Boolean)[0])continue;
+            queue.push({...link,url:target.href});
+          }
+        } catch(error) {
+          const message=String(error?.message||error).slice(0,300);result.errors.push({url,error:message});
+          if(/robots\.txt/iu.test(message))blockedHosts.add(host);
+          try{await runtime.cdp.call('Page.stopLoading');}catch{}
+        }
+      }
+      if(result.status!=='UPCOMING_EVIDENCE') {
+        const readable=result.pages.filter(p=>!p.blocked&&!p.login_required);
+        result.status=readable.length?'NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES':result.pages.some(p=>p.blocked||p.login_required)?'VERIFICATION_OR_LOGIN_REQUIRED':result.errors.some(e=>/robots\.txt/iu.test(e.error))?'ROBOTS_RESTRICTED':'READ_FAILED';
+      }
+      result.pages_read=result.pages.filter(p=>!p.blocked&&!p.login_required).length;
+      result.unread_linked_pages=queue.length;
+      results.push(result);
+      process.stdout.write(JSON.stringify({audit_progress:results.length,total:candidates.length,school_id:source.school_id,pages:result.pages_read,status:result.status})+'\n');
+      await wait(250);
+    }
+    const output={generated_at:new Date().toISOString(),source_count:results.length,max_pages_per_school:maxPages,methodology:'Read-only public HTML, linked registration pages, structured events, image evidence and text PDFs. Dates are associated with CPP context; evidence requires verification before publication.',results};
+    fs.mkdirSync('build',{recursive:true});fs.writeFileSync('build/cpp-source-audit.json',JSON.stringify(output,null,2)+'\n');
+    process.stdout.write(JSON.stringify({audit:'COMPLETE',source_count:results.length,pages_read:results.reduce((n,r)=>n+r.pages_read,0),upcoming_evidence:results.filter(r=>r.status==='UPCOMING_EVIDENCE').length})+'\n');
   } finally {
-    try { await runtime.cdp.call("Browser.close"); } catch { runtime.child.kill("SIGKILL"); }
-    runtime.cdp.close();
-    await wait(250);
-    if (runtime.child.exitCode === null) runtime.child.kill("SIGKILL");
+    try{await runtime.cdp.call('Browser.close');}catch{runtime.child.kill('SIGKILL');}
+    runtime.cdp.close();await wait(250);if(runtime.child.exitCode===null)runtime.child.kill('SIGKILL');
     fs.rmSync(runtime.profile,{recursive:true,force:true,maxRetries:8,retryDelay:250});
   }
 }
+
 if (process.argv.includes("--audit-candidates")) {
   await auditCandidateSites();
   process.exit(0);

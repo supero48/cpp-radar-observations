@@ -30,7 +30,7 @@ concurrency:
 jobs:
   harvest:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
@@ -50,7 +50,11 @@ jobs:
           node scripts/harvest-cpp-browser-sources.mjs --self-test
           node scripts/harvest-cpp-browser-sources.mjs --validate-only
 
-      - name: Inspect remaining public school websites
+      - name: Install public PDF text reader
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[census]')
+        run: command -v pdftotext || (sudo apt-get update -qq && sudo apt-get install -y poppler-utils)
+
+      - name: Inspect all reachable public school websites
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[census]')
         run: node scripts/harvest-cpp-browser-sources.mjs --audit-candidates
 
@@ -89,4 +93,3 @@ jobs:
           fi
           git commit -m "chore: publish signed CPP observations"
           git push origin HEAD:main
-
