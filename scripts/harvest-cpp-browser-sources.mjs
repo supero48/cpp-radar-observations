@@ -396,6 +396,18 @@ function reuseVerifiedObservations(previous, fresh, currentRegistry, publicKey, 
 }
 
 validateRegistry(registry);
+// These sources require a normal public browser review. Do not request their
+// blocked headless route or restamp an older reviewed capture as a new visit.
+const publicBrowserReviewSchools = new Set([3147]);
+function reviewedPublicCapture(source, record, now = Date.now()) {
+  if (record?.version !== 1 || record.method !== 'agent_public_browser_review' || record.school_id !== source.school_id || record.source_url !== source.url) throw new Error('Public review identity mismatch');
+  const observed = Date.parse(record.observed_at);
+  if (!Number.isFinite(observed) || observed > now + 300000 || observed < now - 7*86400000) throw new Error('Public browser review is missing or stale; refresh in the normal public browser');
+  if (typeof record.rendered_html !== 'string' || !record.rendered_html || crypto.createHash('sha256').update(record.rendered_html).digest('hex') !== record.content_sha256) throw new Error('Public review content hash failed');
+  if (!Number.isSafeInteger(record.course_count) || record.course_count < 1 || record.course_count > source.max_nodes) throw new Error('Public review course count is invalid');
+  return {html: record.rendered_html, observedAt: record.observed_at, nodeCount: record.course_count, skippedUnavailable: 0, method: record.method};
+}
+
 if (process.argv.includes("--self-test")) {
   const firstRange = canonicalDateRange("23. sep. – 29. sep. 2026 Termin poln");
   const secondRange = canonicalDateRange("15. okt. – 21. okt. 2026");
@@ -491,7 +503,17 @@ if (process.argv.includes("--self-test")) {
   const refuses=fn=>{try{fn();return false;}catch{return true;}};
   const changedHtml=structuredClone(cacheFixture);changedHtml.observations[1].rendered_html='tampered term';
   const changedSignature=structuredClone(cacheFixture);changedSignature.signature.value='AAAA';
+  const reviewSource={school_id:3147,url:'https://ilke.si/',max_nodes:50};
+  const reviewFixture={version:1,method:'agent_public_browser_review',school_id:3147,source_url:'https://ilke.si/',observed_at:'2026-11-21T21:50:00Z',rendered_html:'reviewed public course',course_count:1};
+  reviewFixture.content_sha256=crypto.createHash('sha256').update(reviewFixture.rendered_html).digest('hex');
   const checks = [
+    reviewedPublicCapture(reviewSource,reviewFixture,cacheNow).observedAt===reviewFixture.observed_at,
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,school_id:1},cacheNow)),
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,source_url:'https://other.example/'},cacheNow)),
+    refuses(()=>reviewedPublicCapture(reviewSource,reviewFixture,cacheNow+8*86400000)),
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,observed_at:'2026-11-22T21:50:00Z'},cacheNow)),
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,rendered_html:'tampered'},cacheNow)),
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,course_count:0},cacheNow)),
     reuseVerifiedObservations(cacheFixture,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1).length===2,
     refuses(()=>reuseVerifiedObservations(changedHtml,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1)),
     refuses(()=>reuseVerifiedObservations(changedSignature,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1)),
@@ -897,6 +919,11 @@ async function collectModriPublicTerms(cdp) {
 }
 
 async function harvestSource(cdp, source) {
+  if (publicBrowserReviewSchools.has(source.school_id)) {
+    const file = `data/public-browser-reviews/${source.school_id}.json`;
+    if (!fs.existsSync(file)) throw new Error('Public browser review required; headless access is blocked');
+    return reviewedPublicCapture(source, JSON.parse(fs.readFileSync(file, 'utf8')));
+  }
   await assertRobotsAllowed(source);
   await navigate(cdp, source.url, [3063,3190].includes(source.school_id)?8000:3500);
   const expression = `(() => {
@@ -1357,7 +1384,7 @@ function censusCourseEvidence(text, context = '') {
 function censusDOMObservation() {
   const clean = value => String(value || '').replace(/\s+/gu,' ').trim();
   const body = clean(document.body?.innerText);
-  const blocked = /verify.{0,30}(?:human|browser)|checking your browser|please wait while your request is being verified|access denied|just a moment/iu.test(body.slice(0,1600));
+  const blocked = /security verification|verification could not be completed|verify.{0,30}(?:human|browser)|checking your browser|please wait while your request is being verified|access denied|just a moment/iu.test(body.slice(0,1600));
   const loginWall = body.length < 2500 && /log in to (?:continue|facebook)|you must log in|prijavite se za nadaljevanje/iu.test(body);
   const dated = /\b\d{1,2}\s*[.\/-]\s*\d{1,2}\s*[.\/-]\s*(?:20\d{2}|\d{2})\b|\b\d{1,2}\.?\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\.?\s*,?\s*20\d{2}\b/iu;
   const shortDate = /\b\d{1,2}\.\s*(?:\d{1,2}\.|jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)/iu;
@@ -1431,6 +1458,11 @@ async function auditCandidateSites() {
       const sourceIndex=cursor++;const source=candidates[sourceIndex];
       const result={school_id:source.school_id,school_name:source.school_name,source_url:source.url,pages:[],errors:[],pages_read:0,status:'READ_FAILED'};
       if(!source.url){result.status='WEBSITE_NOT_VERIFIED';record(sourceIndex,result);continue;}
+      if(publicBrowserReviewSchools.has(source.school_id)){
+        result.status='PUBLIC_BROWSER_REVIEW_REQUIRED';
+        result.errors.push({url:source.url,error:'Headless security verification failed; use a dated normal public browser review without bypassing verification'});
+        record(sourceIndex,result);continue;
+      }
       const queue=[{url:source.url,score:1000,kind:'link'}],seen=new Set(),allowedHosts=new Set([new URL(source.url).hostname.replace(/^www\./u,'')]),blockedHosts=new Set();
       let externalHosts=0;
       while(queue.length&&seen.size<maxPages) {
@@ -1540,7 +1572,7 @@ try {
   for (const source of batch.selected) {
     try {
       const harvested = await harvestSource(runtime.cdp, source);
-      const observedAt = new Date().toISOString();
+      const observedAt = harvested.observedAt || new Date().toISOString();
       const contentSha256 = crypto.createHash("sha256").update(harvested.html).digest("hex");
       observations.push({
         school_id: source.school_id,
@@ -1555,6 +1587,7 @@ try {
         rendered_nodes: harvested.nodeCount,
         skipped_unavailable: harvested.skippedUnavailable,
         status: "HARVESTED",
+        method: harvested.method || "public_headless_browser",
         content_sha256: contentSha256
       });
     } catch (error) {
