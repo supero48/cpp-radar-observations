@@ -1,0 +1,3559 @@
+{
+  "generated_at": "2026-11-21T20:00:45.921Z",
+  "source_count": 71,
+  "methodology": "Read-only public website inspection. Evidence is not an automatic approval to publish a course.",
+  "results": [
+    {
+      "school_id": 3088,
+      "school_name": "3D",
+      "source_url": "https://3-d.si/prijava-na-tecaj-cpp/",
+      "pages": [],
+      "status": "ROBOTS_RESTRICTED",
+      "error": "robots.txt disallows 3D"
+    },
+    {
+      "school_id": 3086,
+      "school_name": "AMTK Plus",
+      "source_url": "https://www.as-amtk.si/cpp/",
+      "pages": [],
+      "status": "ROBOTS_RESTRICTED",
+      "error": "robots.txt disallows AMTK Plus"
+    },
+    {
+      "school_id": 3141,
+      "school_name": "Antlej",
+      "source_url": "https://antlej.si/prijava_cpp/",
+      "pages": [
+        {
+          "url": "https://antlej.si/prijava_cpp/",
+          "title": "Prijava na cpp - Antlej",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na CPP",
+              "url": "https://antlej.si/prijava_cpp/"
+            },
+            {
+              "text": "Prijavi se zdaj",
+              "url": "https://antlej.si/prijava_cpp/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3104,
+      "school_name": "Aš Jarše",
+      "source_url": "https://www.as-jarse.si/",
+      "pages": [
+        {
+          "url": "https://www.as-jarse.si/",
+          "title": "Avto šola Jarše - AŠ Jarše",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na CPP tečaj",
+              "url": "https://www.cpp-tecaj.si/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3127,
+      "school_name": "Aš-Amd",
+      "source_url": "https://www.as-amd.si/",
+      "pages": [
+        {
+          "url": "https://www.as-amd.si/",
+          "title": "Avtošola AŠ-AMD Črnomelj",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3057,
+      "school_name": "Avto Moto Krpan",
+      "source_url": "https://avtosola-krpan.si/tecaj-cpp/",
+      "pages": [
+        {
+          "url": "https://avtosola-krpan.si/tecaj-cpp/",
+          "title": "Tečaj CPP – Šola vožnje Krpan",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Tečaj CPP",
+              "url": "https://avtosola-krpan.si/tecaj-cpp/#"
+            },
+            {
+              "text": "O tečaju",
+              "url": "https://avtosola-krpan.si/tecaj-cpp/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://avtosola-krpan.si/prijava-na-tecaj-cpp/"
+            },
+            {
+              "text": "Prijava na tečaj za traktor",
+              "url": "https://avtosola-krpan.si/prijava-na-tecaj-za-traktor/"
+            },
+            {
+              "text": "Prijava v šolo vožnje",
+              "url": "https://avtosola-krpan.si/prijava-v-solo-voznje/"
+            },
+            {
+              "text": "Prijava na tečaj varne vožnje",
+              "url": "https://avtosola-krpan.si/prijava_na_tecaj_varne_voznje/"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://avtosola-krpan.si/tecaj-cpp/#"
+            },
+            {
+              "text": "O tečaju",
+              "url": "https://avtosola-krpan.si/tecaj-cpp/"
+            }
+          ]
+        },
+        {
+          "url": "https://avtosola-krpan.si/prijava-na-tecaj-cpp/",
+          "title": "Prijava na tečaj CPP – Šola vožnje Krpan",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Tečaj CPP",
+              "url": "https://avtosola-krpan.si/prijava-na-tecaj-cpp/#"
+            },
+            {
+              "text": "O tečaju",
+              "url": "https://avtosola-krpan.si/tecaj-cpp/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://avtosola-krpan.si/prijava-na-tecaj-cpp/"
+            },
+            {
+              "text": "Prijava na tečaj za traktor",
+              "url": "https://avtosola-krpan.si/prijava-na-tecaj-za-traktor/"
+            },
+            {
+              "text": "Prijava v šolo vožnje",
+              "url": "https://avtosola-krpan.si/prijava-v-solo-voznje/"
+            },
+            {
+              "text": "Prijava na tečaj varne vožnje",
+              "url": "https://avtosola-krpan.si/prijava_na_tecaj_varne_voznje/"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://avtosola-krpan.si/prijava-na-tecaj-cpp/#"
+            },
+            {
+              "text": "O tečaju",
+              "url": "https://avtosola-krpan.si/tecaj-cpp/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3130,
+      "school_name": "Amd Postojna",
+      "source_url": "https://amdpostojna.si/",
+      "pages": [
+        {
+          "url": "https://amdpostojna.si/",
+          "title": "AMD Postojna",
+          "upcoming": [
+            {
+              "text": "V UČILNICI: OSNOVNI DEL in kategorija B: 11. 1. 27 – 20. 1. 27, vsak delovni dan (razen 14. 1. in 15. 1. 27 ) od 15.30 do 18.30 [PRIJAVA]>>",
+              "heading": "",
+              "selector": "li.listing-item",
+              "nearby": "NA DALJAVO: OSNOVNI DEL in kategorija B: termin bo objavljen naknadno, glede na število prijav [PRIJAVA]>> Navodila za obisk on-line tečaja bodo kandidati dobili nekaj dni pred terminom (program Microsoft Teams) V UČILNICI: OSNOVNI DEL in kategorija B: 11. 1. 27 – 20. 1. 27, vsak delovni dan (razen 14. 1. in 15. 1. 27 ) od 15.30 do 18.30 [PRIJAVA]>> V UČILNICI: OSNOVNI DEL in kategorija B: 1.12.26 do 9.12.26 (vsak delovni dan razen 4.12.26) ob 15 30 min do 18 30 min V UČILNICI: Kategorija C: 23. 11. in 24. 11. 26 od 15.30 do 18.30 [PRIJAVA] >> Kandidati morajo imeti veljavno vozniško dovoljenje kat.B V UČILNICI: Kategorija F: predvidoma v NOVEMBRU 2026 [PRIJAVA] >> kandidati morajo predhodno opraviti OSNOVNI del tečaja! (prosimo, pod opombo pri osn.delu zabeležite kategorijo F) V UČILNICI:",
+              "date": {
+                "startDate": "2027-01-11",
+                "endDate": "2027-01-20"
+              }
+            },
+            {
+              "text": "V UČILNICI: OSNOVNI DEL in kategorija B: 1.12.26 do 9.12.26 (vsak delovni dan razen 4.12.26) ob 15 30 min do 18 30 min",
+              "heading": "",
+              "selector": "li.listing-item",
+              "nearby": "NA DALJAVO: OSNOVNI DEL in kategorija B: termin bo objavljen naknadno, glede na število prijav [PRIJAVA]>> Navodila za obisk on-line tečaja bodo kandidati dobili nekaj dni pred terminom (program Microsoft Teams) V UČILNICI: OSNOVNI DEL in kategorija B: 11. 1. 27 – 20. 1. 27, vsak delovni dan (razen 14. 1. in 15. 1. 27 ) od 15.30 do 18.30 [PRIJAVA]>> V UČILNICI: OSNOVNI DEL in kategorija B: 1.12.26 do 9.12.26 (vsak delovni dan razen 4.12.26) ob 15 30 min do 18 30 min V UČILNICI: Kategorija C: 23. 11. in 24. 11. 26 od 15.30 do 18.30 [PRIJAVA] >> Kandidati morajo imeti veljavno vozniško dovoljenje kat.B V UČILNICI: Kategorija F: predvidoma v NOVEMBRU 2026 [PRIJAVA] >> kandidati morajo predhodno opraviti OSNOVNI del tečaja! (prosimo, pod opombo pri osn.delu zabeležite kategorijo F) V UČILNICI:",
+              "date": {
+                "startDate": "2026-12-01",
+                "endDate": "2026-12-09"
+              }
+            },
+            {
+              "text": "V UČILNICI: Kategorija C: 23. 11. in 24. 11. 26 od 15.30 do 18.30 [PRIJAVA] >> Kandidati morajo imeti veljavno vozniško dovoljenje kat.B",
+              "heading": "",
+              "selector": "li.listing-item",
+              "nearby": "NA DALJAVO: OSNOVNI DEL in kategorija B: termin bo objavljen naknadno, glede na število prijav [PRIJAVA]>> Navodila za obisk on-line tečaja bodo kandidati dobili nekaj dni pred terminom (program Microsoft Teams) V UČILNICI: OSNOVNI DEL in kategorija B: 11. 1. 27 – 20. 1. 27, vsak delovni dan (razen 14. 1. in 15. 1. 27 ) od 15.30 do 18.30 [PRIJAVA]>> V UČILNICI: OSNOVNI DEL in kategorija B: 1.12.26 do 9.12.26 (vsak delovni dan razen 4.12.26) ob 15 30 min do 18 30 min V UČILNICI: Kategorija C: 23. 11. in 24. 11. 26 od 15.30 do 18.30 [PRIJAVA] >> Kandidati morajo imeti veljavno vozniško dovoljenje kat.B V UČILNICI: Kategorija F: predvidoma v NOVEMBRU 2026 [PRIJAVA] >> kandidati morajo predhodno opraviti OSNOVNI del tečaja! (prosimo, pod opombo pri osn.delu zabeležite kategorijo F) V UČILNICI:",
+              "date": {
+                "startDate": "2026-11-23",
+                "endDate": "2026-11-24"
+              }
+            },
+            {
+              "text": "V UČILNICI: Kategorija BE: 15. 12. 26 od 15:30h do 18.30h [PRIJAVA] >> Kandidati morajo imeti veljavno vozniško dovoljenje kat.B",
+              "heading": "",
+              "selector": "li.listing-item",
+              "nearby": "NA DALJAVO: OSNOVNI DEL in kategorija B: termin bo objavljen naknadno, glede na število prijav [PRIJAVA]>> Navodila za obisk on-line tečaja bodo kandidati dobili nekaj dni pred terminom (program Microsoft Teams) V UČILNICI: OSNOVNI DEL in kategorija B: 11. 1. 27 – 20. 1. 27, vsak delovni dan (razen 14. 1. in 15. 1. 27 ) od 15.30 do 18.30 [PRIJAVA]>> V UČILNICI: OSNOVNI DEL in kategorija B: 1.12.26 do 9.12.26 (vsak delovni dan razen 4.12.26) ob 15 30 min do 18 30 min V UČILNICI: Kategorija C: 23. 11. in 24. 11. 26 od 15.30 do 18.30 [PRIJAVA] >> Kandidati morajo imeti veljavno vozniško dovoljenje kat.B V UČILNICI: Kategorija F: predvidoma v NOVEMBRU 2026 [PRIJAVA] >> kandidati morajo predhodno opraviti OSNOVNI del tečaja! (prosimo, pod opombo pri osn.delu zabeležite kategorijo F) V UČILNICI:",
+              "date": {
+                "startDate": "2026-12-15",
+                "endDate": null
+              }
+            },
+            {
+              "text": "V UČILNICI: Kategorija CE: 14. 12. 26 od 15.30 do 18.30 [PRIJAVA] >> Kandidati morajo imeti veljavno vozniško dovoljenje (ali izpit) kat.C",
+              "heading": "",
+              "selector": "li.listing-item",
+              "nearby": "NA DALJAVO: OSNOVNI DEL in kategorija B: termin bo objavljen naknadno, glede na število prijav [PRIJAVA]>> Navodila za obisk on-line tečaja bodo kandidati dobili nekaj dni pred terminom (program Microsoft Teams) V UČILNICI: OSNOVNI DEL in kategorija B: 11. 1. 27 – 20. 1. 27, vsak delovni dan (razen 14. 1. in 15. 1. 27 ) od 15.30 do 18.30 [PRIJAVA]>> V UČILNICI: OSNOVNI DEL in kategorija B: 1.12.26 do 9.12.26 (vsak delovni dan razen 4.12.26) ob 15 30 min do 18 30 min V UČILNICI: Kategorija C: 23. 11. in 24. 11. 26 od 15.30 do 18.30 [PRIJAVA] >> Kandidati morajo imeti veljavno vozniško dovoljenje kat.B V UČILNICI: Kategorija F: predvidoma v NOVEMBRU 2026 [PRIJAVA] >> kandidati morajo predhodno opraviti OSNOVNI del tečaja! (prosimo, pod opombo pri osn.delu zabeležite kategorijo F) V UČILNICI:",
+              "date": {
+                "startDate": "2026-12-14",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "NA DALJAVO: OSNOVNI DEL in kategorija B: termin bo objavljen naknadno, glede na število prijav [PRIJ",
+              "url": "https://amdpostojna.si/2023/11/27/on-line-splosni-del-in-kat-b-predvidoma-v-januarju-2024/"
+            },
+            {
+              "text": "V UČILNICI: OSNOVNI DEL in kategorija B: 11. 1. 27 – 20. 1. 27, vsak delovni dan (razen 14. 1. in 15",
+              "url": "https://amdpostojna.si/2023/10/13/splosni-del-in-kategorija-b-23-10-30-10-23-vsak-delovni-dan-od-15-30-do-18-30/"
+            },
+            {
+              "text": "V UČILNICI: Kategorija C: 23. 11. in 24. 11. 26 od 15.30 do 18.30 [PRIJAVA] >>",
+              "url": "https://amdpostojna.si/2023/09/19/kategorija-c-prijava-5-10-23/"
+            },
+            {
+              "text": "V UČILNICI: Kategorija F: predvidoma v NOVEMBRU 2026 [PRIJAVA] >>",
+              "url": "https://amdpostojna.si/2023/09/12/kategorija-f-prijava/"
+            },
+            {
+              "text": "V UČILNICI: Kategorije A1, A2, A: ZBIRAMO PRIJAVE [PRIJAVA] >>",
+              "url": "https://amdpostojna.si/2023/09/12/kategorije-a1-a2-a-prijava/"
+            },
+            {
+              "text": "V UČILNICI: Kategorija BE: 15. 12. 26 od 15:30h do 18.30h [PRIJAVA] >>",
+              "url": "https://amdpostojna.si/2023/09/12/kategorija-be-prijava/"
+            },
+            {
+              "text": "V UČILNICI: Kategorija CE: 14. 12. 26 od 15.30 do 18.30 [PRIJAVA] >>",
+              "url": "https://amdpostojna.si/2023/09/12/kategorija-ce-prijava/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3135,
+      "school_name": "Center Ptuj",
+      "source_url": "https://avtosola-center.si/teoreticni-del/",
+      "pages": [
+        {
+          "url": "https://www.avtosola-center.si/teoreticni-del/",
+          "title": "Teoretični del – Šola vožnje Center Ptuj",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Termin tečajev",
+              "url": "https://www.avtosola-center.si/#tecaj"
+            }
+          ]
+        },
+        {
+          "url": "https://www.avtosola-center.si/",
+          "title": "Šola vožnje Center Ptuj – Enostavno do izpita",
+          "upcoming": [],
+          "other_dated_count": 1,
+          "cpp_links": [
+            {
+              "text": "Termin tečajev",
+              "url": "https://www.avtosola-center.si/#tecaj"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://avtosola-center.si/teoreticni-del/"
+            },
+            {
+              "text": "Teoretični izpit",
+              "url": "https://e-uprava.gov.si/javne-evidence/prosti-termini.html#eyJmaWx0ZXJzIjp7InR5cGUiOlsiLSJdLCJwZXJpb2RhIjpbIi0iXSwiY2F0IjpbIi0xIl0sIml6cGl0bmlDZW50ZXIiOlsiLTEiXSwibG9rYWNpamEiOlsiLTEiXSwib2Zmc2V0IjpbIjAiXSwic2VudGluZWxfdHlwZSI6WyJvayJdLCJzZW50aW5lbF9zdGF0dXMiOlsib2siXSwiaXNfYWpheCI6WyIxIl19fQ=="
+            },
+            {
+              "text": "Prosti termini za opravljanje teoretičnega dela izpita",
+              "url": "https://e-uprava.gov.si/javne-evidence/prosti-termini.html#eyJmaWx0ZXJzIjp7InR5cGUiOlsiLSJdLCJwZXJpb2RhIjpbIi0iXSwiY2F0IjpbIi0xIl0sIml6cGl0bmlDZW50ZXIiOlsiLTEiXSwibG9rYWNpamEiOlsiLTEiXSwib2Zmc2V0IjpbIjAiXSwic2VudGluZWxfdHlwZSI6WyJvayJdLCJzZW50aW5lbF9zdGF0dXMiOlsib2siXSwiaXNfYWpheCI6WyIxIl19fQ=="
+            },
+            {
+              "text": "Spletna prijava na tečaje CPP",
+              "url": "https://www.avtosola-center.si/prijava/"
+            },
+            {
+              "text": "Vaje za pisanje CPP testov",
+              "url": "http://teorija-priprava.gov.si/moodle/login/index.php"
+            },
+            {
+              "text": "Prosti termini za opravljanje teoretičnega dela vozniškega izpita",
+              "url": "https://e-uprava.gov.si/javne-evidence/prosti-termini.html#eyJmaWx0ZXJzIjp7InR5cGUiOlsiLSJdLCJwZXJpb2RhIjpbIi0iXSwiY2F0IjpbIi0xIl0sIml6cGl0bmlDZW50ZXIiOlsiLTEiXSwibG9rYWNpamEiOlsiLTEiXSwib2Zmc2V0IjpbIjAiXSwic2VudGluZWxfdHlwZSI6WyJvayJdLCJzZW50aW5lbF9zdGF0dXMiOlsib2siXSwiaXNfYWpheCI6WyIxIl19fQ=="
+            },
+            {
+              "text": "Spletna prijava na tečaje CPP",
+              "url": "https://www.avtosola-center.si/prijava/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3065,
+      "school_name": "Lončar",
+      "source_url": "https://avtosola-loncar.si/pogoji-za-udelezbo-cpp-tecajev/",
+      "pages": [
+        {
+          "url": "https://avtosola-loncar.si/pogoji-za-udelezbo-cpp-tecajev/",
+          "title": "Pogoji - AvtoSolaLoncar %",
+          "upcoming": [],
+          "other_dated_count": 3,
+          "cpp_links": [
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava na CPP tečaj",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava na izpit za traktor",
+              "url": "https://avtosola-loncar.si/traktor/"
+            }
+          ]
+        },
+        {
+          "url": "https://avtosola-loncar.si/",
+          "title": "Avtošola Lončar",
+          "upcoming": [
+            {
+              "text": "14.12.2026 ob 16:00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberi datum! 09.11.2026 ob 16:00 14.12.2026 ob 16:00 11.01.2027 ob 16:00 22.02.2027 ob 16:00",
+              "date": {
+                "startDate": "2026-12-14",
+                "endDate": null
+              }
+            },
+            {
+              "text": "11.01.2027 ob 16:00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberi datum! 09.11.2026 ob 16:00 14.12.2026 ob 16:00 11.01.2027 ob 16:00 22.02.2027 ob 16:00",
+              "date": {
+                "startDate": "2027-01-11",
+                "endDate": null
+              }
+            },
+            {
+              "text": "22.02.2027 ob 16:00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberi datum! 09.11.2026 ob 16:00 14.12.2026 ob 16:00 11.01.2027 ob 16:00 22.02.2027 ob 16:00",
+              "date": {
+                "startDate": "2027-02-22",
+                "endDate": null
+              }
+            },
+            {
+              "text": "25.11.2026 ob 16:00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberi datum 25.11.2026 ob 16:00 01.03.2027 ob 16:00",
+              "date": {
+                "startDate": "2026-11-25",
+                "endDate": null
+              }
+            },
+            {
+              "text": "01.03.2027 ob 16:00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberi datum 25.11.2026 ob 16:00 01.03.2027 ob 16:00",
+              "date": {
+                "startDate": "2027-03-01",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 5,
+          "cpp_links": [
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://avtosola-loncar.si/#prijava"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3120,
+      "school_name": "Maxima",
+      "source_url": "https://maxima.si/tecaj-cestno-prometnih-predpisov/",
+      "pages": [
+        {
+          "url": "https://maxima.si/tecaj-cestno-prometnih-predpisov/",
+          "title": "Tečaj cestno-prometnih predpisov | Šola vožnje Maxima",
+          "upcoming": [
+            {
+              "text": "Začetek tečaja: Ponedeljek 23. november 2026 ob 17. uri",
+              "heading": "",
+              "selector": "h2.entry-title",
+              "nearby": "Začetek tečaja: Ponedeljek 23. november 2026 ob 17. uri",
+              "date": {
+                "startDate": "2026-11-23",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Tečaj CPP",
+              "url": "https://maxima.si/tecaj-cestno-prometnih-predpisov/"
+            },
+            {
+              "text": "Prijava na tečaj",
+              "url": "https://maxima.si/prijava-na-tecaj/"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://maxima.si/tecaj-cestno-prometnih-predpisov/"
+            },
+            {
+              "text": "Prijava na tečaj",
+              "url": "https://maxima.si/prijava-na-tecaj/"
+            },
+            {
+              "text": "Začetek tečaja: Ponedeljek 23. november 2026 ob 17. uri",
+              "url": "https://maxima.si/naslednji-termin/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://maxima.si/prijava-na-tecaj/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3150,
+      "school_name": "Triglav",
+      "source_url": "https://avtosola-triglav.si/",
+      "pages": [
+        {
+          "url": "https://avtosola-triglav.si/",
+          "title": "Avtošola Kranj - Avtošola Triglav",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na vožnjo / CPP",
+              "url": "https://avtosola-triglav.si/#contact"
+            },
+            {
+              "text": "Prosti termini za opravljanje vozniškega izpita",
+              "url": "http://e-uprava.gov.si/javne-evidence/prosti-termini.html#eyJwYWdlIjpbMF0sImZpbHRlcnMiOnsidHlwZSI6WyItIl0sImNhdCI6WyItIl0sIml6cGl0bmlDZW50ZXIiOlsiLTEiXSwibG9rYWNpamEiOlsiLTEiXSwib2Zmc2V0IjpbIjAiXSwic2VudGluZWxfdHlwZSI6WyJvayJdLCJzZW50aW5lbF9zdGF0dXMiOlsib2siXSwiaXNfYWpheCI6WyIxIl19fQ=="
+            },
+            {
+              "text": "Prijava na vožnjo / CPP",
+              "url": "https://avtosola-triglav.si/#contact"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3072,
+      "school_name": "AMD Pinko Tomažič",
+      "source_url": "http://www.amdpiran-drustvo.si/",
+      "pages": [
+        {
+          "url": "https://www.amdpiran-drustvo.si/",
+          "title": "AMD Pinko Tomažič - AMD Pinko Tomažič",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3087,
+      "school_name": "Brulc",
+      "source_url": "http://www.avtosola-brulc.si/",
+      "pages": [
+        {
+          "url": "https://neja74.wixsite.com/website",
+          "title": "Domov | Avtošola Brulc | Vse kategorije | Koda 95",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "CPP tečaji",
+              "url": "https://neja74.wixsite.com/website/cpp-te%C4%8Daji"
+            },
+            {
+              "text": "termini",
+              "url": "https://neja74.wixsite.com/website/cpp-te%C4%8Daji"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://neja74.wixsite.com/website/event-details-registration/pridobitev-temeljnih-kvalifikacij-kode-95"
+            },
+            {
+              "text": "CPP TEČAJ C - kategorija (NOVEMBER)",
+              "url": "https://neja74.wixsite.com/website/event-details-registration/cpp-tecaj-c-kategorija-november"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://neja74.wixsite.com/website/event-details-registration/cpp-tecaj-c-kategorija-november"
+            },
+            {
+              "text": "CPP TEČAJ BE - kategorija (NOVEMBER)",
+              "url": "https://neja74.wixsite.com/website/event-details-registration/cpp-tecaj-be-kategorija-november"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://neja74.wixsite.com/website/event-details-registration/cpp-tecaj-be-kategorija-november"
+            },
+            {
+              "text": "CPP TEČAJ CE - kategorija (NOVEMBER)",
+              "url": "https://neja74.wixsite.com/website/event-details-registration/cpp-tecaj-ce-kategorija-november"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3075,
+      "school_name": "Capris",
+      "source_url": "https://www.as-capris.si/cpp",
+      "pages": [
+        {
+          "url": "https://www.as-capris.si/cpp",
+          "title": "Spletna prijava CPP | Avtošola Capris",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "CPP",
+              "url": "https://www.as-capris.si/cpp"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3077,
+      "school_name": "Humar",
+      "source_url": "https://www.avtosola-humar.si/kategorije/cpp-tecaj/",
+      "pages": [
+        {
+          "url": "https://www.avtosola-humar.si/kategorije/cpp-tecaj/",
+          "title": "CPP: Tečaj – avtosola-humar.si",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "CPP: Tečaj",
+              "url": "https://www.avtosola-humar.si/kategorije/cpp-tecaj/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3073,
+      "school_name": "Zulić",
+      "source_url": "https://www.avtosolazulic.com/",
+      "pages": [
+        {
+          "url": "https://www.avtosolazulic.com/",
+          "title": "Avtosola Zulic Koper – CPP online in vožnja kategorije B, A, A2, AM",
+          "upcoming": [
+            {
+              "text": "3.12.2026",
+              "heading": "IN",
+              "selector": "h4.font_4.wixui-rich-text__text",
+              "nearby": "CPP učenje na novem nivoju z AI učilnico. Koda ZULIC30 za -30 %. Tečaj CPP V ŽIVO B, A1, AM kategorija 17.11.2026 od 16h-19h IN 3.12.2026 od 16h-19h A kategorija (poteka 2 dni) 25.11.2026 ob 16h-19h C kategorija 18.11.2026 ob 19h-22h CE kategorija 20.11.2026 ob 19h-22h D kategorija - BE kategorija 16.11.2026 ob 13h PRIČETEK PRIPRAV ZA PRIDOBITEV TK - KODA 95: -",
+              "date": {
+                "startDate": "2026-12-03",
+                "endDate": null
+              }
+            },
+            {
+              "text": "od 16h-19h A kategorija (poteka 2 dni) 25.11.2026",
+              "heading": "3.12.2026",
+              "selector": "h4.font_4.wixui-rich-text__text",
+              "nearby": "CPP učenje na novem nivoju z AI učilnico. Koda ZULIC30 za -30 %. Tečaj CPP V ŽIVO B, A1, AM kategorija 17.11.2026 od 16h-19h IN 3.12.2026 od 16h-19h A kategorija (poteka 2 dni) 25.11.2026 ob 16h-19h C kategorija 18.11.2026 ob 19h-22h CE kategorija 20.11.2026 ob 19h-22h D kategorija - BE kategorija 16.11.2026 ob 13h PRIČETEK PRIPRAV ZA PRIDOBITEV TK - KODA 95: -",
+              "date": {
+                "startDate": "2026-11-25",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 4,
+          "cpp_links": [
+            {
+              "text": "PRIJAVI SE ZDAJ",
+              "url": "https://www.avtosolazulic.com/online-tecaj"
+            },
+            {
+              "text": "",
+              "url": "https://teorija-cpp-priprava.gov.si/login"
+            },
+            {
+              "text": "Online CPP",
+              "url": "https://teorija-cpp-priprava.gov.si/login"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3095,
+      "school_name": "Avtotrade",
+      "source_url": "https://avtosola-avtotrade.si/tecaj-cpp/",
+      "pages": [],
+      "status": "ROBOTS_RESTRICTED",
+      "error": "robots.txt disallows Avtotrade"
+    },
+    {
+      "school_id": 3102,
+      "school_name": "4-Ka",
+      "source_url": "https://www.4kasolavoznje.com/tecaj-cpp.html",
+      "pages": [
+        {
+          "url": "https://www.4kasolavoznje.com/tecaj-cpp.html",
+          "title": "CPP tečaj Ljubljana | Šola vožnje 4ka",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "TEČAJ CPP",
+              "url": "https://www.4kasolavoznje.com/tecaj-cpp.html"
+            },
+            {
+              "text": "CPP GRADIVO IN URNIKI",
+              "url": "https://www.4kasolavoznje.com/cpp-gradivo-in-urniki.html"
+            },
+            {
+              "text": "TEČAJ CPP",
+              "url": "https://www.4kasolavoznje.com/tecaj-cpp.html"
+            },
+            {
+              "text": "CPP GRADIVO IN URNIKI",
+              "url": "https://www.4kasolavoznje.com/cpp-gradivo-in-urniki.html"
+            }
+          ]
+        }
+      ],
+      "status": "ROBOTS_RESTRICTED",
+      "error": "robots.txt disallows 4-Ka"
+    },
+    {
+      "school_id": 3074,
+      "school_name": "GJD",
+      "source_url": "https://gjd.si/",
+      "pages": [
+        {
+          "url": "https://gjd.si/wordpress/",
+          "title": "My CMS",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3131,
+      "school_name": "Herbby",
+      "source_url": "http://www.herbby.si/",
+      "pages": [
+        {
+          "url": "https://herbby.si/",
+          "title": "Herbby |",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava",
+              "url": "https://herbby.si/kontakt/#prijava"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://herbby.si/Kontakt#prijava"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3070,
+      "school_name": "K & D",
+      "source_url": "https://www.kind.si/termini-in-izpiti/online-prijava-termini-cpp",
+      "pages": [
+        {
+          "url": "https://www.kind.si/termini-in-izpiti/online-prijava-termini-cpp",
+          "title": "Online prijava - Termini CPP | K & D",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Online prijava - Termini CPP",
+              "url": "https://www.kind.si/termini-in-izpiti/online-prijava-termini-cpp"
+            },
+            {
+              "text": "Testi in uporabne povezave",
+              "url": "https://www.kind.si/termini-in-izpiti/testi-in-uporabne-povezave"
+            },
+            {
+              "text": "",
+              "url": "https://www.kind.si/prijava"
+            },
+            {
+              "text": "Tečaji CPP",
+              "url": "https://www.kind.si/termini-in-izpiti"
+            }
+          ]
+        },
+        {
+          "url": "https://www.kind.si/termini-in-izpiti/testi-in-uporabne-povezave",
+          "title": "Testi in uporabne povezave | K & D",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Online prijava - Termini CPP",
+              "url": "https://www.kind.si/termini-in-izpiti/online-prijava-termini-cpp"
+            },
+            {
+              "text": "Testi in uporabne povezave",
+              "url": "https://www.kind.si/termini-in-izpiti/testi-in-uporabne-povezave"
+            },
+            {
+              "text": "",
+              "url": "https://www.kind.si/prijava"
+            },
+            {
+              "text": "na tem spletnem naslovu",
+              "url": "https://teorija-cpp-priprava.gov.si/login/index.php"
+            },
+            {
+              "text": "Teorija priprava",
+              "url": "https://teorija-cpp-priprava.gov.si/login/index.php"
+            },
+            {
+              "text": "eCPP",
+              "url": "https://www2.ecpp.si/"
+            },
+            {
+              "text": "eUprava - Javne evidence - prosti termini",
+              "url": "https://e-uprava.gov.si/javne-evidence/prosti-termini.html?lang=si#eyJwYWdlIjpbMF0sImZpbHRlcnMiOnsidHlwZSI6WyItIl0sImNhdCI6WyItIl0sIml6cGl0bmlDZW50ZXIiOlsiLTEiXSwibG9rYWNpamEiOlsiLTEiXSwib2Zmc2V0IjpbIjAiXSwic2VudGluZWxfdHlwZSI6WyJvayJdLCJzZW50aW5lbF9zdGF0dXMiOlsib2siXSwiaXNfYWpheCI6WyIxIl19fQ=="
+            },
+            {
+              "text": "Tečaji CPP",
+              "url": "https://www.kind.si/termini-in-izpiti"
+            }
+          ]
+        },
+        {
+          "url": "https://www.kind.si/termini-in-izpiti",
+          "title": "Tečaji CPP | K & D",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Online prijava - Termini CPP",
+              "url": "https://www.kind.si/termini-in-izpiti/online-prijava-termini-cpp"
+            },
+            {
+              "text": "Testi in uporabne povezave",
+              "url": "https://www.kind.si/termini-in-izpiti/testi-in-uporabne-povezave"
+            },
+            {
+              "text": "",
+              "url": "https://www.kind.si/prijava"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3098,
+      "school_name": "Korelat",
+      "source_url": "https://www.korelat.si/cpp-tecaji/",
+      "pages": [
+        {
+          "url": "https://www.korelat.si/cpp-tecaji/",
+          "title": "Tečaj CPP v Ljubljani – termini, cene in prijava | Korelat",
+          "upcoming": [],
+          "other_dated_count": 3,
+          "cpp_links": [
+            {
+              "text": "CPP tečaji",
+              "url": "https://www.korelat.si/cpp-tecaji/"
+            },
+            {
+              "text": "CPP tečaji",
+              "url": "https://www.korelat.si/cpp-tecaji/"
+            },
+            {
+              "text": "CPP tečaji",
+              "url": "https://www.korelat.si/cpp-tecaji/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3144,
+      "school_name": "Kos",
+      "source_url": "https://solavoznjekos.si/prijava-cpp.html",
+      "pages": [
+        {
+          "url": "https://solavoznjekos.si/prijava-cpp.html",
+          "title": "TEČAJ CPP",
+          "upcoming": [
+            {
+              "text": "7.12.2026 - 15.12.2026 od 15.45 - 18.45 ure, lokacija Brestovška cesta 19, 3250 Rogaška Slatina",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberite termin 7.12.2026 - 15.12.2026 od 15.45 - 18.45 ure, lokacija Brestovška cesta 19, 3250 Rogaška Slatina 24.11.2026 - 8.12.2026 od 15.00-18.00 ure, lokacija Miklošičeva ulica 2, 3000 Celje",
+              "date": {
+                "startDate": "2026-12-07",
+                "endDate": "2026-12-15"
+              }
+            },
+            {
+              "text": "24.11.2026 - 8.12.2026 od 15.00-18.00 ure, lokacija Miklošičeva ulica 2, 3000 Celje",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberite termin 7.12.2026 - 15.12.2026 od 15.45 - 18.45 ure, lokacija Brestovška cesta 19, 3250 Rogaška Slatina 24.11.2026 - 8.12.2026 od 15.00-18.00 ure, lokacija Miklošičeva ulica 2, 3000 Celje",
+              "date": {
+                "startDate": "2026-11-24",
+                "endDate": "2026-12-08"
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na CPP",
+              "url": "https://solavoznjekos.si/prijava-cpp"
+            },
+            {
+              "text": "Elektronska priprava na teoretični del vozniškega izpita",
+              "url": "https://teorija-cpp-priprava.gov.si/"
+            },
+            {
+              "text": "Prosti termini za opravljanje teoretičnega in praktičnega dela vozniškega izpita",
+              "url": "https://e-uprava.gov.si/si/javne-evidence/prosti-termini-zemljevid.html?lang=si#eyJwYWdlIjpbMF0sImZpbHRlcnMiOnsidHlwZSI6WyItIl0sImNhdCI6WyItIl0sIml6cGl0bmlDZW50ZXIiOlsiLTEiXSwibG9rYWNpamEiOlsiLTEiXSwib2Zmc2V0IjpbIjAiXSwic2VudGluZWxfdHlwZSI6WyJvayJdLCJzZW50aW5lbF9zdGF0dXMiOlsib2siXSwiaXNfYWpheCI6WyIxIl19LCJvZmZzZXRQYWdlIjpudWxsfQ=="
+            },
+            {
+              "text": "TEČAJ CPP",
+              "url": "https://solavoznjekos.si/prijava-cpp.html"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3058,
+      "school_name": "L Mark",
+      "source_url": "https://lmark.si/cpp/",
+      "pages": [
+        {
+          "url": "https://lmark.si/cpp/",
+          "title": "Cestno prometni predpisi – lmark.si",
+          "upcoming": [
+            {
+              "text": "Novemberski termin predavanj CPP bo potekal na naslednje datume: 24.11.2026 – Od 15:00 do 18.00 26.11.2026 od 15.00 do 18.00 1.12.2026 od 15.00 do 18.00 2.12.2026 od 15.00 do 18.00 3.12.2026 – od 15.00 do 18.00 8.12.2026 – od 15.00 do 18.00",
+              "heading": "Razpisani termini",
+              "selector": "li.wp-block-kadence-listitem.kt-svg-icon-list-item-wrap",
+              "nearby": "Novemberski termin predavanj CPP bo potekal na naslednje datume: 24.11.2026 – Od 15:00 do 18.00 26.11.2026 od 15.00 do 18.00 1.12.2026 od 15.00 do 18.00 2.12.2026 od 15.00 do 18.00 3.12.2026 – od 15.00 do 18.00 8.12.2026 – od 15.00 do 18.00 Pogoj za uspešno opravljena predavanja CPP je udeležba na najmanj 5 od 6 terminov. Če predavanj v posameznem terminu ne morete zaključiti, lahko z njimi nadaljujete v naslednjem terminu. Prijave so obvezne.",
+              "date": {
+                "startDate": "2026-11-24",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na tečaj",
+              "url": "https://lmark.si/prijava-na-tecaj/"
+            },
+            {
+              "text": "Prijava na tečaj",
+              "url": "https://lmark.si/prijava-na-tecaj/"
+            },
+            {
+              "text": "Cestno prometni predpisi",
+              "url": "https://lmark.si/cpp/"
+            },
+            {
+              "text": "Prosti termini za opravljanje vozniškega izpita",
+              "url": "https://e-uprava.gov.si/si/javne-evidence/prosti-termini-zemljevid.html?lang=si#eyJwYWdlIjpbMF0sImZpbHRlcnMiOnsidHlwZSI6WyIyIl0sImNhdCI6WyI2Il0sIml6cGl0bmlDZW50ZXIiOlsiMTkiXSwibG9rYWNpamEiOlsiMTQ4Il0sImNhbGVuZGFyX2RhdGUiOlsiMjAyNi0wNi0wNyJdLCJvZmZzZXQiOlsiMCJdLCJzZW50aW5lbF90eXBlIjpbIm9rIl0sInNlbnRpbmVsX3N0YXR1cyI6WyJvayJdLCJpc19hamF4IjpbIjEiXX0sIm9mZnNldFBhZ2UiOm51bGx9"
+            },
+            {
+              "text": "Vaje teoretični del vozniškega izpita",
+              "url": "https://teorija-cpp-priprava.gov.si/login/index.php"
+            },
+            {
+              "text": "Spletna učilnica – CPP",
+              "url": "https://www2.ecpp.si/"
+            },
+            {
+              "text": "PRIJAVA NA TEČAJ",
+              "url": "https://lmark.si/prijava-na-tecaj/"
+            },
+            {
+              "text": "Prosti termini izpitnih centrov",
+              "url": "https://e-uprava.gov.si/si/javne-evidence/prosti-termini-zemljevid.html?lang=si#eyJwYWdlIjpbNF0sImZpbHRlcnMiOnsidHlwZSI6WyIyIl0sImNhdCI6WyI2Il0sIml6cGl0bmlDZW50ZXIiOlsiMTkiXSwibG9rYWNpamEiOlsiMTQ4Il0sImNhbGVuZGFyX2RhdGUiOlsiMjAyNi0wNi0yMSJdLCJvZmZzZXQiOlsiMTY3NCJdLCJzZW50aW5lbF90eXBlIjpbIm9rIl0sInNlbnRpbmVsX3N0YXR1cyI6WyJvayJdLCJpc19hamF4IjpbIjEiXX0sIm9mZnNldFBhZ2UiOm51bGx9"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3118,
+      "school_name": "Laura Kreslin",
+      "source_url": "https://solavoznjelaura.com/",
+      "pages": [
+        {
+          "url": "https://solavoznjelaura.com/",
+          "title": "Šola vožnje Laura Kreslin",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijavnica",
+              "url": "https://solavoznjelaura.com/prijavnica"
+            },
+            {
+              "text": "Prijavnica",
+              "url": "https://solavoznjelaura.com/prijavnica"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3055,
+      "school_name": "Mazzoni",
+      "source_url": "https://www.avtosola-mazzoni.com/",
+      "pages": [
+        {
+          "url": "https://www.avtosola-mazzoni.com/",
+          "title": "Avtošola Mazzoni, Celje, Žalec",
+          "upcoming": [],
+          "other_dated_count": 2,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3174,
+      "school_name": "Moto VV",
+      "source_url": "https://motovv.com/prijava/",
+      "pages": [
+        {
+          "url": "https://motovv.com/prijava/",
+          "title": "Prijava na CPP - Šola vožnje MOTO VV",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://motovv.com/prijava/"
+            },
+            {
+              "text": "Prijava na CPP",
+              "url": "https://motovv.com/prijava/"
+            },
+            {
+              "text": "Prijava na CPP",
+              "url": "https://motovv.com/prijava/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3099,
+      "school_name": "Nada Tours",
+      "source_url": "http://www.nada-tours.com/",
+      "pages": [
+        {
+          "url": "https://www.nada-tours.com/",
+          "title": "Šola vožnje Nada Tours, avtošola Ljubljana",
+          "upcoming": [
+            {
+              "text": "Tečaj CPP - B kategorije 07.12.2026 ob16h (6 dni) Spletna prijava",
+              "heading": "Tečaj CPP je organiziran v prostorih NADA TOURS. Obvezna prijava!",
+              "selector": "li",
+              "nearby": "Tečaj CPP - B kategorije 07.12.2026 ob16h (6 dni) Spletna prijava Tečaj CPP - Be kategorije 27.11.2026 ob 16h Spletna prijava Tečaj CPP - C kategorije 03.12.2026 0b 16h 04.12.2026 0b 16h Spletna prijava Tečaj CPP - Ce kategorije 04.12.2026 ob 16h . Spletna prijava Tečaj CPP - D kategorije 17.12.2026 ob16h (2 dni) Spletna prijava",
+              "date": {
+                "startDate": "2026-12-07",
+                "endDate": null
+              }
+            },
+            {
+              "text": "07.12.2026 ob16h (6 dni)",
+              "heading": "Tečaj CPP - B kategorije",
+              "selector": "p",
+              "nearby": "07.12.2026 ob16h (6 dni)",
+              "date": {
+                "startDate": "2026-12-07",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Tečaj CPP - Be kategorije 27.11.2026 ob 16h Spletna prijava",
+              "heading": "Tečaj CPP je organiziran v prostorih NADA TOURS. Obvezna prijava!",
+              "selector": "li",
+              "nearby": "Tečaj CPP - B kategorije 07.12.2026 ob16h (6 dni) Spletna prijava Tečaj CPP - Be kategorije 27.11.2026 ob 16h Spletna prijava Tečaj CPP - C kategorije 03.12.2026 0b 16h 04.12.2026 0b 16h Spletna prijava Tečaj CPP - Ce kategorije 04.12.2026 ob 16h . Spletna prijava Tečaj CPP - D kategorije 17.12.2026 ob16h (2 dni) Spletna prijava",
+              "date": {
+                "startDate": "2026-11-27",
+                "endDate": null
+              }
+            },
+            {
+              "text": "27.11.2026 ob 16h",
+              "heading": "Tečaj CPP - Be kategorije",
+              "selector": "p",
+              "nearby": "27.11.2026 ob 16h",
+              "date": {
+                "startDate": "2026-11-27",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Tečaj CPP - C kategorije 03.12.2026 0b 16h 04.12.2026 0b 16h Spletna prijava",
+              "heading": "Tečaj CPP je organiziran v prostorih NADA TOURS. Obvezna prijava!",
+              "selector": "li",
+              "nearby": "Tečaj CPP - B kategorije 07.12.2026 ob16h (6 dni) Spletna prijava Tečaj CPP - Be kategorije 27.11.2026 ob 16h Spletna prijava Tečaj CPP - C kategorije 03.12.2026 0b 16h 04.12.2026 0b 16h Spletna prijava Tečaj CPP - Ce kategorije 04.12.2026 ob 16h . Spletna prijava Tečaj CPP - D kategorije 17.12.2026 ob16h (2 dni) Spletna prijava",
+              "date": {
+                "startDate": "2026-12-03",
+                "endDate": null
+              }
+            },
+            {
+              "text": "03.12.2026 0b 16h 04.12.2026 0b 16h",
+              "heading": "Tečaj CPP - C kategorije",
+              "selector": "p",
+              "nearby": "03.12.2026 0b 16h 04.12.2026 0b 16h",
+              "date": {
+                "startDate": "2026-12-03",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Tečaj CPP - Ce kategorije 04.12.2026 ob 16h . Spletna prijava",
+              "heading": "Tečaj CPP je organiziran v prostorih NADA TOURS. Obvezna prijava!",
+              "selector": "li",
+              "nearby": "Tečaj CPP - B kategorije 07.12.2026 ob16h (6 dni) Spletna prijava Tečaj CPP - Be kategorije 27.11.2026 ob 16h Spletna prijava Tečaj CPP - C kategorije 03.12.2026 0b 16h 04.12.2026 0b 16h Spletna prijava Tečaj CPP - Ce kategorije 04.12.2026 ob 16h . Spletna prijava Tečaj CPP - D kategorije 17.12.2026 ob16h (2 dni) Spletna prijava",
+              "date": {
+                "startDate": "2026-12-04",
+                "endDate": null
+              }
+            },
+            {
+              "text": "04.12.2026 ob 16h .",
+              "heading": "Tečaj CPP - Ce kategorije",
+              "selector": "p",
+              "nearby": "04.12.2026 ob 16h .",
+              "date": {
+                "startDate": "2026-12-04",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Tečaj CPP - D kategorije 17.12.2026 ob16h (2 dni) Spletna prijava",
+              "heading": "Tečaj CPP je organiziran v prostorih NADA TOURS. Obvezna prijava!",
+              "selector": "li.last",
+              "nearby": "Tečaj CPP - B kategorije 07.12.2026 ob16h (6 dni) Spletna prijava Tečaj CPP - Be kategorije 27.11.2026 ob 16h Spletna prijava Tečaj CPP - C kategorije 03.12.2026 0b 16h 04.12.2026 0b 16h Spletna prijava Tečaj CPP - Ce kategorije 04.12.2026 ob 16h . Spletna prijava Tečaj CPP - D kategorije 17.12.2026 ob16h (2 dni) Spletna prijava",
+              "date": {
+                "startDate": "2026-12-17",
+                "endDate": null
+              }
+            },
+            {
+              "text": "17.12.2026 ob16h (2 dni)",
+              "heading": "Tečaj CPP - D kategorije",
+              "selector": "p",
+              "nearby": "17.12.2026 ob16h (2 dni)",
+              "date": {
+                "startDate": "2026-12-17",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Termin tečajev",
+              "url": "https://www.nada-tours.com/si/termin-tecajev.html"
+            },
+            {
+              "text": "Spletna prijava",
+              "url": "https://www.nada-tours.com/si/kontakt.html"
+            },
+            {
+              "text": "Spletna prijava",
+              "url": "https://www.nada-tours.com/si/kontakt.html"
+            },
+            {
+              "text": "Spletna prijava",
+              "url": "https://www.nada-tours.com/si/kontakt.html"
+            },
+            {
+              "text": "Spletna prijava",
+              "url": "https://www.nada-tours.com/si/kontakt.html"
+            },
+            {
+              "text": "Spletna prijava",
+              "url": "https://www.nada-tours.com/si/kontakt.html"
+            },
+            {
+              "text": "cestno prometni predpisi",
+              "url": "https://www.nada-tours.com/#"
+            },
+            {
+              "text": "tečaj cpp",
+              "url": "https://www.nada-tours.com/#"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3114,
+      "school_name": "Oman",
+      "source_url": "https://www.solavoznjeoman.com/",
+      "pages": [
+        {
+          "url": "https://www.solavoznjeoman.com/",
+          "title": "Šola vožnje OMAN | Tradicija | Maribor",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "",
+              "url": "https://teorija-cpp-priprava.gov.si/login/index.php"
+            },
+            {
+              "text": "Test CPP",
+              "url": "http://teorija-priprava.gov.si/moodle/login/index.php"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3101,
+      "school_name": "Peter Zagorc",
+      "source_url": "http://www.petervoznja.si/",
+      "pages": [
+        {
+          "url": "chrome-error://chromewebdata/",
+          "title": "",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3184,
+      "school_name": "Plomos",
+      "source_url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp",
+      "pages": [
+        {
+          "url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp",
+          "title": "TEČAJ CESTNO PROMETNIH PREDPISOV (CPP)",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "2. TEČAJ CESTNO PROMETNIH PREDPISOV (CPP)",
+              "url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp"
+            },
+            {
+              "text": "TERMINI TEČAJEV",
+              "url": "https://www.solavoznje-relax.si/sl/termini-tecajev"
+            },
+            {
+              "text": "2. TEČAJ CESTNO PROMETNIH PREDPISOV (CPP)",
+              "url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp"
+            },
+            {
+              "text": "2. TEČAJ CESTNO PROMETNIH PREDPISOV (CPP)",
+              "url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp"
+            },
+            {
+              "text": "Termini",
+              "url": "https://solavoznje-relax.si/sl/termini-tecajev"
+            }
+          ]
+        },
+        {
+          "url": "https://www.solavoznje-relax.si/sl/termini-tecajev",
+          "title": "Šola vožnje Relax - Relax šola vožnje z intenzivnim usposabljanjem",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "2. TEČAJ CESTNO PROMETNIH PREDPISOV (CPP)",
+              "url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp"
+            },
+            {
+              "text": "TERMINI TEČAJEV",
+              "url": "https://www.solavoznje-relax.si/sl/termini-tecajev"
+            },
+            {
+              "text": "TERMINI TEčAJEV",
+              "url": "https://www.solavoznje-relax.si/sl/termini-tecajev/"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.solavoznje-relax.si/sl/poslovne-enote/pe-dravograd/termin=1081/enota=1/tip=1/c=1"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.solavoznje-relax.si/sl/poslovne-enote/pe-idrija/termin=1180/enota=2/tip=1/c=1"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.solavoznje-relax.si/sl/poslovne-enote/pe-ilirska-bistrica/termin=585/enota=3/tip=1/c=1"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.solavoznje-relax.si/sl/poslovne-enote/pe-maribor/termin=1194/enota=5/tip=1/c=1"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.solavoznje-relax.si/sl/poslovne-enote/pe-maribor/termin=1176/enota=5/tip=1/c=1/nadaljavo=1"
+            }
+          ]
+        },
+        {
+          "url": "https://solavoznje-relax.si/sl/termini-tecajev",
+          "title": "Šola vožnje Relax - Relax šola vožnje z intenzivnim usposabljanjem",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "2. TEČAJ CESTNO PROMETNIH PREDPISOV (CPP)",
+              "url": "https://solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp"
+            },
+            {
+              "text": "TERMINI TEČAJEV",
+              "url": "https://solavoznje-relax.si/sl/termini-tecajev"
+            },
+            {
+              "text": "TERMINI TEčAJEV",
+              "url": "https://solavoznje-relax.si/sl/termini-tecajev/"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznje-relax.si/sl/poslovne-enote/pe-dravograd/termin=1081/enota=1/tip=1/c=1"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznje-relax.si/sl/poslovne-enote/pe-idrija/termin=1180/enota=2/tip=1/c=1"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznje-relax.si/sl/poslovne-enote/pe-ilirska-bistrica/termin=585/enota=3/tip=1/c=1"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznje-relax.si/sl/poslovne-enote/pe-maribor/termin=1194/enota=5/tip=1/c=1"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznje-relax.si/sl/poslovne-enote/pe-maribor/termin=1176/enota=5/tip=1/c=1/nadaljavo=1"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3100,
+      "school_name": "Polžek",
+      "source_url": "https://avtosola-polzek.com/",
+      "pages": [
+        {
+          "url": "https://avtosola-polzek.com/",
+          "title": "prva stran",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Ceniki in termini tečajev",
+              "url": "https://avtosola-polzek.com/ceniki-in-termini-te%C4%8Dajev"
+            }
+          ]
+        },
+        {
+          "url": "https://avtosola-polzek.com/ceniki-in-termini-te%C4%8Dajev",
+          "title": "šola vožnje polžek",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Ceniki in termini tečajev",
+              "url": "https://avtosola-polzek.com/ceniki-in-termini-te%C4%8Dajev"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3063,
+      "school_name": "Vojko Verdev",
+      "source_url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/",
+      "pages": [
+        {
+          "url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/",
+          "title": "Tečaj CPP – Šola vožnje Verdev",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava",
+              "url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/#"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/"
+            },
+            {
+              "text": "Varno delo s traktorjem",
+              "url": "https://www.solavoznje-verdev.si/prijava/varno-delo-s-traktorjem/"
+            },
+            {
+              "text": "Koda 125",
+              "url": "https://www.solavoznje-verdev.si/prijava/koda-125/"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/#"
+            },
+            {
+              "text": "- Tečaj CPP",
+              "url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/"
+            },
+            {
+              "text": "- Varno delo s traktorjem",
+              "url": "https://www.solavoznje-verdev.si/prijava/varno-delo-s-traktorjem/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3076,
+      "school_name": "Praktikum",
+      "source_url": "https://avtosola.praktikum.si/sola-voznje/prijava-na-cpp/",
+      "pages": [
+        {
+          "url": "https://avtosola.praktikum.si/sola-voznje/prijava-na-cpp/",
+          "title": "Prijava na cpp | Šola vožnje Praktikum",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na cpp",
+              "url": "https://avtosola.praktikum.si/sola-voznje/prijava-na-cpp/"
+            },
+            {
+              "text": "Prijava na cpp",
+              "url": "https://avtosola.praktikum.si/sola-voznje/prijava-na-cpp/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3134,
+      "school_name": "Prednost",
+      "source_url": "https://www.prednost.si/",
+      "pages": [
+        {
+          "url": "https://www.prednost.si/",
+          "title": "Šola vožnje Prednost",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Predprijava",
+              "url": "https://www.prednost.si/stats.php"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3060,
+      "school_name": "Brez strahu za volanom",
+      "source_url": "https://brezstrahuzavolanom.si/",
+      "pages": [
+        {
+          "url": "https://brezstrahuzavolanom.si/",
+          "title": "Brez strahu za volanom | Brez strahu se podajte na vašo sanjsko vožnjo",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Informativna prijava",
+              "url": "https://forms.gle/GK1ugiBkEVMDTw9Z6"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3116,
+      "school_name": "Prihajam",
+      "source_url": "https://prihajam.si/",
+      "pages": [
+        {
+          "url": "https://prihajam.si/",
+          "title": "šola vožnje PRIHAJAM",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "prijava",
+              "url": "https://prihajam.si/prijava/"
+            },
+            {
+              "text": "povezavi",
+              "url": "https://teorija-cpp-priprava.gov.si/login/index.php?username=prihajam"
+            },
+            {
+              "text": "informacije in prijava",
+              "url": "https://maribor.ozrk.si/sl/Prva_pomoc_MB/"
+            },
+            {
+              "text": "prijava",
+              "url": "https://prihajam.si/prijava/"
+            },
+            {
+              "text": "informacije",
+              "url": "https://e-uprava.gov.si/javne-evidence/prosti-termini.htm"
+            },
+            {
+              "text": "informacije in prijava",
+              "url": "https://maribor.ozrk.si/sl/Prva_pomoc_MB/"
+            },
+            {
+              "text": "prijava",
+              "url": "https://prihajam.si/prijava/"
+            },
+            {
+              "text": "informacije",
+              "url": "https://e-uprava.gov.si/javne-evidence/prosti-termini.htm"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3068,
+      "school_name": "Primago",
+      "source_url": "https://www.primago.si/tecaj-cpp",
+      "pages": [
+        {
+          "url": "https://www.primago.si/tecaj-cpp",
+          "title": "Tečaj CPP | Šola vožnje Primago | Ljubljana",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Tečaj CPP",
+              "url": "https://www.primago.si/tecaj-cpp"
+            },
+            {
+              "text": "Poglej si",
+              "url": "https://www.primago.si/gradivo-cpp"
+            }
+          ]
+        },
+        {
+          "url": "https://www.primago.si/gradivo-cpp",
+          "title": "Gradivo | Primago",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Tečaj CPP",
+              "url": "https://www.primago.si/tecaj-cpp"
+            },
+            {
+              "text": "Prijavi se na tečaj CPP",
+              "url": "https://www.primago.si/tecaj-cpp"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3112,
+      "school_name": "Prometna šola Maribor",
+      "source_url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/",
+      "pages": [
+        {
+          "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/",
+          "title": "Tečaj CPP – prijava - Šola vožnje - Prometna šola Maribor",
+          "upcoming": [],
+          "other_dated_count": 5,
+          "cpp_links": [
+            {
+              "text": "Cestno prometni predpisi – CPP",
+              "url": "https://prometna.net/sola-voznje/kaj-ponujamo/vozniski-izpit/cestno-prometni-predpisi-cpp/"
+            },
+            {
+              "text": "Tečaj CPP – prijava",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+            },
+            {
+              "text": "Cenik",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/"
+            },
+            {
+              "text": "Tečaj CPP – prijava",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+            },
+            {
+              "text": "Cenik",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/cenik/"
+            },
+            {
+              "text": "Cenik in prijava",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/"
+            },
+            {
+              "text": "Prijavnica CPP in eCPP – JANUAR 2027",
+              "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-januar-2027/"
+            },
+            {
+              "text": "Prijavnica CPP in eCPP – FEBRUAR 2027",
+              "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-februar-2027/"
+            }
+          ]
+        },
+        {
+          "url": "https://prometna.net/sola-voznje/kaj-ponujamo/vozniski-izpit/cestno-prometni-predpisi-cpp/",
+          "title": "Cestnoprometni predpisi – CPP - Šola vožnje - Prometna šola Maribor",
+          "upcoming": [],
+          "other_dated_count": 5,
+          "cpp_links": [
+            {
+              "text": "Cestno prometni predpisi – CPP",
+              "url": "https://prometna.net/sola-voznje/kaj-ponujamo/vozniski-izpit/cestno-prometni-predpisi-cpp/"
+            },
+            {
+              "text": "Tečaj CPP – prijava",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+            },
+            {
+              "text": "Cenik",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/"
+            },
+            {
+              "text": "Tečaj CPP – prijava",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+            },
+            {
+              "text": "Cenik",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/cenik/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+            },
+            {
+              "text": "Cenik in prijava",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/"
+            },
+            {
+              "text": "Cenik",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/cenik/"
+            }
+          ]
+        },
+        {
+          "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-januar-2027/",
+          "title": "Tečaj CPP in eCPP – JANUAR 2027 - Šola vožnje - Prometna šola Maribor",
+          "upcoming": [
+            {
+              "text": "V torek 12.1.2027, ob 16. uri organiziramo tečaj CPP na Prometni šoli Maribor (Preradovičeva ulica 33, 2000 Maribor).",
+              "heading": "Tečaj CPP in eCPP – JANUAR 2027",
+              "selector": "p",
+              "nearby": "Tečaj CPP in eCPP – JANUAR 2027 Tečaj CPP – prijava Obveščamo vas, da bomo v letu 2027 v mesecu januarju izvajali klasični in online tečaj CPP. Klasična izvedba tečaja poteka na lokaciji šole, online izvedba pa preko spletnega okolja MS Teams. Tečaj lahko spremljate preko računalnikov, tablic ali pametnih telefonov. V torek 12.1.2027, ob 16. uri organiziramo tečaj CPP na Prometni šoli Maribor (Preradovičeva ulica 33, 2000 Maribor). Predavanja bodo v UČILNICI SPŠ 0/2, med 16. in 19. uro. V istih terminih poteka tečaj CPP tudi preko spleta. Prehajanje med tečaji online in izvedbo na sedežu šole vožnje ni mogoče (ali obiskujete predavanja na Prometni šoli ali spremljate predavanja preko spleta). Predvideni termini tečaja so: Torek, 12.1.2027, ob 16.00 Sreda, 13.1.2027, ob 16.00 Četrtek, 14.1.",
+              "date": {
+                "startDate": "2027-01-12",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Torek, 12.1.2027, ob 16.00",
+              "heading": "Tečaj CPP in eCPP – JANUAR 2027",
+              "selector": "p",
+              "nearby": "Tečaj CPP in eCPP – JANUAR 2027 Tečaj CPP – prijava Obveščamo vas, da bomo v letu 2027 v mesecu januarju izvajali klasični in online tečaj CPP. Klasična izvedba tečaja poteka na lokaciji šole, online izvedba pa preko spletnega okolja MS Teams. Tečaj lahko spremljate preko računalnikov, tablic ali pametnih telefonov. V torek 12.1.2027, ob 16. uri organiziramo tečaj CPP na Prometni šoli Maribor (Preradovičeva ulica 33, 2000 Maribor). Predavanja bodo v UČILNICI SPŠ 0/2, med 16. in 19. uro. V istih terminih poteka tečaj CPP tudi preko spleta. Prehajanje med tečaji online in izvedbo na sedežu šole vožnje ni mogoče (ali obiskujete predavanja na Prometni šoli ali spremljate predavanja preko spleta). Predvideni termini tečaja so: Torek, 12.1.2027, ob 16.00 Sreda, 13.1.2027, ob 16.00 Četrtek, 14.1.",
+              "date": {
+                "startDate": "2027-01-12",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Sreda, 13.1.2027, ob 16.00",
+              "heading": "Tečaj CPP in eCPP – JANUAR 2027",
+              "selector": "p",
+              "nearby": "Tečaj CPP in eCPP – JANUAR 2027 Tečaj CPP – prijava Obveščamo vas, da bomo v letu 2027 v mesecu januarju izvajali klasični in online tečaj CPP. Klasična izvedba tečaja poteka na lokaciji šole, online izvedba pa preko spletnega okolja MS Teams. Tečaj lahko spremljate preko računalnikov, tablic ali pametnih telefonov. V torek 12.1.2027, ob 16. uri organiziramo tečaj CPP na Prometni šoli Maribor (Preradovičeva ulica 33, 2000 Maribor). Predavanja bodo v UČILNICI SPŠ 0/2, med 16. in 19. uro. V istih terminih poteka tečaj CPP tudi preko spleta. Prehajanje med tečaji online in izvedbo na sedežu šole vožnje ni mogoče (ali obiskujete predavanja na Prometni šoli ali spremljate predavanja preko spleta). Predvideni termini tečaja so: Torek, 12.1.2027, ob 16.00 Sreda, 13.1.2027, ob 16.00 Četrtek, 14.1.",
+              "date": {
+                "startDate": "2027-01-13",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Četrtek, 14.1.2027, ob 16.00",
+              "heading": "Tečaj CPP in eCPP – JANUAR 2027",
+              "selector": "p",
+              "nearby": "Tečaj CPP in eCPP – JANUAR 2027 Tečaj CPP – prijava Obveščamo vas, da bomo v letu 2027 v mesecu januarju izvajali klasični in online tečaj CPP. Klasična izvedba tečaja poteka na lokaciji šole, online izvedba pa preko spletnega okolja MS Teams. Tečaj lahko spremljate preko računalnikov, tablic ali pametnih telefonov. V torek 12.1.2027, ob 16. uri organiziramo tečaj CPP na Prometni šoli Maribor (Preradovičeva ulica 33, 2000 Maribor). Predavanja bodo v UČILNICI SPŠ 0/2, med 16. in 19. uro. V istih terminih poteka tečaj CPP tudi preko spleta. Prehajanje med tečaji online in izvedbo na sedežu šole vožnje ni mogoče (ali obiskujete predavanja na Prometni šoli ali spremljate predavanja preko spleta). Predvideni termini tečaja so: Torek, 12.1.2027, ob 16.00 Sreda, 13.1.2027, ob 16.00 Četrtek, 14.1.",
+              "date": {
+                "startDate": "2027-01-14",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Ponedeljek, 18.1.2027, ob 16.00",
+              "heading": "Tečaj CPP in eCPP – JANUAR 2027",
+              "selector": "p",
+              "nearby": "Tečaj CPP in eCPP – JANUAR 2027 Tečaj CPP – prijava Obveščamo vas, da bomo v letu 2027 v mesecu januarju izvajali klasični in online tečaj CPP. Klasična izvedba tečaja poteka na lokaciji šole, online izvedba pa preko spletnega okolja MS Teams. Tečaj lahko spremljate preko računalnikov, tablic ali pametnih telefonov. V torek 12.1.2027, ob 16. uri organiziramo tečaj CPP na Prometni šoli Maribor (Preradovičeva ulica 33, 2000 Maribor). Predavanja bodo v UČILNICI SPŠ 0/2, med 16. in 19. uro. V istih terminih poteka tečaj CPP tudi preko spleta. Prehajanje med tečaji online in izvedbo na sedežu šole vožnje ni mogoče (ali obiskujete predavanja na Prometni šoli ali spremljate predavanja preko spleta). Predvideni termini tečaja so: Torek, 12.1.2027, ob 16.00 Sreda, 13.1.2027, ob 16.00 Četrtek, 14.1.",
+              "date": {
+                "startDate": "2027-01-18",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Torek, 19.1.2027, ob 16.00",
+              "heading": "Tečaj CPP in eCPP – JANUAR 2027",
+              "selector": "p",
+              "nearby": "Tečaj CPP in eCPP – JANUAR 2027 Tečaj CPP – prijava Obveščamo vas, da bomo v letu 2027 v mesecu januarju izvajali klasični in online tečaj CPP. Klasična izvedba tečaja poteka na lokaciji šole, online izvedba pa preko spletnega okolja MS Teams. Tečaj lahko spremljate preko računalnikov, tablic ali pametnih telefonov. V torek 12.1.2027, ob 16. uri organiziramo tečaj CPP na Prometni šoli Maribor (Preradovičeva ulica 33, 2000 Maribor). Predavanja bodo v UČILNICI SPŠ 0/2, med 16. in 19. uro. V istih terminih poteka tečaj CPP tudi preko spleta. Prehajanje med tečaji online in izvedbo na sedežu šole vožnje ni mogoče (ali obiskujete predavanja na Prometni šoli ali spremljate predavanja preko spleta). Predvideni termini tečaja so: Torek, 12.1.2027, ob 16.00 Sreda, 13.1.2027, ob 16.00 Četrtek, 14.1.",
+              "date": {
+                "startDate": "2027-01-19",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Sreda, 20.1.2027, ob 16.00",
+              "heading": "Tečaj CPP in eCPP – JANUAR 2027",
+              "selector": "p",
+              "nearby": "Tečaj CPP in eCPP – JANUAR 2027 Tečaj CPP – prijava Obveščamo vas, da bomo v letu 2027 v mesecu januarju izvajali klasični in online tečaj CPP. Klasična izvedba tečaja poteka na lokaciji šole, online izvedba pa preko spletnega okolja MS Teams. Tečaj lahko spremljate preko računalnikov, tablic ali pametnih telefonov. V torek 12.1.2027, ob 16. uri organiziramo tečaj CPP na Prometni šoli Maribor (Preradovičeva ulica 33, 2000 Maribor). Predavanja bodo v UČILNICI SPŠ 0/2, med 16. in 19. uro. V istih terminih poteka tečaj CPP tudi preko spleta. Prehajanje med tečaji online in izvedbo na sedežu šole vožnje ni mogoče (ali obiskujete predavanja na Prometni šoli ali spremljate predavanja preko spleta). Predvideni termini tečaja so: Torek, 12.1.2027, ob 16.00 Sreda, 13.1.2027, ob 16.00 Četrtek, 14.1.",
+              "date": {
+                "startDate": "2027-01-20",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Prijave sprejemamo do: 10.1.2027,(23:59) za tečaj JANUAR. Vsi ki se boste tečaja udeležili preko spleta do začetka tečaja nam pošljite izpolnjen obrazec “Vpisni_list_CPP” ter plačate tečaj CPP. Obrazec in potrdilo o plačilu pošljite na avtosola@prometna.net",
+              "heading": "Tečaj CPP in eCPP – JANUAR 2027",
+              "selector": "li",
+              "nearby": "Prijave sprejemamo preko spletnega obrazca. Prijave sprejemamo do: 10.1.2027,(23:59) za tečaj JANUAR. Vsi ki se boste tečaja udeležili preko spleta do začetka tečaja nam pošljite izpolnjen obrazec “Vpisni_list_CPP” ter plačate tečaj CPP. Obrazec in potrdilo o plačilu pošljite na avtosola@prometna.net Vsi, ki boste obiskovali tečaj na šoli, vpisni list ni potrebno izpolniti.",
+              "date": {
+                "startDate": "2027-01-10",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 5,
+          "cpp_links": [
+            {
+              "text": "Cestno prometni predpisi – CPP",
+              "url": "https://prometna.net/sola-voznje/kaj-ponujamo/vozniski-izpit/cestno-prometni-predpisi-cpp/"
+            },
+            {
+              "text": "Tečaj CPP – prijava",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+            },
+            {
+              "text": "Cenik",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/"
+            },
+            {
+              "text": "Tečaj CPP – prijava",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+            },
+            {
+              "text": "Cenik",
+              "url": "https://prometna.net/sola-voznje/cenik-in-prijava/cenik/"
+            },
+            {
+              "text": "spletnega obrazca",
+              "url": "http://prijava.prometna.net/"
+            },
+            {
+              "text": "Vpisni_list_CPP”",
+              "url": "https://prometna.net/sola-voznje/wp-content/uploads/sites/5/2023/08/Vpisni_list_CPP.pdf"
+            },
+            {
+              "text": "Naslednji",
+              "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-februar-2027/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3096,
+      "school_name": "Blisk",
+      "source_url": "https://www.blisk-as.si/cpp-pp-termini/tecajcpponline",
+      "pages": [
+        {
+          "url": "https://www.blisk-as.si/cpp-pp-termini/tecajcpponline",
+          "title": "CPP tečaj online | Predavanja na daljavo | Blisk",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "CPP Termini",
+              "url": "https://www.blisk-as.si/termini"
+            },
+            {
+              "text": "tukaj",
+              "url": "https://www.blisk-as.si/termini"
+            },
+            {
+              "text": "Termini",
+              "url": "https://www.blisk-as.si/termini"
+            },
+            {
+              "text": "TK, RU in ADR termini",
+              "url": "https://www.blisk-as.si/koda95-tk-ru-adr-termini"
+            },
+            {
+              "text": "CPP termini",
+              "url": "https://www.blisk-as.si/cpp-pp-termini"
+            },
+            {
+              "text": "Online CPP tečaj",
+              "url": "https://www.blisk-as.si/cpp-pp-termini/tecajcpponline"
+            }
+          ]
+        },
+        {
+          "url": "https://www.blisk-as.si/termini",
+          "title": "Termini tečajev CPP, prve pomoči, kode 95 in ADR | Blisk",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-11-17-16-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-11-19-08-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-12-03-08-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-12-08-16-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-12-15-16-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-12-17-08-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2027-01-11-16-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-obnovitev-2026-11-22-08-00"
+            }
+          ]
+        },
+        {
+          "url": "https://www.blisk-as.si/koda95-tk-ru-adr-termini",
+          "title": "Koda 95 in ADR: termini usposabljanj | Blisk",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-11-17-16-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-11-19-08-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-12-03-08-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-12-08-16-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-12-15-16-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2026-12-17-08-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-pridobitev-2027-01-11-16-00"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.blisk-as.si/event-details/koda-95-obnovitev-2026-11-22-08-00"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3155,
+      "school_name": "Volan",
+      "source_url": "https://avtosolavolan.com/cpp-tecaj/",
+      "pages": [
+        {
+          "url": "https://avtosolavolan.com/cpp-tecaj/",
+          "title": "404 Not Found",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3176,
+      "school_name": "Alfa-B",
+      "source_url": "https://alfa-b.si/tecaj-cpp/",
+      "pages": [
+        {
+          "url": "https://alfa-b.si/tecaj-cpp/",
+          "title": "Tečaj CPP - Alfa-B",
+          "upcoming": [],
+          "other_dated_count": 3,
+          "cpp_links": [
+            {
+              "text": "Prijavi se!",
+              "url": "http://alfa-b.si/prijava/"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://alfa-b.si/tecaj-cpp/"
+            },
+            {
+              "text": "Urniki tečajev",
+              "url": "https://alfa-b.si/urniki-tecajev/"
+            },
+            {
+              "text": "Prijavi se!",
+              "url": "http://alfa-b.si/prijava/"
+            }
+          ]
+        },
+        {
+          "url": "https://alfa-b.si/urniki-tecajev/",
+          "title": "Urniki tečajev - Alfa-B",
+          "upcoming": [
+            {
+              "text": "SREDA, 02.12.2026 ob 14.30h",
+              "heading": "pričetek naslednjega tečaja –",
+              "selector": "h3",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-02",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10",
+              "heading": "ZBIRAMO PRIJAVE",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-02",
+                "endDate": null
+              }
+            },
+            {
+              "text": "SRE., 02.12.2026, 14.30h",
+              "heading": "ZBIRAMO PRIJAVE",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-02",
+                "endDate": null
+              }
+            },
+            {
+              "text": "ČET., 03.12.2026, 14.30h",
+              "heading": "ZBIRAMO PRIJAVE",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-03",
+                "endDate": null
+              }
+            },
+            {
+              "text": "PET., 04.12.2026, 14.30h",
+              "heading": "ZBIRAMO PRIJAVE",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-04",
+                "endDate": null
+              }
+            },
+            {
+              "text": "PON., 07.12.2026, 14.30h",
+              "heading": "ZBIRAMO PRIJAVE",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-07",
+                "endDate": null
+              }
+            },
+            {
+              "text": "TOR., 08.12.2026, 14.30h",
+              "heading": "ZBIRAMO PRIJAVE",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-08",
+                "endDate": null
+              }
+            },
+            {
+              "text": "SRE, 09.12.2026, 14.30h",
+              "heading": "ZBIRAMO PRIJAVE",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-09",
+                "endDate": null
+              }
+            },
+            {
+              "text": "DODATNI DEL A,A2,A1- KAT.: sob., 28.11.2026, 07.00h",
+              "heading": "A1, A2, A – KATEGORIJA!",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-11-28",
+                "endDate": null
+              }
+            },
+            {
+              "text": "sob., 28.11.2026, 07.00h",
+              "heading": "A1, A2, A – KATEGORIJA!",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-11-28",
+                "endDate": null
+              }
+            },
+            {
+              "text": "ned., 29.11.2026, 07.00h",
+              "heading": "A1, A2, A – KATEGORIJA!",
+              "selector": "p",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-11-29",
+                "endDate": null
+              }
+            },
+            {
+              "text": "pričetek sob., 05.12.2026, 07.00h",
+              "heading": "ZBIRAMO PRIJAVE!",
+              "selector": "h4",
+              "nearby": "———————————————————————————————————————————————————————- TEČAJ CPP (osnovni-splošni del + dodatni del B-kat. ) pričetek naslednjega tečaja – SREDA, 02.12.2026 ob 14.30h ZBIRAMO PRIJAVE Zbor in vpis, 02.12.2026 ob 14.10h, učilnica Alfa-B, Novi trg 10 OSNOVNI DEL: Prvo srečanje osnovni del cpp (1/4) SRE., 02.12.2026, 14.30h Drugo srečanje osnovni del cpp (2/4) ČET., 03.12.2026, 14.30h Tretje srečanje osnovni del cpp (3/4) PET., 04.12.2026, 14.30h Četrto srečanje osnovni del cpp (4/4)- ZAKLJUČEK OSNOVNEGA-SPLOŠNEGA DELA PON., 07.12.2026, 14.30h DODATNI DEL B- KAT.: Peto srečanje dodatni del B-kat. prvo srečanje (1/2) TOR., 08.12.2026, 14.30h Šesto srečanje dodatni del B-kat. drugo srečanje (2/2)- ZAKLJUČEK TEČAJA SRE, 09.12.2026, 14.30h ———————————————————————————————————————————————————————-",
+              "date": {
+                "startDate": "2026-12-05",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 9,
+          "cpp_links": [
+            {
+              "text": "Prijavi se!",
+              "url": "http://alfa-b.si/prijava/"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://alfa-b.si/tecaj-cpp/"
+            },
+            {
+              "text": "Urniki tečajev",
+              "url": "https://alfa-b.si/urniki-tecajev/"
+            },
+            {
+              "text": "NOVO MESTO",
+              "url": "https://alfa-b.si/urniki-tecajev/#urnik-novo-mesto"
+            },
+            {
+              "text": "Prijavi se!",
+              "url": "http://alfa-b.si/prijava/"
+            },
+            {
+              "text": "Prijavi se!",
+              "url": "http://alfa-b.si/prijava/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3167,
+      "school_name": "Benko",
+      "source_url": "https://www.solavoznje-benko.si/",
+      "pages": [
+        {
+          "url": "https://www.solavoznje-benko.si/",
+          "title": "Šola Vožnje BENKO:  solavoznje-benko.si",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Spletna prijavnica",
+              "url": "https://www.solavoznje-benko.si/spletna-prijavnica/"
+            },
+            {
+              "text": "Gradiva",
+              "url": "https://www.solavoznje-benko.si/prijava-uporabnika/"
+            },
+            {
+              "text": "Spletna prijavnica",
+              "url": "https://www.solavoznje-benko.si/spletna-prijavnica/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3159,
+      "school_name": "Blatnik",
+      "source_url": "https://vezi.si/prijava-na-tecaj-cpp/",
+      "pages": [
+        {
+          "url": "https://vezi.si/prijava-na-tecaj-cpp/",
+          "title": "Prijava na tečaj CPP - Šola vožnje Blatnik v Ljubljani - Avtošola Blatnik",
+          "upcoming": [
+            {
+              "text": "15.12.2026 ob 16 uri",
+              "heading": "",
+              "selector": "li",
+              "nearby": "15.12.2026 ob 16 uri",
+              "date": {
+                "startDate": "2026-12-15",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://vezi.si/prijava-na-tecaj-cpp/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://vezi.si/prijava-na-tecaj-cpp/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://vezi.si/prijava-na-tecaj-cpp/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://vezi.si/prijava-na-tecaj-cpp/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3142,
+      "school_name": "Čadej",
+      "source_url": "https://solavoznjecadej.si/sola-voznje/kako-do-izpita/",
+      "pages": [
+        {
+          "url": "https://solavoznjecadej.si/sola-voznje/kako-do-izpita/",
+          "title": "Kako do izpita – Šola vožnje Čadej",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Tečaj iz cestno prometnih predpisov (CPP)",
+              "url": "https://solavoznjecadej.si/sola-voznje/kako-do-izpita/"
+            },
+            {
+              "text": "Tečaji – prijava",
+              "url": "https://solavoznjecadej.si/tecaji-prijava/"
+            },
+            {
+              "text": "Tečaj iz cestno prometnih predpisov (CPP)",
+              "url": "https://solavoznjecadej.si/sola-voznje/kako-do-izpita/"
+            },
+            {
+              "text": "Tečaji – prijava",
+              "url": "https://solavoznjecadej.si/tecaji-prijava/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://solavoznjecadej.si/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/"
+            },
+            {
+              "text": "Prijava na tečaj CPP",
+              "url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/"
+            },
+            {
+              "text": "Prijava v šolo vožnje",
+              "url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-sola-voznje/"
+            },
+            {
+              "text": "1. Tečaj iz cestnoprometnih predpisov",
+              "url": "https://solavoznjecadej.si/sola-voznje/kako-do-izpita/#korak-1"
+            }
+          ]
+        },
+        {
+          "url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/",
+          "title": "Prijavnica – Tečaj iz cestnoprometnih predpisov (CPP) – Šola vožnje Čadej",
+          "upcoming": [
+            {
+              "text": "SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "ČETRTEK I 19.11.2026 I C kategorija 🚚 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-11-21",
+                "endDate": null
+              }
+            },
+            {
+              "text": "ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "ČETRTEK I 19.11.2026 I C kategorija 🚚 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-11-26",
+                "endDate": null
+              }
+            },
+            {
+              "text": "PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "ČETRTEK I 19.11.2026 I C kategorija 🚚 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-12-07",
+                "endDate": null
+              }
+            },
+            {
+              "text": "SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "ČETRTEK I 19.11.2026 I C kategorija 🚚 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-12-09",
+                "endDate": null
+              }
+            },
+            {
+              "text": "SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "ČETRTEK I 19.11.2026 I C kategorija 🚚 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-12-16",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 1,
+          "cpp_links": [
+            {
+              "text": "Slovenščina",
+              "url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/"
+            },
+            {
+              "text": "Bosanski",
+              "url": "https://solavoznjecadej.si/bs/prijavnica-kurs-saobracajnih-propisa-cpp-bs/"
+            },
+            {
+              "text": "Shqip",
+              "url": "https://solavoznjecadej.si/sq/formulari-i-regjistrimit-kursi-i-rregullave-te-qarkullimit-rrugor-cpp-sq/"
+            },
+            {
+              "text": "Македонски",
+              "url": "https://solavoznjecadej.si/mk/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp-mk/"
+            },
+            {
+              "text": "English",
+              "url": "https://solavoznjecadej.si/en/registration-form-road-traffic-regulations-course-cpp-en/"
+            },
+            {
+              "text": "Deutsch",
+              "url": "https://solavoznjecadej.si/de/anmeldeformular-kurs-uber-strasenverkehrsvorschriften-cpp-de/"
+            },
+            {
+              "text": "Српски",
+              "url": "https://solavoznjecadej.si/sr/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp-sr/"
+            },
+            {
+              "text": "Español",
+              "url": "https://solavoznjecadej.si/es/formulario-de-inscripcion-curso-de-normas-de-circulacion-cpp-es/"
+            }
+          ]
+        },
+        {
+          "url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/",
+          "title": "Prijavnica – Tečaj iz cestnoprometnih predpisov (CPP) – Šola vožnje Čadej",
+          "upcoming": [
+            {
+              "text": "SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-11-21",
+                "endDate": null
+              }
+            },
+            {
+              "text": "ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-11-26",
+                "endDate": null
+              }
+            },
+            {
+              "text": "PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-12-07",
+                "endDate": null
+              }
+            },
+            {
+              "text": "SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-12-09",
+                "endDate": null
+              }
+            },
+            {
+              "text": "SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "heading": "",
+              "selector": "option",
+              "nearby": "SOBOTA I 21.11.2026 I E kategorija 🚛🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 ČETRTEK I 26.11.2026 I BE kategorija 🚗🚌 DODATNI DEL I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 8.00 do 11.00 PONEDELJEK I 07.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00 SREDA I 09.12.2026 I B kategorija 🚗 (AM, A1) I Lokacija: CELJE- Krekov trg 1 I Ura: od 15.00 do 18.00 SREDA I 16.12.2026 I A kategorija 🏍 DODATNI DEL (A2, A) I Lokacija: ŽALEC- Ul. Ivanke Uranjek 1 I Ura: od 15.00 do 18.00",
+              "date": {
+                "startDate": "2026-12-16",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Slovenščina",
+              "url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/"
+            },
+            {
+              "text": "Bosanski",
+              "url": "https://solavoznjecadej.si/bs/prijavnica-kurs-saobracajnih-propisa-cpp-bs/"
+            },
+            {
+              "text": "Shqip",
+              "url": "https://solavoznjecadej.si/sq/formulari-i-regjistrimit-kursi-i-rregullave-te-qarkullimit-rrugor-cpp-sq/"
+            },
+            {
+              "text": "Македонски",
+              "url": "https://solavoznjecadej.si/mk/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp-mk/"
+            },
+            {
+              "text": "English",
+              "url": "https://solavoznjecadej.si/en/registration-form-road-traffic-regulations-course-cpp-en/"
+            },
+            {
+              "text": "Deutsch",
+              "url": "https://solavoznjecadej.si/de/anmeldeformular-kurs-uber-strasenverkehrsvorschriften-cpp-de/"
+            },
+            {
+              "text": "Српски",
+              "url": "https://solavoznjecadej.si/sr/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp-sr/"
+            },
+            {
+              "text": "Español",
+              "url": "https://solavoznjecadej.si/es/formulario-de-inscripcion-curso-de-normas-de-circulacion-cpp-es/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3182,
+      "school_name": "Felix",
+      "source_url": "https://www.solavoznjefelix.si/",
+      "pages": [
+        {
+          "url": "https://www.solavoznjefelix.si/",
+          "title": "Šola vožnje Felix – Učimo za življenje, ne le za izpit.",
+          "upcoming": [
+            {
+              "text": "23.11.2026 ob 17.00",
+              "heading": "Ravne na Koroškem",
+              "selector": "h3.cpp2",
+              "nearby": "Ravne na Koroškem 23.11.2026 ob 17.00",
+              "date": {
+                "startDate": "2026-11-23",
+                "endDate": null
+              }
+            },
+            {
+              "text": "21.11.2026 ob 9.00",
+              "heading": "Radlje ob Dravi",
+              "selector": "h3.cpp2",
+              "nearby": "Radlje ob Dravi 21.11.2026 ob 9.00",
+              "date": {
+                "startDate": "2026-11-21",
+                "endDate": null
+              }
+            },
+            {
+              "text": "25.11.2026 ob 16.00",
+              "heading": "Slovenj Gradec",
+              "selector": "h3.cpp2",
+              "nearby": "Slovenj Gradec 25.11.2026 ob 16.00",
+              "date": {
+                "startDate": "2026-11-25",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na CPP",
+              "url": "https://www.solavoznjefelix.si/#prijava"
+            },
+            {
+              "text": "Datumi CPP SG | Ravne | Radlje",
+              "url": "https://www.solavoznjefelix.si/#datumi"
+            },
+            {
+              "text": "CPP sem opravil v drugi avtošoli. Ali lahko vozim pri vas?",
+              "url": "https://www.solavoznjefelix.si/#collapse-widget-7-0-1-3"
+            },
+            {
+              "text": "Koliko časa velja teorija CPP?",
+              "url": "https://www.solavoznjefelix.si/#collapse-widget-7-0-1-5"
+            },
+            {
+              "text": "Ali lahko manjkam na tečaju CPP?",
+              "url": "https://www.solavoznjefelix.si/#collapse-widget-7-0-1-12"
+            },
+            {
+              "text": "Tečaj CPP – virtualni priročnik cestnoprometnih predpisov in prometne zakonodaje",
+              "url": "http://www.tecajcpp.com/cpp/"
+            },
+            {
+              "text": "Cestno prometni predpisi",
+              "url": "http://www.testicpp.si/"
+            },
+            {
+              "text": "CPP, testi CPP, pole CPP in prva pomoč",
+              "url": "https://vozniski-izpit.com/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3172,
+      "school_name": "Ferdo",
+      "source_url": "https://www.ferdo.si/prijava-na-cpp/",
+      "pages": [
+        {
+          "url": "https://www.ferdo.si/prijava-na-cpp/",
+          "title": "Prijava na CPP | Šola vožnje Ferdo",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na CPP",
+              "url": "https://www.ferdo.si/prijava-na-cpp/"
+            },
+            {
+              "text": "Prijava na Koda 95",
+              "url": "https://www.ferdo.si/prijava-na-koda-95/"
+            },
+            {
+              "text": "Prijava na CPP",
+              "url": "https://www.ferdo.si/prijava-na-cpp/"
+            },
+            {
+              "text": "Prijava na Koda 95",
+              "url": "https://www.ferdo.si/prijava-na-koda-95/"
+            },
+            {
+              "text": "Prijava na CPP",
+              "url": "https://www.ferdo.si/prijava-na-cpp/"
+            },
+            {
+              "text": "Prijava na Koda 95",
+              "url": "https://www.ferdo.si/prijava-na-koda-95/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3147,
+      "school_name": "Ilke",
+      "source_url": "https://ilke.si/prijava-na-cpp/",
+      "pages": [
+        {
+          "url": "https://ilke.si/prijava-na-cpp/",
+          "title": "Security Verification",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3170,
+      "school_name": "Kovač",
+      "source_url": "https://solavoznje-kovac.com/",
+      "pages": [
+        {
+          "url": "https://solavoznje-kovac.com/",
+          "title": "Šola vožnje Kovač Pomurje | Kategoriji A in B",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "CPP",
+              "url": "https://solavoznje-kovac.com/#cpp"
+            },
+            {
+              "text": "POVPRAŠAJ ZA TERMIN",
+              "url": "https://solavoznje-kovac.com/#kontakt"
+            },
+            {
+              "text": "CPP tečaj",
+              "url": "https://solavoznje-kovac.com/#cpp"
+            },
+            {
+              "text": "Prijava in kontakt",
+              "url": "https://solavoznje-kovac.com/#kontakt"
+            },
+            {
+              "text": "Prosti termini ↗",
+              "url": "https://e-uprava.gov.si/si/javne-evidence/prosti-termini-zemljevid.html?lang=si#eyJwYWdlIjpbMl0sImZpbHRlcnMiOnsidHlwZSI6WyItIl0sImNhdCI6WyI2Il0sIml6cGl0bmlDZW50ZXIiOlsiMjEiXSwibG9rYWNpamEiOlsiMTM4Il0sIm9mZnNldCI6WyIwIl0sInNlbnRpbmVsX3R5cGUiOlsib2siXSwic2VudGluZWxfc3RhdHVzIjpbIm9rIl0sImlzX2FqYXgiOlsiMSJdfSwib2Zmc2V0UGFnZSI6bnVsbH0="
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3148,
+      "school_name": "M&M",
+      "source_url": "https://www.solavoznje-mm.si/index.html#kontakt",
+      "pages": [
+        {
+          "url": "https://www.solavoznje-mm.si/index.html#kontakt",
+          "title": "M&M | Šola Vožnje",
+          "upcoming": [],
+          "other_dated_count": 2,
+          "cpp_links": [
+            {
+              "text": "Prijavi se na CPP ali VOŽNJO",
+              "url": "https://www.solavoznje-mm.si/index.html#kontakt"
+            },
+            {
+              "text": "Prijavi se na CPP ali VOŽNJO",
+              "url": "https://www.solavoznje-mm.si/index.html#kontakt"
+            },
+            {
+              "text": "Prijavi se na CPP ali VOŽNJO",
+              "url": "https://www.solavoznje-mm.si/index.html#kontakt"
+            }
+          ]
+        },
+        {
+          "url": "https://www.solavoznje-mm.si/index.html",
+          "title": "M&M | Šola Vožnje",
+          "upcoming": [],
+          "other_dated_count": 2,
+          "cpp_links": [
+            {
+              "text": "Prijavi se na CPP ali VOŽNJO",
+              "url": "https://www.solavoznje-mm.si/index.html#kontakt"
+            },
+            {
+              "text": "Prijavi se na CPP ali VOŽNJO",
+              "url": "https://www.solavoznje-mm.si/index.html#kontakt"
+            },
+            {
+              "text": "Prijavi se na CPP ali VOŽNJO",
+              "url": "https://www.solavoznje-mm.si/index.html#kontakt"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3145,
+      "school_name": "Maselj",
+      "source_url": "https://www.avtosola-maselj.si/#urnikicppteajev",
+      "pages": [
+        {
+          "url": "https://www.avtosola-maselj.si/#urnikicppteajev",
+          "title": "Šola vožnje Maselj | Izpit za avto in motor Domžale",
+          "upcoming": [
+            {
+              "text": "24.11.2026 ob 17.00 uri",
+              "heading": "",
+              "selector": "p.font_8.wixui-rich-text__text",
+              "nearby": "!! AKCIJA !!​ CPP tečaj gratis + dve šolski uri gratis, za vse na novo prijavljene, kandidate. CPP TEČAJ: 21.9.2026 ob 17.00 uri 21.10.2026 ob 17.00 uri 24.11.2026 ob 17.00 uri Pogoj za akcijo, da kandidat vožnjo opravlja pri nas. ​ Možnost opravljanja CPP tečaja tudi na daljavo preko teamsa. Prijava na 051 359 929 ali na motoklub.maselj@gmail.com, ki naj vsebuje ime, priimek, naslov in emšo. ​ ​ ​ Tečaji se izvajajo v naših prostorih v Domžalah, na Ljubljanski cesti 89.",
+              "date": {
+                "startDate": "2026-11-24",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 2,
+          "cpp_links": [
+            {
+              "text": "spletni",
+              "url": "https://www.avtosola-maselj.si/#urnikicppteajev"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3157,
+      "school_name": "Mekinc",
+      "source_url": "https://www.mekinc.si/",
+      "pages": [
+        {
+          "url": "https://www.mekinc.si/",
+          "title": "Šola vožnje Mekinc, Uroš Mekinc s.p.",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3166,
+      "school_name": "Nomad",
+      "source_url": "https://avtosola-nomad.si/",
+      "pages": [
+        {
+          "url": "https://avtosola-nomad.si/",
+          "title": "Domov - Šola vožnje Nomad",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3143,
+      "school_name": "Nomago",
+      "source_url": "https://www.nomago.si/sola-voznje/tecaj-cpp",
+      "pages": [
+        {
+          "url": "https://www.nomago.si/sola-voznje/tecaj-cpp",
+          "title": "Tečaj CPP",
+          "upcoming": [
+            {
+              "text": "30.11.2026 14:00 Tečaj CPP - kategorija B Lokacija predavanja: Predavalnica Nomago, Aškrčeva ulica 20, Celje Prikaži lokacijo Izberi termin",
+              "heading": "",
+              "selector": "div.table-row",
+              "nearby": "30.11.2026 14:00 Tečaj CPP - kategorija B Lokacija predavanja: Predavalnica Nomago, Aškrčeva ulica 20, Celje Prikaži lokacijo Izberi termin var observer = new MutationObserver(function(mutations) { mutations.forEach(function(mutation) { mutation.addedNodes.forEach(function(node) { if (node.nodeType === 1 && node.classList && node.classList.contains('alert')) { console.log('alert appeared:', node); setTimeout(function() { node.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300); } }); }); }); observer.observe(document.body, { childList: true, subtree: true });",
+              "date": {
+                "startDate": "2026-11-30",
+                "endDate": null
+              }
+            },
+            {
+              "text": "14.12.2026 14:00 Tečaj CPP - kategorija B Lokacija predavanja: Predavalnica Nomago, Aškrčeva ulica 20, Celje Prikaži lokacijo Izberi termin",
+              "heading": "",
+              "selector": "div.table-row",
+              "nearby": "14.12.2026 14:00 Tečaj CPP - kategorija B Lokacija predavanja: Predavalnica Nomago, Aškrčeva ulica 20, Celje Prikaži lokacijo Izberi termin var observer = new MutationObserver(function(mutations) { mutations.forEach(function(mutation) { mutation.addedNodes.forEach(function(node) { if (node.nodeType === 1 && node.classList && node.classList.contains('alert')) { console.log('alert appeared:', node); setTimeout(function() { node.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300); } }); }); }); observer.observe(document.body, { childList: true, subtree: true });",
+              "date": {
+                "startDate": "2026-12-14",
+                "endDate": null
+              }
+            },
+            {
+              "text": "09.12.2026 15:00 Tečaj CPP - kategorija C Lokacija predavanja: Predavalnica Nomago, Aškrčeva ulica 20, Celje Prikaži lokacijo Izberi termin",
+              "heading": "",
+              "selector": "div.table-row",
+              "nearby": "09.12.2026 15:00 Tečaj CPP - kategorija C Lokacija predavanja: Predavalnica Nomago, Aškrčeva ulica 20, Celje Prikaži lokacijo Izberi termin var observer = new MutationObserver(function(mutations) { mutations.forEach(function(mutation) { mutation.addedNodes.forEach(function(node) { if (node.nodeType === 1 && node.classList && node.classList.contains('alert')) { console.log('alert appeared:', node); setTimeout(function() { node.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300); } }); }); }); observer.observe(document.body, { childList: true, subtree: true });",
+              "date": {
+                "startDate": "2026-12-09",
+                "endDate": null
+              }
+            },
+            {
+              "text": "09.12.2026 15:00 Tečaj CPP - kategorija D Lokacija predavanja: Predavalnica Nomago, Aškrčeva ulica 20, Celje Prikaži lokacijo Izberi termin",
+              "heading": "",
+              "selector": "div.table-row",
+              "nearby": "09.12.2026 15:00 Tečaj CPP - kategorija D Lokacija predavanja: Predavalnica Nomago, Aškrčeva ulica 20, Celje Prikaži lokacijo Izberi termin var observer = new MutationObserver(function(mutations) { mutations.forEach(function(mutation) { mutation.addedNodes.forEach(function(node) { if (node.nodeType === 1 && node.classList && node.classList.contains('alert')) { console.log('alert appeared:', node); setTimeout(function() { node.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300); } }); }); }); observer.observe(document.body, { childList: true, subtree: true });",
+              "date": {
+                "startDate": "2026-12-09",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 1,
+          "cpp_links": [
+            {
+              "text": "Tečaj CPP",
+              "url": "https://www.nomago.si/sola-voznje/tecaj-cpp"
+            },
+            {
+              "text": "Pravilnik o zaščiti oseb, ki prijavijo kršitve",
+              "url": "https://www.nomago.si/assets/images/pravilnik-o-zasciti-oseb-ki-prijavijo-krsitve-14122022.pdf"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://www.nomago.si/sola-voznje/tecaj-cpp"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://www.nomago.si/sola-voznje/tecaj-cpp"
+            },
+            {
+              "text": "Testi CPP",
+              "url": "http://testicpp.si/"
+            },
+            {
+              "text": "Tečaj CPP Želim se prijaviti na tečaj CPP, kateri termini so na voljo?",
+              "url": "https://www.nomago.si/sola-voznje/tecaj-cpp"
+            },
+            {
+              "text": "Obnovitev kode 95 Na voljo so novi termini za redno usposabljane poklicnih voznikov.",
+              "url": "https://www.nomago.si/sola-voznje/redno-usposabljanje-voznikov"
+            },
+            {
+              "text": "Tečaj CPP Želim se prijaviti na tečaj CPP, kateri termini so na voljo?",
+              "url": "https://www.nomago.si/sola-voznje/tecaj-cpp"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3179,
+      "school_name": "Polo",
+      "source_url": "https://aspolo.si/tecaj-cpp/",
+      "pages": [
+        {
+          "url": "https://aspolo.si/tecaj-cpp/",
+          "title": "Tečaj CPP – Šola vožnje POLO, Postojna – Sežana",
+          "upcoming": [
+            {
+              "text": "Splošni del (A1 ali B): 15.12.26",
+              "heading": "POSTOJNA",
+              "selector": "h3",
+              "nearby": "POSTOJNA Splošni del (A1 ali B): 15.12.26 A-kat. -> 24.11.26 C-kat. -> 11.01.27 CE-kat. -> 13.01.27 BE-kat. -> 14.01.27",
+              "date": {
+                "startDate": "2026-12-15",
+                "endDate": null
+              }
+            },
+            {
+              "text": "A-kat. -> 24.11.26 C-kat. -> 11.01.27 CE-kat. -> 13.01.27 BE-kat. -> 14.01.27",
+              "heading": "Splošni del (A1 ali B): 15.12.26",
+              "selector": "h3",
+              "nearby": "POSTOJNA Splošni del (A1 ali B): 15.12.26 A-kat. -> 24.11.26 C-kat. -> 11.01.27 CE-kat. -> 13.01.27 BE-kat. -> 14.01.27",
+              "date": {
+                "startDate": "2026-11-24",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Tečaj CPP",
+              "url": "https://aspolo.si/tecaj-cpp/"
+            },
+            {
+              "text": "Prijavi se na CPP",
+              "url": "https://form.lime-booking.com/sl/polo/tags"
+            },
+            {
+              "text": "Tečaj CPP",
+              "url": "https://aspolo.si/tecaj-cpp/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3151,
+      "school_name": "Prah Sevnica",
+      "source_url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/",
+      "pages": [
+        {
+          "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/",
+          "title": "Tečaj iz cestnoprometnih predpisov CPP, Sevnica, Krško, tečaji",
+          "upcoming": [
+            {
+              "text": "23 novembra, 2026 17:00",
+              "heading": "",
+              "selector": "li.elementor-icon-list-item",
+              "nearby": "23 novembra, 2026 17:00",
+              "date": {
+                "startDate": "2026-11-23",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 1,
+          "cpp_links": [
+            {
+              "text": "Tečaji CPP",
+              "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/"
+            },
+            {
+              "text": "Tečaji CPP",
+              "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/"
+            },
+            {
+              "text": "Tečaji CPP",
+              "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/"
+            },
+            {
+              "text": "Tečaji CPP",
+              "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/"
+            },
+            {
+              "text": "Tečaji CPP",
+              "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/"
+            },
+            {
+              "text": "Tečaji CPP",
+              "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3169,
+      "school_name": "Sapač",
+      "source_url": "https://www.solavoznje.sapac.si/",
+      "pages": [
+        {
+          "url": "https://www.solavoznje.sapac.si/",
+          "title": "Šola Vožnje Sapač",
+          "upcoming": [
+            {
+              "text": "TEČAJ CPP SE ZAČNE VSAK TEDEN. NOV TEČAJ BO: 23. 11. 2026 ob 15.00 uri. PRIJAVITE SE NA 031 674 120 (Vida Gabor-Sapač) ALI IZPOLNITE KONTAKTNI OBRAZEC NA SPLETNI STRANI.",
+              "heading": "",
+              "selector": "h3",
+              "nearby": "TEČAJ CPP SE ZAČNE VSAK TEDEN. NOV TEČAJ BO: 23. 11. 2026 ob 15.00 uri. PRIJAVITE SE NA 031 674 120 (Vida Gabor-Sapač) ALI IZPOLNITE KONTAKTNI OBRAZEC NA SPLETNI STRANI. Vsem kandidatom, ki imajo težave z opravljanjem izpita iz CPP, nudimo dodatne inštrukcije. Ponujamo nove pristope ter kvalitetno usposobljene učitelje vožnje, kateri vam bodo olajšali pot do pridobitve vozniškega dovoljenja.",
+              "date": {
+                "startDate": "2026-11-23",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Spletna prijava",
+              "url": "https://www.solavoznje.sapac.si/spletna-prijava"
+            },
+            {
+              "text": "",
+              "url": "https://www.solavoznje.sapac.si/spletna-prijava"
+            },
+            {
+              "text": "Prijava preko spleta",
+              "url": "https://www.solavoznje.sapac.si/spletna-prijava"
+            },
+            {
+              "text": "Več",
+              "url": "https://www.solavoznje.sapac.si/spletna-prijava"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3168,
+      "school_name": "Semafor",
+      "source_url": "https://www.solavoznje-semafor.si/",
+      "pages": [
+        {
+          "url": "https://www.solavoznje-semafor.si/",
+          "title": "Šola vožnje Semafor - domača stran, Murska Sobota",
+          "upcoming": [],
+          "other_dated_count": 1,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3146,
+      "school_name": "Start",
+      "source_url": "https://solavoznje-start.si/cpp-tecaj/",
+      "pages": [
+        {
+          "url": "https://solavoznje-start.si/cpp-tecaj/",
+          "title": "CPP tečaj Kranj – Tečaj cestno prometnih predpisov",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "CPP tečaj",
+              "url": "https://solavoznje-start.si/cpp-tecaj/"
+            },
+            {
+              "text": "CPP tečaj",
+              "url": "https://solavoznje-start.si/cpp-tecaj/"
+            },
+            {
+              "text": "Prijavi se",
+              "url": "https://solavoznje-start.si/kontakt/"
+            },
+            {
+              "text": "CPP tečaj",
+              "url": "https://solavoznje-start.si/cpp-tecaj/"
+            },
+            {
+              "text": "CPP tečaj",
+              "url": "https://solavoznje-start.si/cpp-tecaj/"
+            },
+            {
+              "text": "Prijavi se",
+              "url": "https://solavoznje-start.si/kontakt/"
+            },
+            {
+              "text": "Prijavi se na tečaj",
+              "url": "https://solavoznje-start.si/cpp-tecaj/#contact-form"
+            },
+            {
+              "text": "Prijavi se zdaj",
+              "url": "https://solavoznje-start.si/kontakt/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3163,
+      "school_name": "Urek",
+      "source_url": "http://urek.si/index.php/pricetek-tecaja-cpp/",
+      "pages": [
+        {
+          "url": "https://urek.si/pricetek-tecaja-cpp/",
+          "title": "Pričetek tečaja CPP – Šola vožnje Urek",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3153,
+      "school_name": "Vito",
+      "source_url": "https://www.avtosola-vito.si/tecaj-cpp-2/",
+      "pages": [
+        {
+          "url": "https://www.avtosola-vito.si/tecaj-cpp-2/",
+          "title": "TEČAJ CPP – Vito-L",
+          "upcoming": [
+            {
+              "text": "-Tečaj CPP - B - 27.11.2026 ob 17.00 ih",
+              "heading": "",
+              "selector": "option",
+              "nearby": "-Tečaj varno delo s traktorjem 7.12. do 11.12 ob 16ih -Tečaj CPP - B - 27.11.2026 ob 17.00 ih -Tečaj CPP - BE - ZBIRAMO PRIJAVE -Tečaj CPP- C - ZBIRAMO PRIJAVE -Tečaj CPP CE - ZBIRAMO PRIJAVE -Tečaj CPP A - ZBIRAMO PRIJAVE",
+              "date": {
+                "startDate": "2026-11-27",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "TEČAJ CPP",
+              "url": "https://www.avtosola-vito.si/tecaj-cpp-2/"
+            },
+            {
+              "text": "CPP Tečaji",
+              "url": "https://www.avtosola-vito.si/tecaj-cpp-2/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3115,
+      "school_name": "Pek",
+      "source_url": "https://solavoznjepek.si/",
+      "pages": [
+        {
+          "url": "https://solavoznjepek.si/",
+          "title": "Avtošola - Šola vožnje Šolski center Pek",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "",
+              "url": "https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fsolavoznjepek.si%2F&title=Domov&summary=Za%C4%8Dni%20z%20u%C4%8Denjem%20vo%C5%BEnje%20%C5%BEe%20danes%0D%0A%20Pokli%C4%8Di%20nas%20in%20rezerviraj%20svoj%20termin%20031%20617%20516%20%20%20%20%20%20%20%20%20Te%C4%8Daj%20cpp"
+            },
+            {
+              "text": "",
+              "url": "https://www.tumblr.com/share/link?url=https%3A%2F%2Fsolavoznjepek.si%2F&name=Domov&description=Za%C4%8Dni%20z%20u%C4%8Denjem%20vo%C5%BEnje%20%C5%BEe%20danes%0D%0A%20Pokli%C4%8Di%20nas%20in%20rezerviraj%20svoj%20termin%20031%20617%20516%20%20%20%20%20%20%20%20%20Te%C4%8Daj%20cpp"
+            },
+            {
+              "text": "",
+              "url": "https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fsolavoznjepek.si%2F&description=Za%C4%8Dni%20z%20u%C4%8Denjem%20vo%C5%BEnje%20%C5%BEe%20danes%0D%0A%20Pokli%C4%8Di%20nas%20in%20rezerviraj%20svoj%20termin%20031%20617%20516%20%20%20%20%20%20%20%20%20Te%C4%8Daj%20cpp&media="
+            },
+            {
+              "text": "",
+              "url": "https://vkontakte.ru/share.php?url=https%3A%2F%2Fsolavoznjepek.si%2F&title=Domov&description=Za%C4%8Dni%20z%20u%C4%8Denjem%20vo%C5%BEnje%20%C5%BEe%20danes%0D%0A%20Pokli%C4%8Di%20nas%20in%20rezerviraj%20svoj%20termin%20031%20617%20516%20%20%20%20%20%20%20%20%20Te%C4%8Daj%20cpp"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznjepek.si/kontakt/"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznjepek.si/kontakt/"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznjepek.si/kontakt/"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://solavoznjepek.si/kontakt/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3061,
+      "school_name": "Šolski center Šentjur",
+      "source_url": "https://sc-s.si/ostale-dejavnosti/sola-voznje/",
+      "pages": [
+        {
+          "url": "https://sc-s.si/ostale-dejavnosti/sola-voznje/",
+          "title": "Šola vožnje – Šolski center Šentjur",
+          "upcoming": [],
+          "other_dated_count": 1,
+          "cpp_links": [
+            {
+              "text": "Urnik (e-asistent)",
+              "url": "https://www.easistent.com/urniki/a8bf97bd7bcfa94b69d03d4b5e1cb0fc4a7844fd"
+            },
+            {
+              "text": "Prijava na izpite in pregled ocen",
+              "url": "https://dostopi.sc-s.si/server-vs/EvidencaPub/KazaloIzpitnihRokov.htm"
+            },
+            {
+              "text": "CPP predavanja",
+              "url": "https://sc-s.si/ostale-dejavnosti/sola-voznje/#tab-2f62b16d4b5cb7ee1ed"
+            },
+            {
+              "text": "CPP predavanja",
+              "url": "https://sc-s.si/ostale-dejavnosti/sola-voznje/#tab-2f62b16d4b5cb7ee1ed"
+            },
+            {
+              "text": "URNIKI",
+              "url": "https://www.easistent.com/urniki/a8bf97bd7bcfa94b69d03d4b5e1cb0fc4a7844fd"
+            },
+            {
+              "text": "PRIJAVA NA IZPITE",
+              "url": "https://dostopi.sc-s.si/server-vs/Eviscripts/evixml.exe"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3059,
+      "school_name": "Šolski center Slovenske Konjice-Zreče",
+      "source_url": "https://www.sc-konjice-zrece.si/sola-voznje-2/prijavnica-za-tecaj-cpp/",
+      "pages": [
+        {
+          "url": "https://www.sc-konjice-zrece.si/sola-voznje-2/prijavnica-za-tecaj-cpp/",
+          "title": "Prijavnica za tečaj CPP – Šolski center Slovenske Konjice – Zreče",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "//<![CDATA[ (function(){for(var g=\"function\"==typeof Object.defineProperties?Object.defineProperty:f",
+              "url": "https://www.sc-konjice-zrece.si/"
+            },
+            {
+              "text": "Zaščita prijaviteljev, ZZPri",
+              "url": "https://www.sc-konjice-zrece.si/predstavitev/zascita-prijaviteljev-zzpri/"
+            },
+            {
+              "text": "Urniki in nadomeščanja",
+              "url": "https://urniki.easistent.com/urniki/224e72299e995fd020abc10703729b53c067a125"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/zrece/strojnistvo/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/zrece/gastronomija-in-turizem/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/io/udelezenci-lasko/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/io/udelezenci-slovenske-konjice/urniki/"
+            },
+            {
+              "text": "Prijavnica za tečaj CPP",
+              "url": "https://www.sc-konjice-zrece.si/sola-voznje-2/prijavnica-za-tecaj-cpp/"
+            }
+          ]
+        },
+        {
+          "url": "https://www.sc-konjice-zrece.si/zrece/strojnistvo/urniki/",
+          "title": "Urniki – Šolski center Slovenske Konjice – Zreče",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "//<![CDATA[ (function(){for(var g=\"function\"==typeof Object.defineProperties?Object.defineProperty:f",
+              "url": "https://www.sc-konjice-zrece.si/"
+            },
+            {
+              "text": "Zaščita prijaviteljev, ZZPri",
+              "url": "https://www.sc-konjice-zrece.si/predstavitev/zascita-prijaviteljev-zzpri/"
+            },
+            {
+              "text": "Urniki in nadomeščanja",
+              "url": "https://urniki.easistent.com/urniki/224e72299e995fd020abc10703729b53c067a125"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/zrece/strojnistvo/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/zrece/gastronomija-in-turizem/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/io/udelezenci-lasko/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/io/udelezenci-slovenske-konjice/urniki/"
+            },
+            {
+              "text": "Prijavnica za tečaj CPP",
+              "url": "https://www.sc-konjice-zrece.si/sola-voznje-2/prijavnica-za-tecaj-cpp/"
+            }
+          ]
+        },
+        {
+          "url": "https://www.sc-konjice-zrece.si/zrece/gastronomija-in-turizem/urniki/",
+          "title": "Urniki – Šolski center Slovenske Konjice – Zreče",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "//<![CDATA[ (function(){for(var g=\"function\"==typeof Object.defineProperties?Object.defineProperty:f",
+              "url": "https://www.sc-konjice-zrece.si/"
+            },
+            {
+              "text": "Zaščita prijaviteljev, ZZPri",
+              "url": "https://www.sc-konjice-zrece.si/predstavitev/zascita-prijaviteljev-zzpri/"
+            },
+            {
+              "text": "Urniki in nadomeščanja",
+              "url": "https://urniki.easistent.com/urniki/224e72299e995fd020abc10703729b53c067a125"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/zrece/strojnistvo/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/zrece/gastronomija-in-turizem/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/io/udelezenci-lasko/urniki/"
+            },
+            {
+              "text": "Urniki",
+              "url": "https://www.sc-konjice-zrece.si/io/udelezenci-slovenske-konjice/urniki/"
+            },
+            {
+              "text": "Prijavnica za tečaj CPP",
+              "url": "https://www.sc-konjice-zrece.si/sola-voznje-2/prijavnica-za-tecaj-cpp/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3117,
+      "school_name": "Šteflič",
+      "source_url": "https://www.solavoznje-steflic.net/tecaj-cpp",
+      "pages": [
+        {
+          "url": "https://www.solavoznje-steflic.net/tecaj-cpp",
+          "title": "TEČAJ CPP - Šola vožnje Srečko Šteflič",
+          "upcoming": [
+            {
+              "text": "7.12.2026 ob 15.00 (TŠC)",
+              "heading": "",
+              "selector": "#\\31 _comp-lesvqd1u",
+              "nearby": "21.9.2026 ob 15.00 (TŠC) 7.12.2026 ob 15.00 (TŠC) 1.2.2027 ob 15.00 (TŠC) 5.4.2027 ob 15.00 (TŠC)",
+              "date": {
+                "startDate": "2026-12-07",
+                "endDate": null
+              }
+            },
+            {
+              "text": "1.2.2027 ob 15.00 (TŠC)",
+              "heading": "",
+              "selector": "#\\32 _comp-lesvqd1u",
+              "nearby": "21.9.2026 ob 15.00 (TŠC) 7.12.2026 ob 15.00 (TŠC) 1.2.2027 ob 15.00 (TŠC) 5.4.2027 ob 15.00 (TŠC)",
+              "date": {
+                "startDate": "2027-02-01",
+                "endDate": null
+              }
+            },
+            {
+              "text": "5.4.2027 ob 15.00 (TŠC)",
+              "heading": "",
+              "selector": "#\\33 _comp-lesvqd1u",
+              "nearby": "21.9.2026 ob 15.00 (TŠC) 7.12.2026 ob 15.00 (TŠC) 1.2.2027 ob 15.00 (TŠC) 5.4.2027 ob 15.00 (TŠC)",
+              "date": {
+                "startDate": "2027-04-05",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 2,
+          "cpp_links": [
+            {
+              "text": "TEČAJ CPP",
+              "url": "https://www.solavoznje-steflic.net/tecaj-cpp"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3091,
+      "school_name": "Stop",
+      "source_url": "https://stop.si/pogoji-za-prijavo-in-udelezbo-na-tecaj-cpp/",
+      "pages": [
+        {
+          "url": "https://stop.si/pogoji-za-prijavo-in-udelezbo-na-tecaj-cpp/",
+          "title": "Pogoji za prijavo in udeležbo na tečaj CPP – Avtošola STOP",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava na CPP",
+              "url": "https://stop.si/prijava-na-cpp/"
+            },
+            {
+              "text": "Prijava na CPP",
+              "url": "https://stop.si/prijava-na-cpp/"
+            }
+          ]
+        },
+        {
+          "url": "https://stop.si/prijava-na-cpp/",
+          "title": "Prijava na CPP – Avtošola STOP",
+          "upcoming": [
+            {
+              "text": "December CPP tečaj 14.12.26 ​vsi dnevi tečaja: 14,15,16,17,21 in 22.12.26",
+              "heading": "Prijava na tečaj CPP",
+              "selector": "p",
+              "nearby": "Prijava na tečaj CPP November CPP tečaj 16.11.26. ​vsi dnevi tečaja: 16,17,18,23,24 in 25.11.26 December CPP tečaj 14.12.26 ​vsi dnevi tečaja: 14,15,16,17,21 in 22.12.26 Januar CPP tečaj 18.1.27 ​vsi dnevi tečaja: 18,19,20,21,25 in 27.1.2027",
+              "date": {
+                "startDate": "2026-12-14",
+                "endDate": null
+              }
+            },
+            {
+              "text": "Januar CPP tečaj 18.1.27 ​vsi dnevi tečaja: 18,19,20,21,25 in 27.1.2027",
+              "heading": "Prijava na tečaj CPP",
+              "selector": "p",
+              "nearby": "Prijava na tečaj CPP November CPP tečaj 16.11.26. ​vsi dnevi tečaja: 16,17,18,23,24 in 25.11.26 December CPP tečaj 14.12.26 ​vsi dnevi tečaja: 14,15,16,17,21 in 22.12.26 Januar CPP tečaj 18.1.27 ​vsi dnevi tečaja: 18,19,20,21,25 in 27.1.2027",
+              "date": {
+                "startDate": "2027-01-18",
+                "endDate": null
+              }
+            },
+            {
+              "text": "14.12.26",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberite datum CPP-ja 16.11.26 14.12.26 18.1.27",
+              "date": {
+                "startDate": "2026-12-14",
+                "endDate": null
+              }
+            },
+            {
+              "text": "18.1.27",
+              "heading": "",
+              "selector": "option",
+              "nearby": "Izberite datum CPP-ja 16.11.26 14.12.26 18.1.27",
+              "date": {
+                "startDate": "2027-01-18",
+                "endDate": null
+              }
+            }
+          ],
+          "other_dated_count": 2,
+          "cpp_links": [
+            {
+              "text": "Prijava na CPP",
+              "url": "https://stop.si/prijava-na-cpp/"
+            },
+            {
+              "text": "Pogoji za prijavo in udeležbo na tečaj CPP",
+              "url": "https://stop.si/pogoji-za-prijavo-in-udelezbo-na-tecaj-cpp/"
+            },
+            {
+              "text": "Prijava na CPP",
+              "url": "https://stop.si/prijava-na-cpp/"
+            }
+          ]
+        }
+      ],
+      "status": "UPCOMING_EVIDENCE"
+    },
+    {
+      "school_id": 3097,
+      "school_name": "SIC Ljubljana",
+      "source_url": "https://www.avtosola-jezica.com/",
+      "pages": [
+        {
+          "url": "https://www.asjezica.si/",
+          "title": "Avtošola Ježica – Šola vožnje in izobraževanje odraslih, Ljubljana",
+          "upcoming": [],
+          "other_dated_count": 1,
+          "cpp_links": [
+            {
+              "text": "Urnik",
+              "url": "https://www.asjezica.si/izobrazevanje-odraslih/urnik/"
+            },
+            {
+              "text": "Urnik",
+              "url": "https://www.asjezica.si/izobrazevanje-odraslih/urnik/"
+            },
+            {
+              "text": "Urnik",
+              "url": "https://www.asjezica.si/izobrazevanje-odraslih/urnik/"
+            },
+            {
+              "text": "Urnik",
+              "url": "https://www.asjezica.si/izobrazevanje-odraslih/urnik/"
+            },
+            {
+              "text": "Urnik",
+              "url": "https://www.asjezica.si/izobrazevanje-odraslih/urnik/"
+            },
+            {
+              "text": "Urnik",
+              "url": "https://www.asjezica.si/izobrazevanje-odraslih/urnik/"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://www.asjezica.si/kontakt/"
+            },
+            {
+              "text": "Urnik",
+              "url": "https://www.asjezica.si/izobrazevanje-odraslih/urnik/"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3082,
+      "school_name": "Petrišič",
+      "source_url": "http://www.avtosolapetrisic.si/",
+      "pages": [
+        {
+          "url": "chrome-error://chromewebdata/",
+          "title": "",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": []
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3111,
+      "school_name": "Videčnik",
+      "source_url": "https://videcnik.si/sl/",
+      "pages": [
+        {
+          "url": "https://videcnik.si/sl/",
+          "title": "Šola vožnje Videčnik - avtošola",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijava",
+              "url": "https://videcnik.si/sl/#application-main"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://videcnik.si/sl/#application-main"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://videcnik.si/sl/#application-main"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://videcnik.si/sl/#application-main"
+            },
+            {
+              "text": "Prijava",
+              "url": "https://videcnik.si/sl/#application-main"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3090,
+      "school_name": "Voyage",
+      "source_url": "http://www.voyage.si/",
+      "pages": [
+        {
+          "url": "https://www.voyage.si/",
+          "title": "Avtošola Voyage Ljubljana – vozniški izpit za kategorije B, A, A2, A1",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "Prijavite se za B",
+              "url": "https://www.voyage.si/#kontakt"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    },
+    {
+      "school_id": 3108,
+      "school_name": "Vremec",
+      "source_url": "http://www.vremec.si/",
+      "pages": [
+        {
+          "url": "https://www.vremec.si/",
+          "title": "šola vožnje Vremec",
+          "upcoming": [],
+          "other_dated_count": 0,
+          "cpp_links": [
+            {
+              "text": "TEST CPP",
+              "url": "http://teorija-priprava.gov.si/moodle/login/index.php"
+            },
+            {
+              "text": "PRIJAVA",
+              "url": "https://www.vremec.si/prijava.html"
+            }
+          ]
+        }
+      ],
+      "status": "NO_UPCOMING_IN_READ_PAGES"
+    }
+  ]
+}
