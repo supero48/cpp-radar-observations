@@ -764,7 +764,7 @@ async function harvestSource(cdp, source) {
           if (node.matches('h3') && /pričetek naslednjega tečaja/iu.test(node.previousElementSibling?.innerText || '')) {
             item.titleText = 'Tečaj CPP — osnovni del in B kategorija';
           } else if (node.matches('p') && /^DODATNI DEL/iu.test(text)) {
-            item.titleText = text.split(':')[0];
+            item.titleText = 'Dodatni del CPP — ' + text.split(':')[0].replace(/^DODATNI DEL\\s*/iu, '');
           } else if (node.matches('h4') && /^pričetek/iu.test(text)) {
             item.titleText = 'Dodatni del CPP — ' + precedingHeading(node, /KATEGORIJA/iu);
           } else continue;
@@ -892,7 +892,9 @@ async function harvestSource(cdp, source) {
       "@context": "https://schema.org",
       "@type": "EducationEvent",
       "@id": item.sourceEventId ? `${source.url}#${item.sourceEventId}` : `${source.url}#vzi-browser-${crypto.createHash("sha256").update(item.identityText || item.text).digest("hex").slice(0, 16)}`,
-      name: `${title} — ${source.school_name}${titleCategories}`,
+      // The school name is separate: e.g. "Alfa-B" is not category B.
+      name: `${title}${titleCategories}`,
+      organizer: { "@type": "EducationalOrganization", name: source.school_name },
       description: `${item.text}.${categoryLabel}${modeLabel}`.replace(/\\s+/g, ' ').trim(),
       startDate: item.dates.startDate + (item.times.startTime ? `T${item.times.startTime}` : ""),
       url: source.url,
