@@ -51,11 +51,11 @@ jobs:
           node scripts/harvest-cpp-browser-sources.mjs --validate-only
 
       - name: Inspect remaining public school websites
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[census]')
         run: node scripts/harvest-cpp-browser-sources.mjs --audit-candidates
 
       - name: Publish public website coverage evidence
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[census]')
         run: |
           mkdir -p data
           cp build/cpp-source-audit.json data/cpp-source-audit.json

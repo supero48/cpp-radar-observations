@@ -5,78 +5,133 @@
     "url": "https://3-d.si/prijava-na-tecaj-cpp/"
   },
   {
+    "school_id": 3173,
+    "school_name": "ABC šola vožnje, Aleša Draginc s.p...",
+    "url": ""
+  },
+  {
+    "school_id": 3110,
+    "school_name": "Al3s, izobraževanje in storitve, Aleš Šteflič s.p...",
+    "url": ""
+  },
+  {
+    "school_id": 3175,
+    "school_name": "Alfa Go, šola vožnje d.o.o...",
+    "url": "https://alfago.si/urniki-tecajev/"
+  },
+  {
+    "school_id": 3190,
+    "school_name": "Alma Top šola vožnje d.o.o...",
+    "url": "https://www.avtosola-alma.si/"
+  },
+  {
     "school_id": 3086,
-    "school_name": "AMTK Plus",
+    "school_name": "AMTK Plus usposabljanje Voznikov d.o.o...",
     "url": "https://www.as-amtk.si/cpp/"
   },
   {
+    "school_id": 3158,
+    "school_name": "AMZS d.o.o..., Pe šola vožnje (e)",
+    "url": "https://www.amzs.si/solavoznje/o-soli/maribor"
+  },
+  {
+    "school_id": 3126,
+    "school_name": "Andrej Makarovič s.p...",
+    "url": "https://www.solavoznjeandrej.si/tecaji"
+  },
+  {
+    "school_id": 3189,
+    "school_name": "Anlara, šola vožnje, Siniša Vinovrški s.p...",
+    "url": ""
+  },
+  {
     "school_id": 3141,
-    "school_name": "Antlej",
+    "school_name": "Antlej Avto šola",
     "url": "https://antlej.si/prijava_cpp/"
   },
   {
     "school_id": 3104,
-    "school_name": "Aš Jarše",
+    "school_name": "Aš Jarše - Zoltan Seleši s.p...",
     "url": "https://www.as-jarse.si/"
   },
   {
     "school_id": 3127,
-    "school_name": "Aš-Amd",
+    "school_name": "Aš-Amd, Avto šola",
     "url": "https://www.as-amd.si/"
   },
   {
     "school_id": 3057,
-    "school_name": "Avto Moto Krpan",
+    "school_name": "Avto Moto Krpan, marketing, izobraževanje in storitve",
     "url": "https://avtosola-krpan.si/tecaj-cpp/"
   },
   {
     "school_id": 3130,
-    "school_name": "Amd Postojna",
+    "school_name": "Avto šola Amd Postojna",
     "url": "https://amdpostojna.si/"
   },
   {
     "school_id": 3135,
-    "school_name": "Center Ptuj",
+    "school_name": "Avto šola Center Ptuj, Posredništvo in storitve",
     "url": "https://avtosola-center.si/teoreticni-del/"
   },
   {
     "school_id": 3065,
-    "school_name": "Lončar",
-    "url": "https://avtosola-loncar.si/pogoji-za-udelezbo-cpp-tecajev/"
+    "school_name": "Avto šola Lončar",
+    "url": "https://avtosola-loncar.si/"
   },
   {
     "school_id": 3120,
-    "school_name": "Maxima",
+    "school_name": "Avto šola Maxima, Alojz Ozbetič",
     "url": "https://maxima.si/tecaj-cestno-prometnih-predpisov/"
   },
   {
     "school_id": 3150,
-    "school_name": "Triglav",
+    "school_name": "Avto šola Triglav, šola vožnje, d.o.o...",
     "url": "https://avtosola-triglav.si/"
   },
   {
+    "school_id": 3123,
+    "school_name": "Avto-Almira",
+    "url": ""
+  },
+  {
     "school_id": 3072,
-    "school_name": "AMD Pinko Tomažič",
+    "school_name": "Avto-Moto Društvo Pinko Tomažič, Piran",
     "url": "http://www.amdpiran-drustvo.si/"
   },
   {
+    "school_id": 3119,
+    "school_name": "Avtobusni Promet, Murska Sobota",
+    "url": "https://www.solavoznjemurskasobota.si/App/Vsebina/urnik-predavanj-o-cestno-prometnih-predpisih/Podrobno"
+  },
+  {
     "school_id": 3087,
-    "school_name": "Brulc",
+    "school_name": "Avtošola Brulc družba za Šolanje Voznikov",
     "url": "http://www.avtosola-brulc.si/"
   },
   {
+    "school_id": 3079,
+    "school_name": "Avtošola Bs, Blaž Sabolek",
+    "url": ""
+  },
+  {
     "school_id": 3075,
-    "school_name": "Capris",
+    "school_name": "Avtošola Capris, Avtošola in Prevozne storitve d.o.o...",
     "url": "https://www.as-capris.si/cpp"
   },
   {
     "school_id": 3077,
-    "school_name": "Humar",
+    "school_name": "Avtošola Ing. Humar, Kranj d.o.o...",
     "url": "https://www.avtosola-humar.si/kategorije/cpp-tecaj/"
   },
   {
+    "school_id": 3129,
+    "school_name": "Avtošola Nino",
+    "url": "https://avtosola-nino.si/"
+  },
+  {
     "school_id": 3073,
-    "school_name": "Zulić",
+    "school_name": "Avtošola Zulić Asmir, Zulić",
     "url": "https://www.avtosolazulic.com/"
   },
   {
@@ -85,14 +140,59 @@
     "url": "https://avtosola-avtotrade.si/tecaj-cpp/"
   },
   {
+    "school_id": 3078,
+    "school_name": "B & B izobraževanje in usposabljanje (e)",
+    "url": "https://cpp-online.si/tecaj-cpp-termini/"
+  },
+  {
+    "school_id": 3064,
+    "school_name": "Bortan Žagar & Co.",
+    "url": "https://trgovina.avtosola-smarca.com/prijava-na-cpp/"
+  },
+  {
+    "school_id": 3084,
+    "school_name": "Boštjan Lipovšek s.p...",
+    "url": ""
+  },
+  {
+    "school_id": 3138,
+    "school_name": "Car&Mis d.o.o...",
+    "url": ""
+  },
+  {
     "school_id": 3102,
-    "school_name": "4-Ka",
+    "school_name": "Društvo Topla Dlan, 4-Ka",
     "url": "https://www.4kasolavoznje.com/tecaj-cpp.html"
   },
   {
+    "school_id": 3152,
+    "school_name": "Eproh, šola vožnje, d.o.o... (franšiza: Amzs)",
+    "url": ""
+  },
+  {
+    "school_id": 3085,
+    "school_name": "Fancy, Karmen Hribar s.p...",
+    "url": "https://www.fancysola.si/"
+  },
+  {
+    "school_id": 3113,
+    "school_name": "Formula Maribor, družba za izobraževanje",
+    "url": "https://www.formula.si/sola-voznje/"
+  },
+  {
+    "school_id": 3162,
+    "school_name": "Fortuna šola vožnje",
+    "url": "https://www.avtosola-fortuna.si/"
+  },
+  {
     "school_id": 3074,
-    "school_name": "GJD",
+    "school_name": "Gjd, Prometni Center",
     "url": "https://gjd.si/"
+  },
+  {
+    "school_id": 3128,
+    "school_name": "Grm Novo Mesto- Center Biotehnike in Turizma",
+    "url": "https://grm-nm.si/"
   },
   {
     "school_id": 3131,
@@ -100,9 +200,34 @@
     "url": "http://www.herbby.si/"
   },
   {
+    "school_id": 3089,
+    "school_name": "Ideal",
+    "url": "https://avtosola-ideal.si/tecaji-cpp/"
+  },
+  {
+    "school_id": 3083,
+    "school_name": "Inti Prah, izobraževanje in usposabljanje",
+    "url": "https://www.prah.si/si/544/68/tecaj-cestno-prometnih-predpisov---cpp.aspx"
+  },
+  {
+    "school_id": 3156,
+    "school_name": "Izobraževalno Prometni Center Moste, šola vožnje",
+    "url": "https://www.amdmoste.si/"
+  },
+  {
+    "school_id": 3066,
+    "school_name": "Jus Security",
+    "url": ""
+  },
+  {
     "school_id": 3070,
-    "school_name": "K & D",
+    "school_name": "K & D Izobraževalno, Storitveno in Trgovsko podjetje",
     "url": "https://www.kind.si/termini-in-izpiti/online-prijava-termini-cpp"
+  },
+  {
+    "school_id": 3133,
+    "school_name": "Kampl De & Ma, podjetje za usposabljanje Voznikov Motornih Vozil",
+    "url": "https://www.kampl.si/"
   },
   {
     "school_id": 3098,
@@ -111,18 +236,48 @@
   },
   {
     "school_id": 3144,
-    "school_name": "Kos",
+    "school_name": "Kos šola vožnje, Vozniška šola, d.o.o...",
     "url": "https://solavoznjekos.si/prijava-cpp.html"
   },
   {
     "school_id": 3058,
-    "school_name": "L Mark",
+    "school_name": "L Mark, Avto šola, izobraževanje, prevozi in storitve",
     "url": "https://lmark.si/cpp/"
   },
   {
+    "school_id": 3109,
+    "school_name": "Larax storitve in trgovina",
+    "url": "https://www.larax.si/tecaj-cpp/"
+  },
+  {
     "school_id": 3118,
-    "school_name": "Laura Kreslin",
+    "school_name": "Laura Kreslin s.p...",
     "url": "https://solavoznjelaura.com/"
+  },
+  {
+    "school_id": 3107,
+    "school_name": "Lešnik & Zemljič",
+    "url": "https://leze.si/"
+  },
+  {
+    "school_id": 3188,
+    "school_name": "Lešnik Group, šola vožnje, Avtobusni prevozi, izobraževanje in storitve d.o.o...",
+    "url": "https://www.solavoznje-lesnik.si/"
+  },
+  {
+    "school_id": 3092,
+    "school_name": "Lmm Tilia, Avtošola, Turizem in trgovina",
+    "url": "https://avtosolatilia.si/prijava-cpp/"
+  },
+  {
+    "school_id": 3080,
+    "school_name": "Maksi7 d.o.o...",
+    "url": "https://avtosolamaksi7now.com/cenik"
+  },
+  {
+    "school_id": 3185,
+    "school_name": "Man’izpit, šola vožnje, Manica Erjavec s.p...",
+    "url": ""
   },
   {
     "school_id": 3055,
@@ -130,14 +285,29 @@
     "url": "https://www.avtosola-mazzoni.com/"
   },
   {
+    "school_id": 3160,
+    "school_name": "Ministrstvo za Obrambo šola vožnje Slovenske Vojske",
+    "url": ""
+  },
+  {
+    "school_id": 3069,
+    "school_name": "Mojster Miha, Dragi Dolores Potočnik s.p...",
+    "url": ""
+  },
+  {
+    "school_id": 3139,
+    "school_name": "Moto Avto Trbovlje",
+    "url": ""
+  },
+  {
     "school_id": 3174,
-    "school_name": "Moto VV",
+    "school_name": "Moto Vv, šola vožnje Vladimir Vladič",
     "url": "https://motovv.com/prijava/"
   },
   {
     "school_id": 3099,
-    "school_name": "Nada Tours",
-    "url": "http://www.nada-tours.com/"
+    "school_name": "Nada Tours, Zlatko Marković",
+    "url": "https://www.nada-tours.com/"
   },
   {
     "school_id": 3114,
@@ -146,13 +316,18 @@
   },
   {
     "school_id": 3101,
-    "school_name": "Peter Zagorc",
+    "school_name": "Peter Zagorc s.p...",
     "url": "http://www.petervoznja.si/"
   },
   {
     "school_id": 3184,
-    "school_name": "Plomos",
+    "school_name": "Plomos (franšiza: Relax šola Vožnje)",
     "url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp"
+  },
+  {
+    "school_id": 3125,
+    "school_name": "Pob, Prevoz Oseb in Blaga",
+    "url": "https://solapob.si/prijavi-se/"
   },
   {
     "school_id": 3100,
@@ -160,8 +335,13 @@
     "url": "https://avtosola-polzek.com/"
   },
   {
+    "school_id": 3081,
+    "school_name": "Posavc, storitve, trgovina in Posredovanje (e)",
+    "url": "https://www.posavc.si/tecaji"
+  },
+  {
     "school_id": 3063,
-    "school_name": "Vojko Verdev",
+    "school_name": "Poučevanje Kandidatov za Vožnjo z Motornimi Vozili Vojko Verdev",
     "url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/"
   },
   {
@@ -171,172 +351,267 @@
   },
   {
     "school_id": 3134,
-    "school_name": "Prednost",
+    "school_name": "Prednost, Avtošola, storitve in trgovina",
     "url": "https://www.prednost.si/"
   },
   {
     "school_id": 3060,
-    "school_name": "Brez strahu za volanom",
+    "school_name": "Premagovanje Strahu za Volanom, Marjetka Kramžar s.p...",
     "url": "https://brezstrahuzavolanom.si/"
   },
   {
+    "school_id": 3122,
+    "school_name": "Prevozi in storitve Špela, Špela Antolin s.p...",
+    "url": ""
+  },
+  {
     "school_id": 3116,
-    "school_name": "Prihajam",
+    "school_name": "Prihajam d.o.o...",
     "url": "https://prihajam.si/"
   },
   {
     "school_id": 3068,
-    "school_name": "Primago",
+    "school_name": "Primago, Primož Rak, dejavnost vozniških Šol",
     "url": "https://www.primago.si/tecaj-cpp"
   },
   {
+    "school_id": 3094,
+    "school_name": "Prometej",
+    "url": ""
+  },
+  {
     "school_id": 3112,
-    "school_name": "Prometna šola Maribor",
-    "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+    "school_name": "Prometna šola Maribor (e)",
+    "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-januar-2027/"
+  },
+  {
+    "school_id": 3071,
+    "school_name": "Prometne Rešitve Gregor Solce s.p...",
+    "url": ""
   },
   {
     "school_id": 3096,
-    "school_name": "Blisk",
+    "school_name": "Prometni Center Blisk izobraževanje (e)",
     "url": "https://www.blisk-as.si/cpp-pp-termini/tecajcpponline"
   },
   {
+    "school_id": 3154,
+    "school_name": "Prometni Center Bolit, šola vožnje, d.o.o...",
+    "url": "https://www.pc-bolit.si/"
+  },
+  {
+    "school_id": 3137,
+    "school_name": "Relax Trans, podjetje za Prevoze in izobraževanje (e)",
+    "url": "https://solavoznje-relax.si/sl/termini-tecajev"
+  },
+  {
+    "school_id": 3067,
+    "school_name": "Retos",
+    "url": ""
+  },
+  {
+    "school_id": 3140,
+    "school_name": "S-Car d.o.o...",
+    "url": "https://s-car.si/category/tecaji/"
+  },
+  {
     "school_id": 3155,
-    "school_name": "Volan",
+    "school_name": "Šola vožnje \"volan\" dejavnost",
     "url": "https://avtosolavolan.com/cpp-tecaj/"
   },
   {
     "school_id": 3176,
-    "school_name": "Alfa-B",
-    "url": "https://alfa-b.si/tecaj-cpp/"
+    "school_name": "Šola vožnje Alfa-B",
+    "url": "https://alfa-b.si/urniki-tecajev/"
   },
   {
     "school_id": 3167,
-    "school_name": "Benko",
+    "school_name": "Šola vožnje Benko, Marjan Benko",
     "url": "https://www.solavoznje-benko.si/"
   },
   {
     "school_id": 3159,
-    "school_name": "Blatnik",
+    "school_name": "Šola vožnje Blatnik d.o.o...",
     "url": "https://vezi.si/prijava-na-tecaj-cpp/"
   },
   {
+    "school_id": 3181,
+    "school_name": "Šola vožnje Bt, Borut Troha s.p...",
+    "url": "https://solavoznje-bt.si/"
+  },
+  {
     "school_id": 3142,
-    "school_name": "Čadej",
-    "url": "https://solavoznjecadej.si/sola-voznje/kako-do-izpita/"
+    "school_name": "Šola vožnje Čadej, storitve",
+    "url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/"
+  },
+  {
+    "school_id": 3165,
+    "school_name": "Šola vožnje Desni Ovinek, Denis Jelačević",
+    "url": ""
   },
   {
     "school_id": 3182,
-    "school_name": "Felix",
+    "school_name": "Šola vožnje Felix, dejavnost vozniških Šol, Srečko Gostenčnik",
     "url": "https://www.solavoznjefelix.si/"
   },
   {
     "school_id": 3172,
-    "school_name": "Ferdo",
+    "school_name": "Šola vožnje Ferdo, dejavnost vozniških Šol",
     "url": "https://www.ferdo.si/prijava-na-cpp/"
   },
   {
     "school_id": 3147,
-    "school_name": "Ilke",
+    "school_name": "Šola vožnje Ilke, Katarina Kocijančič",
     "url": "https://ilke.si/prijava-na-cpp/"
   },
   {
     "school_id": 3170,
-    "school_name": "Kovač",
+    "school_name": "Šola vožnje in storitve Kovač, Rjk d.o.o...",
     "url": "https://solavoznje-kovac.com/"
   },
   {
+    "school_id": 3183,
+    "school_name": "Šola vožnje Košalin d.o.o...",
+    "url": ""
+  },
+  {
+    "school_id": 3164,
+    "school_name": "Šola vožnje M, Mojca Vrbnjak, s.p...",
+    "url": ""
+  },
+  {
     "school_id": 3148,
-    "school_name": "M&M",
+    "school_name": "Šola vožnje M&M, Borut Koritnik s.p...",
     "url": "https://www.solavoznje-mm.si/index.html#kontakt"
   },
   {
     "school_id": 3145,
-    "school_name": "Maselj",
+    "school_name": "Šola vožnje Maselj, usposabljanje in Izpopolnjevanje, d.o.o...",
     "url": "https://www.avtosola-maselj.si/#urnikicppteajev"
   },
   {
     "school_id": 3157,
-    "school_name": "Mekinc",
+    "school_name": "Šola vožnje Mekinc, Uroš Mekinc",
     "url": "https://www.mekinc.si/"
   },
   {
     "school_id": 3166,
-    "school_name": "Nomad",
+    "school_name": "Šola vožnje Nomad, Andrej Horvat",
     "url": "https://avtosola-nomad.si/"
   },
   {
     "school_id": 3143,
-    "school_name": "Nomago",
+    "school_name": "Šola vožnje Nomago d.o.o...",
     "url": "https://www.nomago.si/sola-voznje/tecaj-cpp"
   },
   {
+    "school_id": 3177,
+    "school_name": "Šola vožnje Podgurc, Edin Čaušević s.p...",
+    "url": ""
+  },
+  {
     "school_id": 3179,
-    "school_name": "Polo",
+    "school_name": "Šola vožnje Polo, Marko Gostiljac",
     "url": "https://aspolo.si/tecaj-cpp/"
   },
   {
     "school_id": 3151,
-    "school_name": "Prah Sevnica",
+    "school_name": "Šola vožnje Prah Sevnica d.o.o...",
     "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/"
   },
   {
     "school_id": 3169,
-    "school_name": "Sapač",
+    "school_name": "Šola vožnje Sapač, Sašo Jože Sapač s.p...",
     "url": "https://www.solavoznje.sapac.si/"
   },
   {
     "school_id": 3168,
-    "school_name": "Semafor",
+    "school_name": "Šola vožnje Semafor, Žižek Uroš",
     "url": "https://www.solavoznje-semafor.si/"
   },
   {
+    "school_id": 3180,
+    "school_name": "Šola vožnje Slavi, Slaviša Dakić s.p...",
+    "url": "https://www.slavi.si/si/"
+  },
+  {
     "school_id": 3146,
-    "school_name": "Start",
+    "school_name": "Šola vožnje Start d.o.o...",
     "url": "https://solavoznje-start.si/cpp-tecaj/"
   },
   {
+    "school_id": 3149,
+    "school_name": "Šola vožnje Stop Elvis Mai s.p...",
+    "url": "https://solavoznjestop.si/"
+  },
+  {
+    "school_id": 3171,
+    "school_name": "Šola vožnje Stop Mateja Kobal s.p...",
+    "url": "https://solastop.si/"
+  },
+  {
     "school_id": 3163,
-    "school_name": "Urek",
+    "school_name": "Šola vožnje Urek, Boštjan Urek s.p...",
     "url": "http://urek.si/index.php/pricetek-tecaja-cpp/"
   },
   {
     "school_id": 3153,
-    "school_name": "Vito",
+    "school_name": "Šola vožnje Vito, izobraževanje in storitve, d.o.o...",
     "url": "https://www.avtosola-vito.si/tecaj-cpp-2/"
   },
   {
+    "school_id": 3187,
+    "school_name": "Šola vožnje Zdenka, Zdenka Kos Dužević",
+    "url": ""
+  },
+  {
+    "school_id": 3178,
+    "school_name": "Šola vožnje, Voznik 1a, d.o.o...",
+    "url": "https://voznik1a.si/"
+  },
+  {
+    "school_id": 3062,
+    "school_name": "Šola za Hortikulturo in Vizualne Umetnosti Celje",
+    "url": "https://www.hvu.si/izobrazevalni-center/"
+  },
+  {
     "school_id": 3115,
-    "school_name": "Pek",
+    "school_name": "Šolski Center Pek d.o.o...",
     "url": "https://solavoznjepek.si/"
   },
   {
+    "school_id": 3132,
+    "school_name": "Šolski Center Ptuj",
+    "url": "https://scptuj.si/"
+  },
+  {
     "school_id": 3061,
-    "school_name": "Šolski center Šentjur",
+    "school_name": "Šolski Center Šentjur",
     "url": "https://sc-s.si/ostale-dejavnosti/sola-voznje/"
   },
   {
     "school_id": 3059,
-    "school_name": "Šolski center Slovenske Konjice-Zreče",
+    "school_name": "Šolski Center Slovenske Konjice-Zreče",
     "url": "https://www.sc-konjice-zrece.si/sola-voznje-2/prijavnica-za-tecaj-cpp/"
   },
   {
     "school_id": 3117,
-    "school_name": "Šteflič",
+    "school_name": "Srečko Šteflič s.p...",
     "url": "https://www.solavoznje-steflic.net/tecaj-cpp"
   },
   {
     "school_id": 3091,
-    "school_name": "Stop",
-    "url": "https://stop.si/pogoji-za-prijavo-in-udelezbo-na-tecaj-cpp/"
+    "school_name": "Stop podjetje za Trženje in storitve",
+    "url": "https://stop.si/prijava-na-cpp/"
   },
   {
     "school_id": 3097,
-    "school_name": "SIC Ljubljana",
+    "school_name": "Strokovni Izobraževalni Center Ljubljana",
     "url": "https://www.avtosola-jezica.com/"
   },
   {
     "school_id": 3082,
-    "school_name": "Petrišič",
+    "school_name": "Trgovina in Pizzerija Petrišič - Bogdan Petrišič",
     "url": "http://www.avtosolapetrisic.si/"
   },
   {
@@ -350,8 +625,28 @@
     "url": "http://www.voyage.si/"
   },
   {
+    "school_id": 3105,
+    "school_name": "Vozniška šola, Jonas Agović s.p...",
+    "url": "https://www.primago.si/"
+  },
+  {
     "school_id": 3108,
     "school_name": "Vremec",
     "url": "http://www.vremec.si/"
+  },
+  {
+    "school_id": 3103,
+    "school_name": "Zavod Modrivoznik.Si",
+    "url": "https://modrivoznik.si/avtosola/maribor"
+  },
+  {
+    "school_id": 3106,
+    "school_name": "Zavod za Raziskovanje, Montažo Materialov in Reinženiring, Šmartinska Cesta 28, Ljubljana",
+    "url": ""
+  },
+  {
+    "school_id": 3056,
+    "school_name": "ZŠAM Celje",
+    "url": "https://zsam-celje.si/sola-voznje/tecaj-cpp"
   }
 ]

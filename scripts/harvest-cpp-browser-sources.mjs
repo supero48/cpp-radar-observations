@@ -950,6 +950,12 @@ async function auditCandidateSites() {
     for (const source of candidates) {
       const result = { school_id: source.school_id, school_name: source.school_name, source_url: source.url, pages: [], status: "READ_FAILED" };
       try {
+        if (!source.url) {
+          result.status = "WEBSITE_NOT_VERIFIED";
+          results.push(result);
+          process.stdout.write(JSON.stringify({audit_progress:results.length,total:candidates.length,school_id:source.school_id,status:result.status})+"\n");
+          continue;
+        }
         const initialHost = new URL(source.url).hostname.replace(/^www\./u, "");
         const urls = [source.url];
         for (let index = 0; index < urls.length && index < 3; index += 1) {
@@ -1119,4 +1125,3 @@ try {
     retryDelay: 250
   });
 }
-
