@@ -89,7 +89,7 @@ function canonicalTimeRange(value) {
 
 function canonicalLocation(value) {
   const text = String(value).replace(/\s+/g, " ").trim();
-  const timed = text.match(/([A-ZČŠŽ][\p{L}.'-]+\s+(?:ulica|cesta|trg|pot)\s+\d+[a-z]?,\s*[A-ZČŠŽ][\p{L} .'-]{1,60})\s*[·|]\s*\d{1,2}[:.]\d{2}/iu);
+  const timed = text.match(/([A-ZČŠŽ][\p{L}.'-]*\s+(?:ulica|cesta|trg|pot)\s+\d+[a-z]?,\s*[A-ZČŠŽ][\p{L} .'-]{1,60})\s*[·|]\s*\d{1,2}[:.]\d{2}/iu);
   if (timed) {
     const name = timed[1].replace(/\s+/g, " ").trim();
     const separator = name.lastIndexOf(",");
@@ -99,10 +99,10 @@ function canonicalLocation(value) {
       addressLocality: separator > 0 ? name.slice(separator + 1).trim() : ""
     };
   }
-  const inline = text.match(/\b((?:(?:Ulica|Cesta|Trg|Pot)\s+[A-ZČŠŽ][\p{L}.'-]+(?:\s+[\p{L}.'-]+){0,4}|[A-ZČŠŽ][\p{L}.'-]+(?:\s+[\p{L}.'-]+){0,4}\s+(?:ulica|cesta|trg|pot))\s+\d+[a-z]?),\s*(?:\d{4}\s+)?([A-ZČŠŽ][\p{L}.'-]+(?:\s+[\p{L}.'-]+){0,2})/iu);
+  const inline = text.match(/\b((?:(?:Ulica|Cesta|Trg|Pot)\s+[A-ZČŠŽ][\p{L}.'-]*(?:\s+[\p{L}.'-]+){0,4}|[A-ZČŠŽ][\p{L}.'-]*(?:\s+[\p{L}.'-]+){0,4}\s+(?:ulica|cesta|trg|pot))\s+\d+[a-z]?),\s*(?:\d{4}\s+)?([A-ZČŠŽ][\p{L}.'-]*(?:\s+[\p{L}.'-]+){0,2})/iu);
   if (!inline) return null;
   const streetAddress = inline[1].replace(/\s+/g, " ").trim();
-  const addressLocality = inline[2].replace(/\s+/g, " ").trim();
+  const addressLocality = inline[2].replace(/\s+/g, " ").trim().replace(/\.$/u, "");
   return {
     name: `${streetAddress}, ${addressLocality}`,
     streetAddress,
@@ -114,21 +114,38 @@ function isUnavailableTerm(value) {
   return /\b(?:termin\s+(?:je\s+)?poln|razprodano|zapolnjen[ao]?|ni\s+(?:ve\u010d\s+)?prostih\s+mest|vsa\s+mesta\s+so\s+zasedena)\b/iu.test(String(value));
 }
 
+function explicitCategoryText(value) {
+  const text = String(value).replace(/_/g, " ");
+  const token = "(?:D1E|C1E|A1|A2|AM|BE|C1|CE|D1|DE|B1|A|B|C|D|F|G)";
+  const sequence = token + "(?:\\s*[,/]\\s*" + token + ")*";
+  const beforeLabel = text.match(new RegExp("\\b(" + sequence + ")\\s*[-–]?\\s*(?:kategorij[a-zčšž]*|kat\\.)", "iu"));
+  const afterLabel = text.match(new RegExp("\\b(?:dodatni\\s+del(?:\\s+za)?|kategorij[a-zčšž]*\\s*:?)\\s+(" + sequence + ")(?![a-z0-9])", "iu"));
+  const match = beforeLabel || afterLabel;
+  return match ? [...new Set(match[1].toUpperCase().split(/\s*[,/]\s*/u))].join(", ") : "";
+}
+
 function dateNodePayloadItem(item) {
-  const text = String(item.text);
-  const dates = canonicalDateRange(text);
+  const identityText = String(item.text);
+  const text = [identityText, item.contextText].filter(Boolean).join(" ").replace(/_/g, " ").replace(/\s+/g, " ").trim();
+  const dates = canonicalDateRange(identityText);
   if (!dates) return null;
-  const courseType = /\bsplošni\s+del\b/iu.test(text)
+  const titleText = String(item.titleText || "").replace(/_/g, " ").trim();
+  const categoryText = explicitCategoryText(titleText + " " + text);
+  const courseType = /\b(?:splošni|osnovni)[-\s]+del\b/iu.test(text)
     ? "CPP_GENERAL"
-    : /\bdodatni\s+del\b/iu.test(text) ? "CPP_ADDITIONAL" : "CPP_GENERAL";
+    : /\bdodatni\s+del\b/iu.test(text) ? "CPP_ADDITIONAL" : categoryText ? "CPP_UNSPECIFIED" : "CPP_GENERAL";
+  const priceMatch = String(item.priceText || "").match(/\bcena:\s*(\d+(?:[.,]\d{1,2})?)\s*€/iu);
   return {
     text,
+    identityText,
+    titleText,
     dates,
-    times: canonicalTimeRange(text),
-    location: canonicalLocation(text),
+    times: canonicalTimeRange(item.timeText || (item.suppressContextTime ? identityText : text)),
+    location: canonicalLocation(item.locationText || text),
     courseType,
-    categoryText: "",
-    mode: /\bna\s+daljavo\b/iu.test(text) ? "ONLINE" : null
+    categoryText,
+    mode: item.mode || (/\b(?:na\s+daljavo|online)\b/iu.test(text) ? "ONLINE" : null),
+    priceAmount: priceMatch ? Number(priceMatch[1].replace(",", ".")) : null
   };
 }
 
@@ -342,6 +359,26 @@ if (process.argv.includes("--self-test")) {
     { school_id: 2, approved: false, enabled: true },
     { school_id: 3, approved: true, enabled: false }
   ], 20, 0);
+  const formulaTerm = dateNodePayloadItem({
+    text: "Tečaj CPP za CE kategorijo cena: 60,00 € torek 24.11.2026 13:00 Cesta k Tamu 6, Maribor prosto PRIJAVA",
+    titleText: "Tečaj CPP za CE kategorijo",
+    timeText: "ob 13:00",
+    locationText: "Cesta k Tamu 6, Maribor",
+    priceText: "Tečaj CPP za CE kategorijo cena: 60,00 €"
+  });
+  const ninoTerm = dateNodePayloadItem({
+    text: "Četrtek, 10.12.2026 Tečaj CPP_dodatni del A1,A2,A Mesta na voljo",
+    titleText: "Tečaj CPP_dodatni del A1,A2,A",
+    contextText: "Tečaj poteka na sedežu šole vožnje, Notranjska cesta 14, Logatec.",
+    timeText: "Popoldanski termin, začetek ob 18:00"
+  });
+  const alfaTerm = dateNodePayloadItem({
+    text: "TEČAJI V NOVEMBRU – 23.11.2026",
+    titleText: "TEČAJ CPP (osnovni-splošni del + dodatni del B-kat.)",
+    contextText: "OSNOVNI DEL: Zbor ob 14.10 pred učilnico AlfaGo Novi trg 7.",
+    locationText: "Novi trg 7, NOVO MESTO",
+    suppressContextTime: true
+  });
   const checks = [
     firstRange?.startDate === "2026-09-23" && firstRange?.endDate === "2026-09-29",
     secondRange?.startDate === "2026-10-15" && secondRange?.endDate === "2026-10-21",
@@ -372,7 +409,19 @@ if (process.argv.includes("--self-test")) {
     rotationCoverage.size === 45,
     filteredBatch.totalEligible === 1 && filteredBatch.selected[0]?.school_id === 1,
     positiveInteger("20", 10, "test") === 20,
-    nonNegativeInteger("0", 5, "test") === 0
+    nonNegativeInteger("0", 5, "test") === 0,
+    formulaTerm?.categoryText === "CE" && formulaTerm?.courseType === "CPP_UNSPECIFIED",
+    formulaTerm?.times.startTime === "13:00:00",
+    formulaTerm?.location?.name === "Cesta k Tamu 6, Maribor",
+    formulaTerm?.priceAmount === 60,
+    ninoTerm?.categoryText === "A1, A2, A" && ninoTerm?.courseType === "CPP_ADDITIONAL",
+    ninoTerm?.times.startTime === "18:00:00" && ninoTerm?.location?.addressLocality === "Logatec",
+    alfaTerm?.location?.name === "Novi trg 7, NOVO MESTO" && alfaTerm?.times.startTime === null,
+    alfaTerm?.categoryText === "B" && alfaTerm?.identityText === "TEČAJI V NOVEMBRU – 23.11.2026",
+    explicitCategoryText("Tečaj CPP za D kategorijo") === "D",
+    explicitCategoryText("Tečaj CPP za C kategorijo") === "C",
+    explicitCategoryText("Tečaj CPP") === "",
+    isUnavailableTerm("Ponedeljek, 23.11.2026 Tečaj CPP Ni več prostih mest")
   ];
   if (checks.some((passed) => !passed)) throw new Error("Browser structured-event self-test failed");
   process.stdout.write(`Browser structured-event self-test PASS: ${checks.length} checks.\n`);
@@ -541,6 +590,7 @@ async function harvestSource(cdp, source) {
     const selectors = ${JSON.stringify(source.selectors)};
     const maxNodes = ${source.max_nodes};
     const extractor = ${JSON.stringify(source.extractor || 'date-nodes-v1')};
+    const schoolId = ${source.school_id};
     const named = new RegExp(${JSON.stringify(dateBearingNamedPattern)}, 'iu');
     const numeric = /\\b\\d{1,2}\\s*[.\\/-]\\s*\\d{1,2}\\s*[.\\/-]\\s*20\\d{2}\\b/u;
     const found = [];
@@ -548,6 +598,36 @@ async function harvestSource(cdp, source) {
       for (const node of document.querySelectorAll(selector)) {
         let text = (node.innerText || node.textContent || '').replace(/\\s+/g, ' ').trim();
         let item = { text };
+        if (schoolId === 3113 && node.matches('.table-row')) {
+          item.titleText = node.querySelector('.col-title strong')?.innerText || '';
+          item.timeText = 'ob ' + (node.querySelector('.col-time-1')?.innerText || '');
+          item.locationText = node.querySelector('.col-place-1')?.innerText || '';
+          item.priceText = node.querySelector('.col-title')?.innerText || '';
+          item.mode = item.locationText ? 'CLASSROOM' : null;
+        } else if (schoolId === 3129 && node.matches('.term-card')) {
+          const section = node.closest('#termini-cpp');
+          item.titleText = node.querySelector('.term-time')?.innerText || '';
+          item.contextText = Array.from(section?.querySelectorAll('p') || []).map(p => p.innerText).find(t => /Tečaj poteka.*sedežu/iu.test(t)) || '';
+          item.locationText = item.contextText.split(/\\.\\s+/u)[0];
+          item.timeText = Array.from(section?.querySelectorAll('.value') || []).map(p => p.innerText).find(t => /začetek ob/iu.test(t)) || '';
+          item.mode = item.contextText ? 'CLASSROOM' : null;
+        } else if (schoolId === 3175 && node.matches('h3')) {
+          const section = node.closest('.e-loop-item');
+          const heading = section?.querySelector('h2')?.innerText || '';
+          const parts = heading.split(/\\s+[–—]\\s+/u);
+          if (parts.length === 2) item.locationText = parts[1] + ', ' + parts[0];
+          item.titleText = node.nextElementSibling?.matches('h3') ? node.nextElementSibling.innerText : '';
+          const context = [];
+          for (let sibling = node.nextElementSibling; sibling && context.length < 6; sibling = sibling.nextElementSibling) {
+            const detail = (sibling.innerText || '').trim();
+            if (/^Dodatni del/iu.test(detail)) break;
+            if (detail) context.push(detail);
+          }
+          item.contextText = context.join(' ');
+          // The published gathering time is not asserted as the lesson start.
+          item.suppressContextTime = true;
+          item.mode = item.locationText ? 'CLASSROOM' : null;
+        }
         if (extractor === 'relax-registration-v1') {
           const href = node instanceof HTMLAnchorElement ? node.href : '';
           if (!/\\/tip=(1|2)\\/c=\\1(?:\\/|$)/u.test(new URL(href, document.baseURI).pathname)) continue;
@@ -589,21 +669,27 @@ async function harvestSource(cdp, source) {
   }
   const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[character]);
   const events = payloadItems.map((item) => {
-    const courseLabel = item.courseType === 'CPP_ADDITIONAL' ? 'Dodatni del tečaja CPP' : 'Splošni del tečaja CPP';
+    const courseLabel = item.courseType === 'CPP_ADDITIONAL' ? 'Dodatni del tečaja CPP' : item.courseType === 'CPP_GENERAL' ? 'Splošni del tečaja CPP' : 'Tečaj CPP';
+    const title = item.titleText || courseLabel;
+    const titleCategories = item.categoryText && !/kategorij|kat\./iu.test(title) ? ` · kategorije ${item.categoryText}` : '';
     const categoryLabel = item.categoryText ? ` Kategorije: ${item.categoryText}.` : '';
     const modeLabel = item.mode === 'ONLINE' ? ' Izvedba na daljavo.' : item.mode === 'CLASSROOM' ? ' Izvedba v prostorih poslovalnice.' : '';
     const event = {
       "@context": "https://schema.org",
       "@type": "EducationEvent",
-      "@id": item.sourceEventId ? `${source.url}#${item.sourceEventId}` : `${source.url}#vzi-browser-${crypto.createHash("sha256").update(item.text).digest("hex").slice(0, 16)}`,
-      name: `${courseLabel} — ${source.school_name}`,
+      "@id": item.sourceEventId ? `${source.url}#${item.sourceEventId}` : `${source.url}#vzi-browser-${crypto.createHash("sha256").update(item.identityText || item.text).digest("hex").slice(0, 16)}`,
+      name: `${title} — ${source.school_name}${titleCategories}`,
       description: `${item.text}.${categoryLabel}${modeLabel}`.replace(/\\s+/g, ' ').trim(),
       startDate: item.dates.startDate + (item.times.startTime ? `T${item.times.startTime}` : ""),
       url: source.url,
       inLanguage: "sl"
     };
-    if (item.registrationUrl) {
-      event.offers = { "@type": "Offer", url: item.registrationUrl, availability: "https://schema.org/InStock" };
+    if (item.registrationUrl || item.priceAmount !== null && item.priceAmount !== undefined) {
+      event.offers = { "@type": "Offer", url: item.registrationUrl || source.url, availability: "https://schema.org/InStock" };
+      if (item.priceAmount !== null && item.priceAmount !== undefined) {
+        event.offers.price = item.priceAmount;
+        event.offers.priceCurrency = "EUR";
+      }
     }
     if (item.dates.endDate) {
       event.endDate = item.dates.endDate + (item.times.endTime ? `T${item.times.endTime}` : "");
