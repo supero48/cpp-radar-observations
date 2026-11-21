@@ -377,6 +377,24 @@ function manifestSignatureMessage(manifest) {
   return lines.join("\n");
 }
 
+// A targeted repair can retain recent observations only after authenticating
+// their complete registry/signature and independently checking every HTML hash.
+function reuseVerifiedObservations(previous, fresh, currentRegistry, publicKey, now, schoolId) {
+  const expected=crypto.createHash('sha256').update(JSON.stringify(currentRegistry)).digest('hex');
+  if(previous.registry_sha256!==expected || crypto.createHash('sha256').update(JSON.stringify(previous.registry)).digest('hex')!==expected) throw new Error('Cached registry mismatch');
+  const generated=Date.parse(previous.generated_at);
+  if(!Number.isFinite(generated)||generated<now-2*3600000||generated>now+300000)throw new Error('Cached manifest is not recent');
+  if(previous.signature?.algorithm!=='Ed25519'||!crypto.verify(null,Buffer.from(manifestSignatureMessage(previous),'utf8'),publicKey,Buffer.from(previous.signature.value||'','base64')))throw new Error('Cached signature failed');
+  const allowed=new Set(currentRegistry.sources.filter(s=>s.approved&&s.enabled).map(s=>s.school_id+'|'+s.url));
+  for(const observation of previous.observations) {
+    const observed=Date.parse(observation.observed_at);
+    if(!allowed.has(observation.school_id+'|'+observation.source_url)||!Number.isFinite(observed)||observed<now-2*3600000||observed>now+300000)throw new Error('Cached observation is not eligible');
+    if(crypto.createHash('sha256').update(observation.rendered_html||'').digest('hex')!==observation.content_sha256)throw new Error('Cached observation hash failed');
+  }
+  if(!fresh.length || fresh.some(o=>o.school_id!==schoolId))throw new Error('Targeted refresh did not succeed');
+  return [...previous.observations.filter(o=>o.school_id!==schoolId),...fresh];
+}
+
 validateRegistry(registry);
 if (process.argv.includes("--self-test")) {
   const firstRange = canonicalDateRange("23. sep. – 29. sep. 2026 Termin poln");
@@ -465,7 +483,21 @@ if (process.argv.includes("--self-test")) {
     locationText: "Novi trg 7, NOVO MESTO",
     suppressContextTime: true
   });
+  const cacheRegistry={sources:[{school_id:1,url:'https://school.example/a',approved:true,enabled:true},{school_id:2,url:'https://school.example/b',approved:true,enabled:true}]};
+  const cacheNow=Date.parse('2026-11-21T22:00:00Z');
+  const cacheObservation=id=>({school_id:id,source_url:'https://school.example/'+(id===1?'a':'b'),observed_at:'2026-11-21T21:50:00Z',rendered_html:'public term '+id,content_sha256:crypto.createHash('sha256').update('public term '+id).digest('hex')});
+  const cacheFixture={version:2,generated_at:'2026-11-21T21:55:00Z',registry:cacheRegistry,registry_sha256:crypto.createHash('sha256').update(JSON.stringify(cacheRegistry)).digest('hex'),observations:[cacheObservation(1),cacheObservation(2)]};
+  cacheFixture.signature={algorithm:'Ed25519',value:crypto.sign(null,Buffer.from(manifestSignatureMessage(cacheFixture),'utf8'),signatureKeys.privateKey).toString('base64')};
+  const refuses=fn=>{try{fn();return false;}catch{return true;}};
+  const changedHtml=structuredClone(cacheFixture);changedHtml.observations[1].rendered_html='tampered term';
+  const changedSignature=structuredClone(cacheFixture);changedSignature.signature.value='AAAA';
   const checks = [
+    reuseVerifiedObservations(cacheFixture,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1).length===2,
+    refuses(()=>reuseVerifiedObservations(changedHtml,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1)),
+    refuses(()=>reuseVerifiedObservations(changedSignature,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1)),
+    refuses(()=>reuseVerifiedObservations(cacheFixture,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow+3*3600000,1)),
+    refuses(()=>reuseVerifiedObservations(cacheFixture,[cacheObservation(1)],{sources:cacheRegistry.sources.slice(0,1)},signatureKeys.publicKey,cacheNow,1)),
+    refuses(()=>reuseVerifiedObservations(cacheFixture,[],cacheRegistry,signatureKeys.publicKey,cacheNow,1)),
     firstRange?.startDate === "2026-09-23" && firstRange?.endDate === "2026-09-29",
     secondRange?.startDate === "2026-10-15" && secondRange?.endDate === "2026-10-21",
     singleDate?.startDate === "2026-09-02" && singleDate?.endDate === null,
@@ -964,7 +996,7 @@ async function harvestSource(cdp, source) {
           const card=node.closest('.elementor-icon-box-content');
           const section=node.closest('.e-child');
           const heading=(Array.from(section?.querySelectorAll('h1,h2,h3,h4,h5,h6')||[]).map(n=>clean(n.textContent)).find(s=>/KATEGORIJA/iu.test(s))||'').match(/KATEGORIJA.*$/iu)?.[0];
-          const locality=clean(card?.querySelector('.elementor-icon-box-title')?.innerText);
+          const locality=clean(card?.querySelector('.elementor-icon-box-title')?.textContent);
           if(!heading||!locality||!numeric.test(text)) continue;
           item.titleText='Tečaj CPP — '+heading;
           item.categoryText=/B, AM IN A1/iu.test(heading)?'B, AM, A1 kategorije':heading;
@@ -1494,11 +1526,14 @@ if (process.argv.includes("--audit-candidates")) {
 
 const runtime = await startChrome();
 const results = [];
-const observations = [];
+let observations = [];
 const maxSources = positiveInteger(process.env.VZI_CPP_MAX_SOURCES_PER_RUN, 20, "VZI_CPP_MAX_SOURCES_PER_RUN");
 const defaultRotationSlot = Math.floor(Date.now() / 86400000);
 const rotationSlot = nonNegativeInteger(process.env.VZI_CPP_ROTATION_SLOT, defaultRotationSlot, "VZI_CPP_ROTATION_SLOT");
-const batch = selectHarvestBatch(registry.sources, maxSources, rotationSlot);
+const refreshArgument=process.argv.find(v=>v.startsWith('--refresh-school='));
+const refreshSchool=refreshArgument?Number(refreshArgument.split('=')[1]):null;
+if(refreshArgument&&(!Number.isSafeInteger(refreshSchool)||refreshSchool<=0))throw new Error('Invalid refresh school');
+const batch = selectHarvestBatch(refreshSchool?registry.sources.filter(s=>s.school_id===refreshSchool):registry.sources, maxSources, rotationSlot);
 try {
   for (const source of batch.selected) {
     try {
@@ -1533,6 +1568,12 @@ try {
   if (observations.length === 0) {
     throw new Error("No approved browser source produced a publishable observation");
   }
+  const signingKey = process.env.VZI_CPP_MANIFEST_SIGNING_KEY;
+  if (!signingKey) throw new Error('Missing secret: VZI_CPP_MANIFEST_SIGNING_KEY');
+  if(refreshSchool){
+    const previous=JSON.parse(fs.readFileSync('data/cpp-browser-observations.json','utf8'));
+    observations=reuseVerifiedObservations(previous,observations,registry,crypto.createPublicKey(signingKey),Date.now(),refreshSchool);
+  }
   const generatedAt = new Date().toISOString();
   const manifest = {
     version: 2,
@@ -1541,8 +1582,6 @@ try {
     registry_sha256: crypto.createHash("sha256").update(registryCanonical).digest("hex"),
     observations
   };
-  const signingKey = process.env.VZI_CPP_MANIFEST_SIGNING_KEY;
-  if (!signingKey) throw new Error("Missing secret: VZI_CPP_MANIFEST_SIGNING_KEY");
   manifest.signature = {
     algorithm: "Ed25519",
     key_id: "vzi-cpp-radar-2026-01",

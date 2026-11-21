@@ -78,7 +78,7 @@ jobs:
         env:
           VZI_CPP_MANIFEST_SIGNING_KEY: ${{ secrets.VZI_CPP_MANIFEST_SIGNING_KEY }}
           VZI_CPP_MAX_SOURCES_PER_RUN: "100"
-        run: node scripts/harvest-cpp-browser-sources.mjs
+        run: node scripts/harvest-cpp-browser-sources.mjs --refresh-school=3147
 
       - name: Publish latest signed manifest
         if: github.event_name != 'pull_request'
