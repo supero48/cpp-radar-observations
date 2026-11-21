@@ -9,7 +9,9 @@
       "domain": "modrivoznik.si",
       "homepage_url": "https://modrivoznik.si/avtosola/maribor",
       "url": "https://modrivoznik.si/avtosola/maribor",
-      "selectors": ["button"],
+      "selectors": [
+        "button"
+      ],
       "context_text": "Tečaji CPP",
       "max_nodes": 40,
       "extractor": "date-nodes-v1",
@@ -25,7 +27,9 @@
       "domain": "solavoznje-relax.si",
       "homepage_url": "https://solavoznje-relax.si/",
       "url": "https://solavoznje-relax.si/sl/termini-tecajev",
-      "selectors": ["a[href*=\"/termin=\"]"],
+      "selectors": [
+        "a[href*=\"/termin=\"]"
+      ],
       "context_text": "Tečaji CPP",
       "max_nodes": 100,
       "extractor": "relax-registration-v1",
@@ -41,7 +45,9 @@
       "domain": "www.formula.si",
       "homepage_url": "https://www.formula.si/",
       "url": "https://www.formula.si/sola-voznje/",
-      "selectors": [".table-row"],
+      "selectors": [
+        ".table-row"
+      ],
       "context_text": "Tečaji CPP",
       "max_nodes": 40,
       "extractor": "date-nodes-v1",
@@ -57,7 +63,9 @@
       "domain": "avtosola-nino.si",
       "homepage_url": "https://avtosola-nino.si/",
       "url": "https://avtosola-nino.si/",
-      "selectors": ["#termini-cpp .term-card"],
+      "selectors": [
+        "#termini-cpp .term-card"
+      ],
       "context_text": "Termini tečajev CPP",
       "max_nodes": 20,
       "extractor": "date-nodes-v1",
@@ -73,7 +81,9 @@
       "domain": "alfago.si",
       "homepage_url": "https://alfago.si/",
       "url": "https://alfago.si/urniki-tecajev/",
-      "selectors": ["h3"],
+      "selectors": [
+        "h3"
+      ],
       "context_text": "Urniki tečajev CPP",
       "max_nodes": 10,
       "extractor": "date-nodes-v1",
@@ -89,7 +99,9 @@
       "domain": "www.amzs.si",
       "homepage_url": "https://www.amzs.si/solavoznje",
       "url": "https://www.amzs.si/solavoznje/o-soli/maribor",
-      "selectors": [".dogodekTermin"],
+      "selectors": [
+        ".dogodekTermin"
+      ],
       "context_text": "Tečaj CPP AMZS Maribor",
       "max_nodes": 10,
       "extractor": "date-nodes-v1",
@@ -105,7 +117,9 @@
       "domain": "cpp-online.si",
       "homepage_url": "https://cpp-online.si/",
       "url": "https://cpp-online.si/tecaj-cpp-termini/",
-      "selectors": [".ds-course-option"],
+      "selectors": [
+        ".ds-course-option"
+      ],
       "context_text": "Termini tečajev CPP",
       "max_nodes": 20,
       "extractor": "date-nodes-v1",
@@ -121,7 +135,9 @@
       "domain": "avtosola-ideal.si",
       "homepage_url": "https://avtosola-ideal.si/",
       "url": "https://avtosola-ideal.si/tecaji-cpp/",
-      "selectors": [".ideal-vrstica"],
+      "selectors": [
+        ".ideal-vrstica"
+      ],
       "context_text": "Termini tečajev CPP",
       "max_nodes": 10,
       "extractor": "date-nodes-v1",
@@ -137,7 +153,9 @@
       "domain": "avtosolatilia.si",
       "homepage_url": "https://avtosolatilia.si/",
       "url": "https://avtosolatilia.si/prijava-cpp/",
-      "selectors": ["#nf-field-15-wrap .nf-field-element label"],
+      "selectors": [
+        "#nf-field-15-wrap .nf-field-element label"
+      ],
       "context_text": "Termini tečajev CPP",
       "max_nodes": 10,
       "extractor": "date-nodes-v1",
@@ -153,7 +171,9 @@
       "domain": "www.solavoznjeandrej.si",
       "homepage_url": "https://www.solavoznjeandrej.si/",
       "url": "https://www.solavoznjeandrej.si/tecaji",
-      "selectors": [".blog-content.courses .col-lg-10 > p"],
+      "selectors": [
+        ".blog-content.courses .col-lg-10 > p"
+      ],
       "context_text": "Tečaji CPP",
       "max_nodes": 20,
       "extractor": "date-nodes-v1",
@@ -169,7 +189,9 @@
       "domain": "www.solavoznjemurskasobota.si",
       "homepage_url": "https://www.solavoznjemurskasobota.si/",
       "url": "https://www.solavoznjemurskasobota.si/App/Vsebina/urnik-predavanj-o-cestno-prometnih-predpisih/Podrobno",
-      "selectors": ["li"],
+      "selectors": [
+        "li"
+      ],
       "context_text": "Urnik predavanj CPP",
       "max_nodes": 30,
       "extractor": "date-nodes-v1",
@@ -185,9 +207,427 @@
       "domain": "leze.si",
       "homepage_url": "https://leze.si/",
       "url": "https://leze.si/",
-      "selectors": ["article.category-sola-voznje .elementor-post__title"],
+      "selectors": [
+        "article.category-sola-voznje .elementor-post__title"
+      ],
       "context_text": "Pričetek tečaja CPP",
       "max_nodes": 10,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3088,
+      "school_name": "3D",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "3-d.si",
+      "homepage_url": "https://3-d.si/",
+      "url": "https://3-d.si/prijava-na-tecaj-cpp/",
+      "selectors": [
+        ".tabi_avtosola_cpp .tecaj-naslov"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3130,
+      "school_name": "Amd Postojna",
+      "school_locality": "Postojna",
+      "school_location": "",
+      "domain": "amdpostojna.si",
+      "homepage_url": "https://amdpostojna.si/",
+      "url": "https://amdpostojna.si/",
+      "selectors": [
+        "li.listing-item"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3150,
+      "school_name": "Triglav",
+      "school_locality": "Kranj",
+      "school_location": "",
+      "domain": "avtosola-triglav.si",
+      "homepage_url": "https://avtosola-triglav.si/",
+      "url": "https://avtosola-triglav.si/",
+      "selectors": [
+        "#slider-2-slide-2-layer-0"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3073,
+      "school_name": "Zulić",
+      "school_locality": "Koper",
+      "school_location": "",
+      "domain": "www.avtosolazulic.com",
+      "homepage_url": "https://www.avtosolazulic.com/",
+      "url": "https://www.avtosolazulic.com/",
+      "selectors": [
+        "#comp-lhsy9j8h"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3099,
+      "school_name": "Nada Tours",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "www.nada-tours.com",
+      "homepage_url": "https://www.nada-tours.com/",
+      "url": "https://www.nada-tours.com/",
+      "selectors": [
+        "li:has(> h4)"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3116,
+      "school_name": "Prihajam",
+      "school_locality": "Maribor",
+      "school_location": "",
+      "domain": "prihajam.si",
+      "homepage_url": "https://prihajam.si/",
+      "url": "https://prihajam.si/",
+      "selectors": [
+        ".prihajam-half"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3182,
+      "school_name": "Felix",
+      "school_locality": "Slovenj Gradec",
+      "school_location": "",
+      "domain": "www.solavoznjefelix.si",
+      "homepage_url": "https://www.solavoznjefelix.si/",
+      "url": "https://www.solavoznjefelix.si/",
+      "selectors": [
+        "h3.cpp2"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3151,
+      "school_name": "Prah Sevnica",
+      "school_locality": "Sevnica",
+      "school_location": "",
+      "domain": "www.avto-prah.si",
+      "homepage_url": "https://www.avto-prah.si/",
+      "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/",
+      "selectors": [
+        ".e-loop-item"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3117,
+      "school_name": "Šteflič",
+      "school_locality": "Spodnji Duplek",
+      "school_location": "",
+      "domain": "www.solavoznje-steflic.net",
+      "homepage_url": "https://www.solavoznje-steflic.net/",
+      "url": "https://www.solavoznje-steflic.net/tecaj-cpp",
+      "selectors": [
+        "#comp-lesvqd1u label"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3065,
+      "school_name": "Lončar",
+      "school_locality": "Domžale",
+      "school_location": "",
+      "domain": "avtosola-loncar.si",
+      "homepage_url": "https://avtosola-loncar.si/",
+      "url": "https://avtosola-loncar.si/",
+      "selectors": [
+        "#wpforms-87-field_8 option"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3120,
+      "school_name": "Maxima",
+      "school_locality": "Črenšovci",
+      "school_location": "",
+      "domain": "maxima.si",
+      "homepage_url": "https://maxima.si/",
+      "url": "https://maxima.si/tecaj-cestno-prometnih-predpisov/",
+      "selectors": [
+        "h2.entry-title"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3144,
+      "school_name": "Kos",
+      "school_locality": "Rogaška Slatina",
+      "school_location": "",
+      "domain": "solavoznjekos.si",
+      "homepage_url": "https://solavoznjekos.si/",
+      "url": "https://solavoznjekos.si/prijava-cpp.html",
+      "selectors": [
+        "select option"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3058,
+      "school_name": "L Mark",
+      "school_locality": "Celje",
+      "school_location": "",
+      "domain": "lmark.si",
+      "homepage_url": "https://lmark.si/",
+      "url": "https://lmark.si/cpp/",
+      "selectors": [
+        "li.wp-block-kadence-listitem"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3112,
+      "school_name": "Prometna šola Maribor",
+      "school_locality": "Maribor",
+      "school_location": "",
+      "domain": "prometna.net",
+      "homepage_url": "https://prometna.net/",
+      "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-januar-2027/",
+      "selectors": [
+        "p"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3176,
+      "school_name": "Alfa-B",
+      "school_locality": "Novo Mesto",
+      "school_location": "",
+      "domain": "alfa-b.si",
+      "homepage_url": "https://alfa-b.si/",
+      "url": "https://alfa-b.si/urniki-tecajev/",
+      "selectors": [
+        ".urnik-data h3",
+        ".urnik-data h4",
+        ".urnik-data p"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3159,
+      "school_name": "Blatnik",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "vezi.si",
+      "homepage_url": "https://vezi.si/",
+      "url": "https://vezi.si/prijava-na-tecaj-cpp/",
+      "selectors": [
+        "li"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3142,
+      "school_name": "Čadej",
+      "school_locality": "Žalec",
+      "school_location": "",
+      "domain": "solavoznjecadej.si",
+      "homepage_url": "https://solavoznjecadej.si/",
+      "url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/",
+      "selectors": [
+        "select option"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3145,
+      "school_name": "Maselj",
+      "school_locality": "Domžale",
+      "school_location": "",
+      "domain": "www.avtosola-maselj.si",
+      "homepage_url": "https://www.avtosola-maselj.si/",
+      "url": "https://www.avtosola-maselj.si/#urnikicppteajev",
+      "selectors": [
+        "p.font_8"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3143,
+      "school_name": "Nomago",
+      "school_locality": "Celje",
+      "school_location": "",
+      "domain": "www.nomago.si",
+      "homepage_url": "https://www.nomago.si/",
+      "url": "https://www.nomago.si/sola-voznje/tecaj-cpp",
+      "selectors": [
+        ".table-row"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3179,
+      "school_name": "Polo",
+      "school_locality": "Postojna",
+      "school_location": "",
+      "domain": "aspolo.si",
+      "homepage_url": "https://aspolo.si/",
+      "url": "https://aspolo.si/tecaj-cpp/",
+      "selectors": [
+        "h3"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3169,
+      "school_name": "Sapač",
+      "school_locality": "Murska Sobota",
+      "school_location": "",
+      "domain": "www.solavoznje.sapac.si",
+      "homepage_url": "https://www.solavoznje.sapac.si/",
+      "url": "https://www.solavoznje.sapac.si/",
+      "selectors": [
+        "h3"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3153,
+      "school_name": "Vito",
+      "school_locality": "Velike Lašče",
+      "school_location": "",
+      "domain": "www.avtosola-vito.si",
+      "homepage_url": "https://www.avtosola-vito.si/",
+      "url": "https://www.avtosola-vito.si/tecaj-cpp-2/",
+      "selectors": [
+        "select option"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3091,
+      "school_name": "Stop",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "stop.si",
+      "homepage_url": "https://stop.si/",
+      "url": "https://stop.si/prijava-na-cpp/",
+      "selectors": [
+        "#post-7819 p"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
       "extractor": "date-nodes-v1",
       "priority": 2,
       "approved": true,

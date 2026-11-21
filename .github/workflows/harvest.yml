@@ -51,11 +51,11 @@ jobs:
           node scripts/harvest-cpp-browser-sources.mjs --validate-only
 
       - name: Inspect remaining public school websites
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: node scripts/harvest-cpp-browser-sources.mjs --audit-candidates
 
       - name: Publish public website coverage evidence
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           mkdir -p data
           cp build/cpp-source-audit.json data/cpp-source-audit.json
@@ -72,7 +72,7 @@ jobs:
         if: github.event_name != 'pull_request'
         env:
           VZI_CPP_MANIFEST_SIGNING_KEY: ${{ secrets.VZI_CPP_MANIFEST_SIGNING_KEY }}
-          VZI_CPP_MAX_SOURCES_PER_RUN: "20"
+          VZI_CPP_MAX_SOURCES_PER_RUN: "100"
         run: node scripts/harvest-cpp-browser-sources.mjs
 
       - name: Publish latest signed manifest
@@ -89,3 +89,4 @@ jobs:
           fi
           git commit -m "chore: publish signed CPP observations"
           git push origin HEAD:main
+

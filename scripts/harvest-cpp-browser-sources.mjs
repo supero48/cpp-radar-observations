@@ -79,13 +79,21 @@ function canonicalDateRange(value) {
 }
 
 function canonicalTimeRange(value) {
-  const hours = String(value).match(/\b(?:ob|od)\s*(\d{1,2})\s*(?:\.?\s*h\b|\.?\s*uri\b)/iu);
+  // A calendar date must never be interpreted as an hour and minute.
+  const text = String(value)
+    .replace(/\b\d{1,2}[./]\s*\d{1,2}[./]\s*(?:20\d{2}|\d{2})?\s*(?:do|–|—|-|in)\s*\d{1,2}[./]\s*\d{1,2}[./]\s*(?:20\d{2}|\d{2})\b/giu, ' ')
+    .replace(/\b\d{1,2}\s*([./])\s*\d{1,2}\s*\1\s*(?:20\d{2}|\d{2})\b/gu, ' ');
+  const range = text.match(/(?<![\d:.])(\d{1,2})[:.](\d{2})\s*h?\s*(?:do|–|—|-)\s*(\d{1,2})[:.](\d{2})\s*h?\b/iu);
+  if (range && Number(range[1]) <= 23 && Number(range[2]) <= 59 && Number(range[3]) <= 23 && Number(range[4]) <= 59) {
+    return { startTime: range[1].padStart(2, '0') + ':' + range[2] + ':00', endTime: range[3].padStart(2, '0') + ':' + range[4] + ':00' };
+  }
+  const hours = text.match(/\b(?:ob|od)\s*(\d{1,2})\s*(?:\.?\s*h\b|\.?\s*uri\b)/iu);
   if (hours && Number(hours[1]) <= 23) return { startTime: String(Number(hours[1])).padStart(2, "0") + ":00:00", endTime: null };
-  const spaced = String(value).match(/\bob\s*(\d{1,2})\s+(\d{2})\s*min\b/iu);
+  const spaced = text.match(/\bob\s*(\d{1,2})\s+(\d{2})\s*min\b/iu);
   if (spaced && Number(spaced[1]) <= 23 && Number(spaced[2]) <= 59) return { startTime: spaced[1].padStart(2, "0") + ":" + spaced[2] + ":00", endTime: null };
-  const shortRange = String(value).match(/(?<![\d:.])\b(\d{1,2})\s*[-–]\s*(\d{1,2}):(\d{2})\b/u);
+  const shortRange = text.match(/(?<![\d:.])\b(\d{1,2})\s*[-–]\s*(\d{1,2}):(\d{2})\b/u);
   if (shortRange && Number(shortRange[1]) <= 23 && Number(shortRange[2]) <= 23 && Number(shortRange[3]) <= 59) return { startTime: shortRange[1].padStart(2, "0") + ":00:00", endTime: shortRange[2].padStart(2, "0") + ":" + shortRange[3] + ":00" };
-  const match = String(value).match(/\b(\d{1,2})[:.](\d{2})\s*[–—-]\s*(\d{1,2})[:.](\d{2})\b/u);
+  const match = text.match(/\b(\d{1,2})[:.](\d{2})\s*[–—-]\s*(\d{1,2})[:.](\d{2})\b/u);
   if (match) {
     const values = match.slice(1).map(Number);
     if (values[0] > 23 || values[1] > 59 || values[2] > 23 || values[3] > 59) return { startTime: null, endTime: null };
@@ -94,7 +102,7 @@ function canonicalTimeRange(value) {
       endTime: `${String(values[2]).padStart(2, "0")}:${String(values[3]).padStart(2, "0")}:00`
     };
   }
-  const single = String(value).match(/\bob\s*(\d{1,2})[:.](\d{2})\b/iu);
+  const single = text.match(/(?<![\d:.])\b(\d{1,2})[:.](\d{2})\b/iu);
   if (!single || Number(single[1]) > 23 || Number(single[2]) > 59) return { startTime: null, endTime: null };
   return {
     startTime: `${String(Number(single[1])).padStart(2, "0")}:${String(Number(single[2])).padStart(2, "0")}:00`,
@@ -144,6 +152,8 @@ function dateNodePayloadItem(item) {
   const text = [identityText, item.contextText].filter(Boolean).join(" ").replace(/_/g, " ").replace(/\s+/g, " ").trim();
   const dates = canonicalDateRange(identityText);
   if (!dates) return null;
+  const endDate = item.endDateText ? canonicalDateRange(item.endDateText)?.startDate : null;
+  if (endDate && endDate >= dates.startDate) dates.endDate = endDate;
   const titleText = String(item.titleText || "").replace(/_/g, " ").trim();
   const categoryText = explicitCategoryText(titleText + " " + text);
   const courseType = /\b(?:splošni|osnovni)[-\s]+del\b/iu.test(text)
@@ -156,12 +166,41 @@ function dateNodePayloadItem(item) {
     titleText,
     dates,
     times: canonicalTimeRange(item.timeText || (item.suppressContextTime ? identityText : text)),
-    location: canonicalLocation(item.locationText || text),
+    location: item.explicitLocation || canonicalLocation(item.locationText || text),
     courseType,
     categoryText,
     mode: item.mode || (/\b(?:na\s+daljavo|online)\b/iu.test(text) ? "ONLINE" : null),
-    priceAmount: priceMatch ? Number(priceMatch[1].replace(",", ".")) : null
+    priceAmount: priceMatch ? Number(priceMatch[1].replace(",", ".")) : null,
+    registrationUrl: item.registrationUrl || null
   };
+}
+
+function publicCourseItems(schoolId, item) {
+  if (schoolId === 3073) {
+    const result = [];
+    let category = '';
+    const lines = String(item.lines || '').split(/\n/u).map(s => s.trim()).filter(Boolean);
+    for (let index = 0; index < lines.length; index++) {
+      const line = lines[index];
+      if (/kategorija/iu.test(line)) category = line;
+      if (category && /^\d{1,2}\.\d{1,2}\.20\d{2}\b/u.test(line)) {
+        const next = lines[index + 1] || '';
+        const timeText = /^(?:ob|od)\s*\d/iu.test(next) ? next : line;
+        result.push({ text: category + ' ' + line + ' ' + timeText, titleText: 'Tečaj CPP — ' + category, timeText });
+      }
+    }
+    return result;
+  }
+  if (schoolId === 3179 && !/splošni del/iu.test(item.text)) {
+    return Array.from(item.text.matchAll(/\b(A1|A2|AM|BE|CE|A|B|C|D)-kat\.\s*[-=]>\s*(\d{1,2}\.\d{1,2}\.\d{2,4})\b/giu), m => ({
+      ...item, text: 'Dodatni del tečaja CPP — kategorija ' + m[1] + ': ' + m[2], titleText: 'Dodatni del tečaja CPP — kategorija ' + m[1]
+    }));
+  }
+  if ([3058, 3091, 3099, 3116].includes(schoolId)) {
+    const dates = Array.from(item.text.matchAll(/\b\d{1,2}\.\s*\d{1,2}\.\s*(?:20\d{2}|\d{2})\b/gu), m => m[0]);
+    if (dates.length > 1) item.endDateText = dates.at(-1);
+  }
+  return [item];
 }
 
 function titleCaseLocality(value) {
@@ -444,9 +483,32 @@ if (process.argv.includes("--self-test")) {
     canonicalTimeRange("ob 16h").startTime === "16:00:00",
     canonicalTimeRange("ob 15 30 min").startTime === "15:30:00",
     canonicalTimeRange("ob 17.h").startTime === "17:00:00",
-    new RegExp(dateBearingNamedPattern, "iu").test("23 novembra, 2026 17:00")
+    new RegExp(dateBearingNamedPattern, "iu").test("23 novembra, 2026 17:00"),
+    canonicalTimeRange('1.12.26 do 9.12.26 ob 15 30 min do 18 30 min').startTime === '15:30:00',
+    canonicalTimeRange('11. 1. 27 – 20. 1. 27 od 15.30 do 18.30').endTime === '18:30:00',
+    canonicalTimeRange('23.11. do 30.11. 2026 / 16 - 19:15').startTime === '16:00:00',
+    canonicalTimeRange('7.12.2026 - 15.12.2026 od 15.45 - 18.45 ure').endTime === '18:45:00',
+    canonicalTimeRange('30.11.2026 14:00 Tečaj CPP - kategorija B').startTime === '14:00:00',
+    canonicalTimeRange('23 novembra, 2026 17:00').startTime === '17:00:00',
+    canonicalTimeRange('14.12.26 vsi dnevi: 14,15,16,17,21 in 22.12.26').startTime === null,
+    canonicalTimeRange('Začetek tečaja 23. november 2026 ob 17. uri').startTime === '17:00:00',
+    canonicalTimeRange('Tečaj CPP 03.12.2026 ob 16h').startTime === '16:00:00',
+    publicCourseItems(3179, {text:'A-kat. -> 24.11.26 C-kat. -> 11.01.27 CE-kat. -> 13.01.27 BE-kat. -> 14.01.27'}).length === 4,
+    dateNodePayloadItem(publicCourseItems(3179, {text:'CE-kat. -> 13.01.27'})[0]).categoryText === 'CE',
+    publicCourseItems(3073, {lines:'B,A1,AM kategorija\n3.12.2026\nod 16h-19h\nA kategorija\n(poteka 2 dni)\n25.11.2026\nob 16h-19h'}).length === 2,
+    dateNodePayloadItem(publicCourseItems(3073, {lines:'B,A1,AM kategorija\n3.12.2026\nod 16h-19h'})[0]).categoryText === 'B, A1, AM',
+    dateNodePayloadItem(publicCourseItems(3116, {text:'CPP - DECEMBER 2026 07.12.2026.....16:00-18:30 08.12.2026.....16:00-19:00 17.12.2026.....16:00-19:00'})[0]).dates.endDate === '2026-12-17',
+    publicCourseItems(3058, {text:'Tečaj CPP: 24.11.2026 ob 15:00, 26.11.2026 ob 15:00, 8.12.2026 ob 15:00'}).length === 1,
+    dateNodePayloadItem(publicCourseItems(3099, {text:'Tečaj CPP - C kategorije 03.12.2026 ob 16h 04.12.2026 ob 16h'})[0]).dates.endDate === '2026-12-04',
+    dateNodePayloadItem({text:'25.11.2026 ob 16.00',explicitLocation:{name:'Slovenj Gradec',streetAddress:'',addressLocality:'Slovenj Gradec'}}).location.addressLocality === 'Slovenj Gradec',
+    robotsAllows('User-agent: *\nDisallow: /*?add-to-cart=\nDisallow: /*?*add-to-cart=\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php', '/prijava-na-tecaj-cpp/'),
+    !robotsAllows('User-agent: *\nDisallow: /*?*add-to-cart=', '/shop/?product=5&add-to-cart=10'),
+    !robotsAllows('User-agent: *\nDisallow: /private/', '/private/calendar'),
+    robotsAllows('User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php', '/wp-admin/admin-ajax.php'),
+    robotsAllows('User-agent: *\nDisallow: /private$','/private-more'),
+    !robotsAllows('User-agent: *\nDisallow: /private$','/private')
   ];
-  if (checks.some((passed) => !passed)) throw new Error("Browser structured-event self-test failed");
+  if (checks.some((passed) => !passed)) throw new Error('Browser structured-event self-test failed: ' + checks.flatMap((passed, index) => passed ? [] : [index + 1]).join(', '));
   process.stdout.write(`Browser structured-event self-test PASS: ${checks.length} checks.\n`);
   process.exit(0);
 }
@@ -569,10 +631,14 @@ function robotsAllows(body, pathName) {
   let allowed = true;
   let longest = -1;
   for (const rule of rules) {
-    const prefix = rule.path.replace(/\*.*$/, "");
-    if (!prefix || !pathName.startsWith(prefix)) continue;
-    if (rule.path.length >= longest) {
-      longest = rule.path.length;
+    if (!rule.path) continue;
+    const terminal = rule.path.endsWith('$');
+    const pattern = (terminal ? rule.path.slice(0, -1) : rule.path)
+      .split('*').map(part => part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('.*');
+    if (!new RegExp('^' + pattern + (terminal ? '$' : '')).test(pathName)) continue;
+    const specificity = rule.path.replace(/[*$]/gu, '').length;
+    if (specificity > longest || specificity === longest && rule.field === 'allow') {
+      longest = specificity;
       allowed = rule.field === "allow";
     }
   }
@@ -621,6 +687,121 @@ async function harvestSource(cdp, source) {
       for (const node of document.querySelectorAll(selector)) {
         let text = (node.innerText || node.textContent || '').replace(/\\s+/g, ' ').trim();
         let item = { text };
+        const clean = value => String(value || '').replace(/\\s+/g, ' ').trim();
+        const precedingHeading = (start, pattern) => {
+          for (let sibling = start.previousElementSibling; sibling; sibling = sibling.previousElementSibling) {
+            const candidate = clean(sibling.innerText);
+            if (/^H[1-6]$/u.test(sibling.tagName) && (!pattern || pattern.test(candidate))) return candidate;
+          }
+          return '';
+        };
+        if (schoolId === 3088) {
+          const motor = node.closest('[role="tabpanel"]')?.getAttribute('aria-labelledby') === 'tab-motor';
+          item.titleText = motor ? 'Tečaj CPP za motor' : 'Tečaj CPP za B kategorijo';
+          item.timeText = text.replace(/^.*\\/\\s*(\\d{1,2})\\s*-\\s*(\\d{1,2})[.:](\\d{2}).*$/u, 'ob $1:00-$2:$3');
+        } else if (schoolId === 3130) {
+          text = clean(node.querySelector('a.title')?.innerText || text).split(/Kandidati morajo/iu)[0].trim();
+          if (!/^V UČILNICI:/u.test(text)) continue;
+          item.text = text;
+          item.titleText = 'Tečaj CPP — ' + (text.match(/(?:OSNOVNI DEL in kategorija|Kategorija)\\s+[A-Z0-9]+/iu)?.[0] || '');
+          item.registrationUrl = node.querySelector('a.title')?.href;
+          item.mode = 'CLASSROOM';
+        } else if (schoolId === 3150) {
+          if (!/tečaj CPP/iu.test(text)) continue;
+          item.titleText = 'Tečaj CPP';
+        } else if (schoolId === 3073) {
+          item.lines = node.innerText;
+        } else if (schoolId === 3099) {
+          item.titleText = clean(node.querySelector('h4')?.innerText);
+          if (!/Tečaj CPP/iu.test(item.titleText)) continue;
+          item.timeText = text.replace(/0b(?=\\s*\\d)/gu, 'ob');
+          item.registrationUrl = node.querySelector('a.btn-sml')?.href;
+        } else if (schoolId === 3116) {
+          if (!/^CPP\\s*-/u.test(text)) continue;
+          item.titleText = 'Tečaj CPP';
+        } else if (schoolId === 3182) {
+          const locality = clean(node.parentElement.querySelector('h1,h2,h3:not(.cpp2),h4')?.innerText || node.previousElementSibling?.innerText);
+          if (!locality || /\\d/u.test(locality)) continue;
+          item.titleText = 'Tečaj CPP — ' + locality;
+          item.explicitLocation = { name:locality, streetAddress:'', addressLocality:locality };
+        } else if (schoolId === 3151) {
+          item.titleText = clean(node.querySelector('h2')?.innerText);
+          if (!/Tečaj CPP/iu.test(item.titleText)) continue;
+        } else if (schoolId === 3117) {
+          item.titleText = 'Tečaj CPP';
+          item.explicitLocation = { name:'TŠC Maribor', streetAddress:'', addressLocality:'Maribor' };
+        } else if (schoolId === 3065) {
+          item.titleText = 'Tečaj CPP';
+        } else if (schoolId === 3120) {
+          if (!/^Začetek tečaja:/iu.test(text)) continue;
+          item.titleText = 'Tečaj CPP';
+        } else if (schoolId === 3144) {
+          if (!/lokacija/iu.test(text)) continue;
+          item.titleText = 'Tečaj CPP';
+          item.locationText = text.split(/lokacija\\s*/iu)[1] || '';
+        } else if (schoolId === 3058) {
+          if (!/termin predavanj CPP/iu.test(text)) continue;
+          item.titleText = 'Tečaj CPP';
+        } else if (schoolId === 3112) {
+          if (!/organiziramo tečaj CPP/iu.test(text)) continue;
+          item.titleText = 'Tečaj CPP in eCPP';
+          const section = node.closest('article,.entry-content') || node.parentElement;
+          const sessions = Array.from(section.querySelectorAll('p')).map(n=>clean(n.innerText)).filter(s=>/^(?:Torek|Sreda|Četrtek|Ponedeljek|Petek),/iu.test(s)&&numeric.test(s));
+          item.endDateText = sessions.at(-1);
+          const details = clean(section.innerText);
+          const hours = details.match(/med (\\d{1,2})\\. in (\\d{1,2})\\. uro/iu);
+          if (hours) item.timeText = 'ob ' + hours[1] + ':00-' + hours[2] + ':00';
+        } else if (schoolId === 3176) {
+          if (node.matches('h3') && /pričetek naslednjega tečaja/iu.test(node.previousElementSibling?.innerText || '')) {
+            item.titleText = 'Tečaj CPP — osnovni del in B kategorija';
+          } else if (node.matches('p') && /^DODATNI DEL/iu.test(text)) {
+            item.titleText = text.split(':')[0];
+          } else if (node.matches('h4') && /^pričetek/iu.test(text)) {
+            item.titleText = 'Dodatni del CPP — ' + precedingHeading(node, /KATEGORIJA/iu);
+          } else continue;
+          item.locationText = 'Novi trg 10, Novo mesto';
+          const sessionDates = [];
+          for (let sibling=node.nextElementSibling; sibling; sibling=sibling.nextElementSibling) {
+            const detail = clean(sibling.innerText);
+            if ((/^Dodatni del/iu.test(detail) && !(/osnovni del in B/iu.test(item.titleText) && /B[- ]+KAT/iu.test(detail))) || /^[A-Z0-9, ]+\\s*[–-]\\s*KATEGORIJA/iu.test(detail)) break;
+            if (numeric.test(detail) && !/Zbor|vpis/iu.test(detail)) sessionDates.push(detail);
+          }
+          item.endDateText = sessionDates.at(-1);
+        } else if (schoolId === 3159) {
+          if (!/^\\d{1,2}\\.\\d{1,2}\\.20\\d{2}\\s+ob/u.test(text)) continue;
+          item.titleText = 'Tečaj CPP';
+        } else if (schoolId === 3142) {
+          if (!/kategorija.*Lokacija:.*Ura:/iu.test(text)) continue;
+          const pieces = text.split(/\\s+I\\s+/u);
+          item.titleText = 'Tečaj CPP — ' + (pieces[2] || '');
+          const place = text.match(/Lokacija:\\s*(.*?)\\s+I\\s+Ura:/iu)?.[1] || '';
+          const parts = place.split(/-\\s*/u);
+          if (parts.length === 2) item.explicitLocation = { name:parts[1] + ', ' + parts[0], streetAddress:parts[1], addressLocality:parts[0] };
+          item.timeText = text.split(/Ura:/iu)[1] || '';
+        } else if (schoolId === 3145) {
+          if (!/^\\d{1,2}\\.\\d{1,2}\\.20\\d{2}\\s+ob/u.test(text)) continue;
+          const section = node.closest('[data-testid="richTextElement"]');
+          if (!/CPP TEČAJ/iu.test(section?.innerText || '')) continue;
+          item.titleText = 'Tečaj CPP';
+        } else if (schoolId === 3143) {
+          if (!/Tečaj CPP/iu.test(text)) continue;
+          item.titleText = text.match(/Tečaj CPP\\s*-\\s*kategorija\\s+[A-Z0-9]+/iu)?.[0] || 'Tečaj CPP';
+          item.locationText = text.match(/Lokacija predavanja:\\s*(.*?)\\s+Prikaži lokacijo/iu)?.[1] || '';
+        } else if (schoolId === 3179) {
+          if (!/Splošni del|[A-Z]-kat\\./iu.test(text)) continue;
+          item.titleText = 'Tečaj CPP — ' + text;
+          item.explicitLocation = { name:'Postojna', streetAddress:'', addressLocality:'Postojna' };
+        } else if (schoolId === 3169) {
+          if (!/TEČAJ CPP.*NOV TEČAJ BO/iu.test(text)) continue;
+          item.titleText = 'Tečaj CPP';
+        } else if (schoolId === 3153) {
+          if (!/Tečaj CPP/iu.test(text)) continue;
+          const category = text.match(/Tečaj CPP\\s*-\\s*([A-Z0-9]+)/iu)?.[1];
+          item.titleText = 'Tečaj CPP' + (category ? ' za ' + category + ' kategorijo' : '');
+        } else if (schoolId === 3091) {
+          if (!/CPP tečaj/iu.test(text)) continue;
+          item.titleText = 'Tečaj CPP';
+        }
         if (schoolId === 3113 && node.matches('.table-row')) {
           item.titleText = node.querySelector('.col-title strong')?.innerText || '';
           item.timeText = 'ob ' + (node.querySelector('.col-time-1')?.innerText || '');
@@ -679,7 +860,8 @@ async function harvestSource(cdp, source) {
   if (!Array.isArray(result?.items) || result.items.length === 0) {
     throw new Error(`${source.school_name}: rendered page contained no date-bearing approved nodes`);
   }
-  const availableItems = result.items.filter((item) => !isUnavailableTerm(item.text));
+  const expandedItems = result.items.flatMap(item => publicCourseItems(source.school_id, item));
+  const availableItems = expandedItems.filter((item) => !isUnavailableTerm(item.text));
   if (availableItems.length === 0) {
     throw new Error(`${source.school_name}: rendered page contained only unavailable terms`);
   }
@@ -736,7 +918,7 @@ async function harvestSource(cdp, source) {
     escape(result.title || source.school_name) + "</title><script type=\"application/ld+json\">" +
     jsonLd + "</script></head><body><main><h1>" +
     escape(source.context_text) + "</h1></main></body></html>";
-  return { html, nodeCount: payloadItems.length, skippedUnavailable: result.items.length - availableItems.length };
+  return { html, nodeCount: payloadItems.length, skippedUnavailable: expandedItems.length - availableItems.length };
 }
 
 
@@ -762,7 +944,7 @@ async function auditCandidateSites() {
             const blocked = /verify.{0,30}(?:human|browser)|checking your browser|please wait while your request is being verified|access denied|just a moment/iu.test(body.slice(0,1200));
             const dated = /\\b\\d{1,2}\\s*[.\\/-]\\s*\\d{1,2}\\s*[.\\/-]\\s*(?:20\\d{2}|\\d{2})\\b|\\b\\d{1,2}\\.?\\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\\.?\\s*,?\\s*20\\d{2}\\b/iu;
             const nodes = [];
-            if (!blocked) for (const node of document.querySelectorAll('h1,h2,h3,h4,h5,p,li,label,option,button,td,.table-row,.term-card')) {
+            if (!blocked) for (const node of document.querySelectorAll('h1,h2,h3,h4,h5,p,li,label,option,button,td,.table-row,.term-card,rs-layer,[data-testid="richTextElement"],.prihajam-half')) {
               const text = clean(node.innerText || node.textContent);
               if (!text || text.length > 700 || !dated.test(text)) continue;
               if (nodes.some(n => n.text === text)) continue;
@@ -781,6 +963,7 @@ async function auditCandidateSites() {
             return { url:location.href, title:document.title, blocked, nodes, links };
           })()`;
           const page = await evaluate(runtime.cdp, expression);
+          if (page?.url?.startsWith('chrome-error:')) throw new Error('Public page did not load');
           if (!page || page.blocked) {
             result.status = "VERIFICATION_REQUIRED";
             result.pages.push({ url, title: page?.title || "", blocked: true });
@@ -918,3 +1101,4 @@ try {
     retryDelay: 250
   });
 }
+
