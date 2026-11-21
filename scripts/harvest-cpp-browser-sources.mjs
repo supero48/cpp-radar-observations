@@ -102,7 +102,7 @@ function canonicalTimeRange(value) {
       endTime: `${String(values[2]).padStart(2, "0")}:${String(values[3]).padStart(2, "0")}:00`
     };
   }
-  const single = text.match(/(?<![\d:.])\b(\d{1,2})[:.](\d{2})\b/iu);
+  const single = text.match(/(?<![\d:.])\b(\d{1,2})[:.](\d{2})(?:h)?\b/iu);
   if (!single || Number(single[1]) > 23 || Number(single[2]) > 59) return { startTime: null, endTime: null };
   return {
     startTime: `${String(Number(single[1])).padStart(2, "0")}:${String(Number(single[2])).padStart(2, "0")}:00`,
@@ -160,12 +160,14 @@ function dateNodePayloadItem(item) {
     ? "CPP_GENERAL"
     : /\bdodatni\s+del\b/iu.test(text) ? "CPP_ADDITIONAL" : categoryText ? "CPP_UNSPECIFIED" : "CPP_GENERAL";
   const priceMatch = String(item.priceText || "").match(/\bcena:\s*(\d+(?:[.,]\d{1,2})?)\s*€/iu);
+  const times = canonicalTimeRange(item.timeText || (item.suppressContextTime ? identityText : text));
+  if (item.endTimeText) times.endTime = canonicalTimeRange(item.endTimeText).endTime;
   return {
     text,
     identityText,
     titleText,
     dates,
-    times: canonicalTimeRange(item.timeText || (item.suppressContextTime ? identityText : text)),
+    times,
     location: item.explicitLocation || canonicalLocation(item.locationText || text),
     courseType,
     categoryText,
@@ -197,8 +199,11 @@ function publicCourseItems(schoolId, item) {
     }));
   }
   if ([3058, 3091, 3099, 3116].includes(schoolId)) {
-    const dates = Array.from(item.text.matchAll(/\b\d{1,2}\.\s*\d{1,2}\.\s*(?:20\d{2}|\d{2})\b/gu), m => m[0]);
-    if (dates.length > 1) item.endDateText = dates.at(-1);
+    const dates = Array.from(item.text.matchAll(/\b\d{1,2}\.\s*\d{1,2}\.\s*(?:20\d{2}|\d{2})\b/gu));
+    if (dates.length > 1) {
+      item.endDateText = dates.at(-1)[0];
+      item.endTimeText = item.text.slice(dates.at(-1).index);
+    }
   }
   return [item];
 }
@@ -506,7 +511,11 @@ if (process.argv.includes("--self-test")) {
     !robotsAllows('User-agent: *\nDisallow: /private/', '/private/calendar'),
     robotsAllows('User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php', '/wp-admin/admin-ajax.php'),
     robotsAllows('User-agent: *\nDisallow: /private$','/private-more'),
-    !robotsAllows('User-agent: *\nDisallow: /private$','/private')
+    !robotsAllows('User-agent: *\nDisallow: /private$','/private'),
+    canonicalTimeRange('SREDA, 02.12.2026 ob 14.30h').startTime === '14:30:00',
+    canonicalTimeRange('sob., 05.12.2026, 07.00h').startTime === '07:00:00',
+    dateNodePayloadItem(publicCourseItems(3116, {text:'CPP - DECEMBER 2026 07.12.2026.....16:00-18:30 17.12.2026.....16:00-19:00'})[0]).times.endTime === '19:00:00',
+    dateNodePayloadItem(publicCourseItems(3099, {text:'Tečaj CPP - C kategorije 03.12.2026 ob 16h 04.12.2026 ob 16h'})[0]).times.endTime === null
   ];
   if (checks.some((passed) => !passed)) throw new Error('Browser structured-event self-test failed: ' + checks.flatMap((passed, index) => passed ? [] : [index + 1]).join(', '));
   process.stdout.write(`Browser structured-event self-test PASS: ${checks.length} checks.\n`);
