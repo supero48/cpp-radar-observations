@@ -594,10 +594,10 @@ async function startChrome() {
   ], { stdio: "ignore" });
 
   let version;
-  for (let attempt = 0; attempt < 40; attempt += 1) {
+  for (let attempt = 0; attempt < 120; attempt += 1) {
     if (child.exitCode !== null) break;
     try {
-      const response = await fetch(`http://127.0.0.1:${port}/json/version`);
+      const response = await fetch(`http://127.0.0.1:${port}/json/version`, { signal: AbortSignal.timeout(1000) });
       if (response.ok) {
         version = await response.json();
         break;
@@ -607,7 +607,11 @@ async function startChrome() {
     }
     await wait(250);
   }
-  if (!version?.webSocketDebuggerUrl) throw new Error("Chrome did not expose a local CDP endpoint");
+  if (!version?.webSocketDebuggerUrl) {
+    if (child.exitCode === null) child.kill('SIGKILL');
+    fs.rmSync(profile, { recursive:true, force:true, maxRetries:8, retryDelay:250 });
+    throw new Error('Chrome did not expose a local CDP endpoint within the startup window');
+  }
   const targets = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
   const page = targets.find((target) => target.type === "page");
   if (!page?.webSocketDebuggerUrl) throw new Error("Chrome did not expose a page target");
@@ -809,7 +813,10 @@ async function harvestSource(cdp, source) {
           item.titleText = 'Tečaj CPP' + (category ? ' za ' + category + ' kategorijo' : '');
         } else if (schoolId === 3091) {
           if (!/CPP tečaj/iu.test(text)) continue;
-          item.titleText = 'Tečaj CPP';
+          // The school's linked CPP programme explicitly names the classroom
+          // and combined B course: https://stop.si/kako-do-vozniskega-2/
+          item.titleText = 'Tečaj CPP — splošni del in dodatni del B kategorije';
+          item.explicitLocation = { name:'Prušnikova ulica 57, Ljubljana-Šentvid', streetAddress:'Prušnikova ulica 57', addressLocality:'Ljubljana-Šentvid' };
         }
         if (schoolId === 3113 && node.matches('.table-row')) {
           item.titleText = node.querySelector('.col-title strong')?.innerText || '';
