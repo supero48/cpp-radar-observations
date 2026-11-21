@@ -1255,7 +1255,7 @@ async function harvestSource(cdp, source) {
       }
       if (found.length >= maxNodes) break;
     }
-    return { title: document.title, items: found, ...(schoolId===3147?{diagnostics:Array.from(document.querySelectorAll('.elementor-icon-box-description')).filter(n=>/20\\d{2}/u.test(n.textContent)).map(n=>({text:clean(n.textContent),place:clean(n.closest('.elementor-icon-box-content')?.querySelector('.elementor-icon-box-title')?.textContent),category:clean(n.closest('.e-child')?.querySelector('h2')?.textContent)}))}:{}) };
+    return { title: document.title, items: found, ...(schoolId===3147?{diagnostics:{url:location.href,title:document.title,excerpt:clean(document.body?.innerText).slice(0,220),count:document.querySelectorAll('.elementor-icon-box-description').length,nodes:Array.from(document.querySelectorAll('.elementor-icon-box-description')).filter(n=>/20\\d{2}/u.test(n.textContent)).map(n=>({text:clean(n.textContent),place:clean(n.closest('.elementor-icon-box-content')?.querySelector('.elementor-icon-box-title')?.textContent),category:clean(n.closest('.e-child')?.querySelector('h2')?.textContent)}))}}:{}) };
   })()`;
   const collect = async () => source.school_id === 3064 ? await collectSmarcaPublicTerms(cdp)
     : source.school_id === 3096 ? await collectBliskPublicTerms(cdp,source)
