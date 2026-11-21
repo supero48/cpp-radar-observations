@@ -1,0 +1,357 @@
+[
+  {
+    "school_id": 3088,
+    "school_name": "3D",
+    "url": "https://3-d.si/prijava-na-tecaj-cpp/"
+  },
+  {
+    "school_id": 3086,
+    "school_name": "AMTK Plus",
+    "url": "https://www.as-amtk.si/cpp/"
+  },
+  {
+    "school_id": 3141,
+    "school_name": "Antlej",
+    "url": "https://antlej.si/prijava_cpp/"
+  },
+  {
+    "school_id": 3104,
+    "school_name": "Aš Jarše",
+    "url": "https://www.as-jarse.si/"
+  },
+  {
+    "school_id": 3127,
+    "school_name": "Aš-Amd",
+    "url": "https://www.as-amd.si/"
+  },
+  {
+    "school_id": 3057,
+    "school_name": "Avto Moto Krpan",
+    "url": "https://avtosola-krpan.si/tecaj-cpp/"
+  },
+  {
+    "school_id": 3130,
+    "school_name": "Amd Postojna",
+    "url": "https://amdpostojna.si/"
+  },
+  {
+    "school_id": 3135,
+    "school_name": "Center Ptuj",
+    "url": "https://avtosola-center.si/teoreticni-del/"
+  },
+  {
+    "school_id": 3065,
+    "school_name": "Lončar",
+    "url": "https://avtosola-loncar.si/pogoji-za-udelezbo-cpp-tecajev/"
+  },
+  {
+    "school_id": 3120,
+    "school_name": "Maxima",
+    "url": "https://maxima.si/tecaj-cestno-prometnih-predpisov/"
+  },
+  {
+    "school_id": 3150,
+    "school_name": "Triglav",
+    "url": "https://avtosola-triglav.si/"
+  },
+  {
+    "school_id": 3072,
+    "school_name": "AMD Pinko Tomažič",
+    "url": "http://www.amdpiran-drustvo.si/"
+  },
+  {
+    "school_id": 3087,
+    "school_name": "Brulc",
+    "url": "http://www.avtosola-brulc.si/"
+  },
+  {
+    "school_id": 3075,
+    "school_name": "Capris",
+    "url": "https://www.as-capris.si/cpp"
+  },
+  {
+    "school_id": 3077,
+    "school_name": "Humar",
+    "url": "https://www.avtosola-humar.si/kategorije/cpp-tecaj/"
+  },
+  {
+    "school_id": 3073,
+    "school_name": "Zulić",
+    "url": "https://www.avtosolazulic.com/"
+  },
+  {
+    "school_id": 3095,
+    "school_name": "Avtotrade",
+    "url": "https://avtosola-avtotrade.si/tecaj-cpp/"
+  },
+  {
+    "school_id": 3102,
+    "school_name": "4-Ka",
+    "url": "https://www.4kasolavoznje.com/tecaj-cpp.html"
+  },
+  {
+    "school_id": 3074,
+    "school_name": "GJD",
+    "url": "https://gjd.si/"
+  },
+  {
+    "school_id": 3131,
+    "school_name": "Herbby",
+    "url": "http://www.herbby.si/"
+  },
+  {
+    "school_id": 3070,
+    "school_name": "K & D",
+    "url": "https://www.kind.si/termini-in-izpiti/online-prijava-termini-cpp"
+  },
+  {
+    "school_id": 3098,
+    "school_name": "Korelat",
+    "url": "https://www.korelat.si/cpp-tecaji/"
+  },
+  {
+    "school_id": 3144,
+    "school_name": "Kos",
+    "url": "https://solavoznjekos.si/prijava-cpp.html"
+  },
+  {
+    "school_id": 3058,
+    "school_name": "L Mark",
+    "url": "https://lmark.si/cpp/"
+  },
+  {
+    "school_id": 3118,
+    "school_name": "Laura Kreslin",
+    "url": "https://solavoznjelaura.com/"
+  },
+  {
+    "school_id": 3055,
+    "school_name": "Mazzoni",
+    "url": "https://www.avtosola-mazzoni.com/"
+  },
+  {
+    "school_id": 3174,
+    "school_name": "Moto VV",
+    "url": "https://motovv.com/prijava/"
+  },
+  {
+    "school_id": 3099,
+    "school_name": "Nada Tours",
+    "url": "http://www.nada-tours.com/"
+  },
+  {
+    "school_id": 3114,
+    "school_name": "Oman",
+    "url": "https://www.solavoznjeoman.com/"
+  },
+  {
+    "school_id": 3101,
+    "school_name": "Peter Zagorc",
+    "url": "http://www.petervoznja.si/"
+  },
+  {
+    "school_id": 3184,
+    "school_name": "Plomos",
+    "url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp"
+  },
+  {
+    "school_id": 3100,
+    "school_name": "Polžek",
+    "url": "https://avtosola-polzek.com/"
+  },
+  {
+    "school_id": 3063,
+    "school_name": "Vojko Verdev",
+    "url": "https://www.solavoznje-verdev.si/prijava/tecaj-cpp/"
+  },
+  {
+    "school_id": 3076,
+    "school_name": "Praktikum",
+    "url": "https://avtosola.praktikum.si/sola-voznje/prijava-na-cpp/"
+  },
+  {
+    "school_id": 3134,
+    "school_name": "Prednost",
+    "url": "https://www.prednost.si/"
+  },
+  {
+    "school_id": 3060,
+    "school_name": "Brez strahu za volanom",
+    "url": "https://brezstrahuzavolanom.si/"
+  },
+  {
+    "school_id": 3116,
+    "school_name": "Prihajam",
+    "url": "https://prihajam.si/"
+  },
+  {
+    "school_id": 3068,
+    "school_name": "Primago",
+    "url": "https://www.primago.si/tecaj-cpp"
+  },
+  {
+    "school_id": 3112,
+    "school_name": "Prometna šola Maribor",
+    "url": "https://prometna.net/sola-voznje/cenik-in-prijava/tecaj-cpp-prijava/"
+  },
+  {
+    "school_id": 3096,
+    "school_name": "Blisk",
+    "url": "https://www.blisk-as.si/cpp-pp-termini/tecajcpponline"
+  },
+  {
+    "school_id": 3155,
+    "school_name": "Volan",
+    "url": "https://avtosolavolan.com/cpp-tecaj/"
+  },
+  {
+    "school_id": 3176,
+    "school_name": "Alfa-B",
+    "url": "https://alfa-b.si/tecaj-cpp/"
+  },
+  {
+    "school_id": 3167,
+    "school_name": "Benko",
+    "url": "https://www.solavoznje-benko.si/"
+  },
+  {
+    "school_id": 3159,
+    "school_name": "Blatnik",
+    "url": "https://vezi.si/prijava-na-tecaj-cpp/"
+  },
+  {
+    "school_id": 3142,
+    "school_name": "Čadej",
+    "url": "https://solavoznjecadej.si/sola-voznje/kako-do-izpita/"
+  },
+  {
+    "school_id": 3182,
+    "school_name": "Felix",
+    "url": "https://www.solavoznjefelix.si/"
+  },
+  {
+    "school_id": 3172,
+    "school_name": "Ferdo",
+    "url": "https://www.ferdo.si/prijava-na-cpp/"
+  },
+  {
+    "school_id": 3147,
+    "school_name": "Ilke",
+    "url": "https://ilke.si/prijava-na-cpp/"
+  },
+  {
+    "school_id": 3170,
+    "school_name": "Kovač",
+    "url": "https://solavoznje-kovac.com/"
+  },
+  {
+    "school_id": 3148,
+    "school_name": "M&M",
+    "url": "https://www.solavoznje-mm.si/index.html#kontakt"
+  },
+  {
+    "school_id": 3145,
+    "school_name": "Maselj",
+    "url": "https://www.avtosola-maselj.si/#urnikicppteajev"
+  },
+  {
+    "school_id": 3157,
+    "school_name": "Mekinc",
+    "url": "https://www.mekinc.si/"
+  },
+  {
+    "school_id": 3166,
+    "school_name": "Nomad",
+    "url": "https://avtosola-nomad.si/"
+  },
+  {
+    "school_id": 3143,
+    "school_name": "Nomago",
+    "url": "https://www.nomago.si/sola-voznje/tecaj-cpp"
+  },
+  {
+    "school_id": 3179,
+    "school_name": "Polo",
+    "url": "https://aspolo.si/tecaj-cpp/"
+  },
+  {
+    "school_id": 3151,
+    "school_name": "Prah Sevnica",
+    "url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/"
+  },
+  {
+    "school_id": 3169,
+    "school_name": "Sapač",
+    "url": "https://www.solavoznje.sapac.si/"
+  },
+  {
+    "school_id": 3168,
+    "school_name": "Semafor",
+    "url": "https://www.solavoznje-semafor.si/"
+  },
+  {
+    "school_id": 3146,
+    "school_name": "Start",
+    "url": "https://solavoznje-start.si/cpp-tecaj/"
+  },
+  {
+    "school_id": 3163,
+    "school_name": "Urek",
+    "url": "http://urek.si/index.php/pricetek-tecaja-cpp/"
+  },
+  {
+    "school_id": 3153,
+    "school_name": "Vito",
+    "url": "https://www.avtosola-vito.si/tecaj-cpp-2/"
+  },
+  {
+    "school_id": 3115,
+    "school_name": "Pek",
+    "url": "https://solavoznjepek.si/"
+  },
+  {
+    "school_id": 3061,
+    "school_name": "Šolski center Šentjur",
+    "url": "https://sc-s.si/ostale-dejavnosti/sola-voznje/"
+  },
+  {
+    "school_id": 3059,
+    "school_name": "Šolski center Slovenske Konjice-Zreče",
+    "url": "https://www.sc-konjice-zrece.si/sola-voznje-2/prijavnica-za-tecaj-cpp/"
+  },
+  {
+    "school_id": 3117,
+    "school_name": "Šteflič",
+    "url": "https://www.solavoznje-steflic.net/tecaj-cpp"
+  },
+  {
+    "school_id": 3091,
+    "school_name": "Stop",
+    "url": "https://stop.si/pogoji-za-prijavo-in-udelezbo-na-tecaj-cpp/"
+  },
+  {
+    "school_id": 3097,
+    "school_name": "SIC Ljubljana",
+    "url": "https://www.avtosola-jezica.com/"
+  },
+  {
+    "school_id": 3082,
+    "school_name": "Petrišič",
+    "url": "http://www.avtosolapetrisic.si/"
+  },
+  {
+    "school_id": 3111,
+    "school_name": "Videčnik",
+    "url": "https://videcnik.si/sl/"
+  },
+  {
+    "school_id": 3090,
+    "school_name": "Voyage",
+    "url": "http://www.voyage.si/"
+  },
+  {
+    "school_id": 3108,
+    "school_name": "Vremec",
+    "url": "http://www.vremec.si/"
+  }
+]

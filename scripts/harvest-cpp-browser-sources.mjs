@@ -29,7 +29,7 @@ const slovenianMonths = new Map([
   ["november", 11], ["novembra", 11], ["nov", 11],
   ["december", 12], ["decembra", 12], ["dec", 12]
 ]);
-const dateBearingNamedPattern = String.raw`\b\d{1,2}\.\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\.?(?:\s*[–—-]\s*\d{1,2}\.|\s+20\d{2}\b)`;
+const dateBearingNamedPattern = String.raw`\b\d{1,2}\.?\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\.?(?:\s*[–—-]\s*\d{1,2}\.|\s*,?\s*20\d{2}\b)`;
 
 function monthNumber(value) {
   return slovenianMonths.get(String(value).trim().toLocaleLowerCase("sl-SI").replace(/\.$/, "")) || null;
@@ -45,6 +45,15 @@ function isoDate(year, month, day) {
 
 function canonicalDateRange(value) {
   const text = String(value).replace(/\s+/g, " ").trim();
+  const fullNumericRange = text.match(/\b(\d{1,2})[./]\s*(\d{1,2})[./]\s*(20\d{2}|\d{2})\s*(?:do|–|—|-|in)\s*(\d{1,2})[./]\s*(\d{1,2})[./]\s*(20\d{2}|\d{2})\b/iu);
+  const sharedNumericRange = text.match(/\b(\d{1,2})[./]\s*(\d{1,2})[./]\s*(?:do|–|—|-|in)\s*(\d{1,2})[./]\s*(\d{1,2})[./]\s*(20\d{2}|\d{2})\b/iu);
+  const fullYear = value => String(value).length === 2 ? 2000 + Number(value) : Number(value);
+  if (fullNumericRange || sharedNumericRange) {
+    const m = fullNumericRange || sharedNumericRange;
+    const startDate = isoDate(fullYear(fullNumericRange ? m[3] : m[5]), m[2], m[1]);
+    const endDate = isoDate(fullYear(fullNumericRange ? m[6] : m[5]), fullNumericRange ? m[5] : m[4], fullNumericRange ? m[4] : m[3]);
+    if (startDate && endDate && startDate <= endDate) return { startDate, endDate };
+  }
   const namedRange = text.match(/\b(\d{1,2})\.\s*([\p{L}.]+)\s*[–—-]\s*(\d{1,2})\.\s*([\p{L}.]+)\s*(20\d{2})\b/iu);
   if (namedRange) {
     const startMonth = monthNumber(namedRange[2]);
@@ -55,21 +64,27 @@ function canonicalDateRange(value) {
       if (startDate && endDate) return { startDate, endDate };
     }
   }
-  const namedDate = text.match(/\b(\d{1,2})\.\s*([\p{L}.]+)\s*(20\d{2})\b/iu);
+  const namedDate = text.match(/\b(\d{1,2})\.?\s*([\p{L}.]+)\s*,?\s*(20\d{2})\b/iu);
   if (namedDate) {
     const month = monthNumber(namedDate[2]);
     const startDate = month ? isoDate(namedDate[3], month, namedDate[1]) : null;
     if (startDate) return { startDate, endDate: null };
   }
-  const numericDate = text.match(/\b(\d{1,2})\s*[.\/-]\s*(\d{1,2})\s*[.\/-]\s*(20\d{2})\b/u);
+  const numericDate = text.match(/\b(\d{1,2})\s*[.\/-]\s*(\d{1,2})\s*[.\/-]\s*(20\d{2}|\d{2})\b/u);
   if (numericDate) {
-    const startDate = isoDate(numericDate[3], numericDate[2], numericDate[1]);
+    const startDate = isoDate(fullYear(numericDate[3]), numericDate[2], numericDate[1]);
     if (startDate) return { startDate, endDate: null };
   }
   return null;
 }
 
 function canonicalTimeRange(value) {
+  const hours = String(value).match(/\b(?:ob|od)\s*(\d{1,2})\s*(?:\.?\s*h\b|\.?\s*uri\b)/iu);
+  if (hours && Number(hours[1]) <= 23) return { startTime: String(Number(hours[1])).padStart(2, "0") + ":00:00", endTime: null };
+  const spaced = String(value).match(/\bob\s*(\d{1,2})\s+(\d{2})\s*min\b/iu);
+  if (spaced && Number(spaced[1]) <= 23 && Number(spaced[2]) <= 59) return { startTime: spaced[1].padStart(2, "0") + ":" + spaced[2] + ":00", endTime: null };
+  const shortRange = String(value).match(/(?<![\d:.])\b(\d{1,2})\s*[-–]\s*(\d{1,2}):(\d{2})\b/u);
+  if (shortRange && Number(shortRange[1]) <= 23 && Number(shortRange[2]) <= 23 && Number(shortRange[3]) <= 59) return { startTime: shortRange[1].padStart(2, "0") + ":00:00", endTime: shortRange[2].padStart(2, "0") + ":" + shortRange[3] + ":00" };
   const match = String(value).match(/\b(\d{1,2})[:.](\d{2})\s*[–—-]\s*(\d{1,2})[:.](\d{2})\b/u);
   if (match) {
     const values = match.slice(1).map(Number);
@@ -421,7 +436,15 @@ if (process.argv.includes("--self-test")) {
     explicitCategoryText("Tečaj CPP za D kategorijo") === "D",
     explicitCategoryText("Tečaj CPP za C kategorijo") === "C",
     explicitCategoryText("Tečaj CPP") === "",
-    isUnavailableTerm("Ponedeljek, 23.11.2026 Tečaj CPP Ni več prostih mest")
+    isUnavailableTerm("Ponedeljek, 23.11.2026 Tečaj CPP Ni več prostih mest"),
+    canonicalDateRange("23.11. do 30.11. 2026")?.startDate === "2026-11-23",
+    canonicalDateRange("1.12.26 do 9.12.26")?.endDate === "2026-12-09",
+    canonicalDateRange("23. 11. in 24. 11. 26")?.startDate === "2026-11-23",
+    canonicalDateRange("23 novembra, 2026")?.startDate === "2026-11-23",
+    canonicalTimeRange("ob 16h").startTime === "16:00:00",
+    canonicalTimeRange("ob 15 30 min").startTime === "15:30:00",
+    canonicalTimeRange("ob 17.h").startTime === "17:00:00",
+    new RegExp(dateBearingNamedPattern, "iu").test("23 novembra, 2026 17:00")
   ];
   if (checks.some((passed) => !passed)) throw new Error("Browser structured-event self-test failed");
   process.stdout.write(`Browser structured-event self-test PASS: ${checks.length} checks.\n`);
@@ -592,7 +615,7 @@ async function harvestSource(cdp, source) {
     const extractor = ${JSON.stringify(source.extractor || 'date-nodes-v1')};
     const schoolId = ${source.school_id};
     const named = new RegExp(${JSON.stringify(dateBearingNamedPattern)}, 'iu');
-    const numeric = /\\b\\d{1,2}\\s*[.\\/-]\\s*\\d{1,2}\\s*[.\\/-]\\s*20\\d{2}\\b/u;
+    const numeric = /\\b\\d{1,2}\\s*[.\\/-]\\s*\\d{1,2}\\s*[.\\/-]\\s*(?:20\\d{2}|\\d{2})\\b/u;
     const found = [];
     for (const selector of selectors) {
       for (const node of document.querySelectorAll(selector)) {
@@ -714,6 +737,93 @@ async function harvestSource(cdp, source) {
     jsonLd + "</script></head><body><main><h1>" +
     escape(source.context_text) + "</h1></main></body></html>";
   return { html, nodeCount: payloadItems.length, skippedUnavailable: result.items.length - availableItems.length };
+}
+
+
+async function auditCandidateSites() {
+  const candidates = JSON.parse(fs.readFileSync("config/cpp-browser-candidates.json", "utf8"));
+  if (!Array.isArray(candidates) || candidates.length > 150) throw new Error("Invalid candidate inventory");
+  const runtime = await startChrome();
+  const results = [];
+  const today = new Date().toLocaleDateString("en-CA", { timeZone: "Europe/Ljubljana" });
+  try {
+    for (const source of candidates) {
+      const result = { school_id: source.school_id, school_name: source.school_name, source_url: source.url, pages: [], status: "READ_FAILED" };
+      try {
+        const initialHost = new URL(source.url).hostname.replace(/^www\./u, "");
+        const urls = [source.url];
+        for (let index = 0; index < urls.length && index < 3; index += 1) {
+          const url = urls[index];
+          await assertRobotsAllowed({ ...source, url });
+          await Promise.race([navigate(runtime.cdp, url, 2200), wait(15000).then(() => { throw new Error("Navigation timeout"); })]);
+          const expression = `(() => {
+            const clean = s => String(s || '').replace(/\\s+/g, ' ').trim();
+            const body = clean(document.body?.innerText);
+            const blocked = /verify.{0,30}(?:human|browser)|checking your browser|please wait while your request is being verified|access denied|just a moment/iu.test(body.slice(0,1200));
+            const dated = /\\b\\d{1,2}\\s*[.\\/-]\\s*\\d{1,2}\\s*[.\\/-]\\s*(?:20\\d{2}|\\d{2})\\b|\\b\\d{1,2}\\.?\\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\\.?\\s*,?\\s*20\\d{2}\\b/iu;
+            const nodes = [];
+            if (!blocked) for (const node of document.querySelectorAll('h1,h2,h3,h4,h5,p,li,label,option,button,td,.table-row,.term-card')) {
+              const text = clean(node.innerText || node.textContent);
+              if (!text || text.length > 700 || !dated.test(text)) continue;
+              if (nodes.some(n => n.text === text)) continue;
+              let heading = '';
+              let parent = node;
+              for (let depth=0; parent && depth<3 && !heading; depth++,parent=parent.parentElement) {
+                for (let previous=parent.previousElementSibling; previous; previous=previous.previousElementSibling) {
+                  if (/^H[1-6]$/u.test(previous.tagName)) { heading=clean(previous.innerText);break; }
+                }
+              }
+              const hint = node.id ? '#' + CSS.escape(node.id) : node.tagName.toLowerCase() + Array.from(node.classList).slice(0,2).map(c=>'.'+CSS.escape(c)).join('');
+              nodes.push({ text, heading, selector: hint, nearby: clean(node.parentElement?.innerText).slice(0,800) });
+              if (nodes.length >= 24) break;
+            }
+            const links = Array.from(document.querySelectorAll('a[href]')).filter(a=>/cpp|cestno|termin|urnik|prijav/iu.test(a.textContent+' '+a.getAttribute('href'))).map(a=>({text:clean(a.textContent).slice(0,100),url:a.href})).filter(a=>/^https?:/u.test(a.url)).slice(0,20);
+            return { url:location.href, title:document.title, blocked, nodes, links };
+          })()`;
+          const page = await evaluate(runtime.cdp, expression);
+          if (!page || page.blocked) {
+            result.status = "VERIFICATION_REQUIRED";
+            result.pages.push({ url, title: page?.title || "", blocked: true });
+            break;
+          }
+          const parsed = page.nodes.map(node => ({ ...node, date: canonicalDateRange(node.text) }));
+          const upcoming = parsed.filter(node => node.date && (node.date.endDate || node.date.startDate) >= today);
+          result.pages.push({ url: page.url, title: page.title, upcoming: upcoming.slice(0,12), other_dated_count: parsed.length-upcoming.length, cpp_links: page.links.slice(0,8) });
+          result.status = upcoming.length ? "UPCOMING_EVIDENCE" : result.status === "UPCOMING_EVIDENCE" ? result.status : "NO_UPCOMING_IN_READ_PAGES";
+          if (index === 0 && upcoming.length === 0) {
+            for (const link of page.links) {
+              const parsedUrl = new URL(link.url);
+              if (parsedUrl.hostname.replace(/^www\./u, "") !== initialHost || !/cpp|cestno|termin|urnik/iu.test(link.text+' '+parsedUrl.pathname)) continue;
+              parsedUrl.hash = "";
+              if (!urls.includes(parsedUrl.href)) urls.push(parsedUrl.href);
+              if (urls.length >= 3) break;
+            }
+          }
+        }
+      } catch (error) {
+        result.error = String(error?.message || error).slice(0,300);
+        result.status = /robots\.txt/iu.test(result.error) ? "ROBOTS_RESTRICTED" : result.status;
+        try { await runtime.cdp.call("Page.stopLoading"); } catch {}
+      }
+      results.push(result);
+      process.stdout.write(JSON.stringify({audit_progress:results.length,total:candidates.length,school_id:source.school_id,status:result.status})+"\n");
+      await wait(500);
+    }
+    const output = { generated_at:new Date().toISOString(), source_count:results.length, methodology:"Read-only public website inspection. Evidence is not an automatic approval to publish a course.", results };
+    fs.mkdirSync("build",{recursive:true});
+    fs.writeFileSync("build/cpp-source-audit.json",JSON.stringify(output,null,2)+"\n");
+    process.stdout.write(JSON.stringify({audit:"COMPLETE",source_count:results.length,upcoming_evidence:results.filter(r=>r.status==="UPCOMING_EVIDENCE").length})+"\n");
+  } finally {
+    try { await runtime.cdp.call("Browser.close"); } catch { runtime.child.kill("SIGKILL"); }
+    runtime.cdp.close();
+    await wait(250);
+    if (runtime.child.exitCode === null) runtime.child.kill("SIGKILL");
+    fs.rmSync(runtime.profile,{recursive:true,force:true,maxRetries:8,retryDelay:250});
+  }
+}
+if (process.argv.includes("--audit-candidates")) {
+  await auditCandidateSites();
+  process.exit(0);
 }
 
 const runtime = await startChrome();

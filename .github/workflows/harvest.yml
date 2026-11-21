@@ -7,6 +7,7 @@ on:
     paths:
       - "config/cpp-browser-sources.json"
       - "scripts/harvest-cpp-browser-sources.mjs"
+      - "config/cpp-browser-candidates.json"
       - "server/vzi-radar-engine/**"
       - ".github/workflows/harvest.yml"
   pull_request:
@@ -29,7 +30,7 @@ concurrency:
 jobs:
   harvest:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
@@ -48,6 +49,24 @@ jobs:
         run: |
           node scripts/harvest-cpp-browser-sources.mjs --self-test
           node scripts/harvest-cpp-browser-sources.mjs --validate-only
+
+      - name: Inspect remaining public school websites
+        if: github.event_name != 'pull_request'
+        run: node scripts/harvest-cpp-browser-sources.mjs --audit-candidates
+
+      - name: Publish public website coverage evidence
+        if: github.event_name != 'pull_request'
+        run: |
+          mkdir -p data
+          cp build/cpp-source-audit.json data/cpp-source-audit.json
+          git config user.name "vzi-cpp-radar[bot]"
+          git config user.email "vzi-cpp-radar[bot]@users.noreply.github.com"
+          git add data/cpp-source-audit.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: record public CPP website coverage review"
+          git push origin HEAD:main
 
       - name: Harvest and sign approved browser sources
         if: github.event_name != 'pull_request'
