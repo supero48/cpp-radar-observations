@@ -993,6 +993,7 @@ async function harvestSource(cdp, source) {
           item.explicitLocation={name:'Petrov trg 7, Šempeter',streetAddress:'Petrov trg 7',addressLocality:'Šempeter'};
           item.registrationUrl=node.querySelector('a')?.href;
         } else if (schoolId === 3147) {
+          text=clean(node.textContent);item.text=text;
           const card=node.closest('.elementor-icon-box-content');
           const section=node.closest('.e-child');
           const heading=(Array.from(section?.querySelectorAll('h1,h2,h3,h4,h5,h6')||[]).map(n=>clean(n.textContent)).find(s=>/KATEGORIJA/iu.test(s))||'').match(/KATEGORIJA.*$/iu)?.[0];
@@ -1254,7 +1255,7 @@ async function harvestSource(cdp, source) {
       }
       if (found.length >= maxNodes) break;
     }
-    return { title: document.title, items: found };
+    return { title: document.title, items: found, ...(schoolId===3147?{diagnostics:Array.from(document.querySelectorAll('.elementor-icon-box-description')).filter(n=>/20\\d{2}/u.test(n.textContent)).map(n=>({text:clean(n.textContent),place:clean(n.closest('.elementor-icon-box-content')?.querySelector('.elementor-icon-box-title')?.textContent),category:clean(n.closest('.e-child')?.querySelector('h2')?.textContent)}))}:{}) };
   })()`;
   const collect = async () => source.school_id === 3064 ? await collectSmarcaPublicTerms(cdp)
     : source.school_id === 3096 ? await collectBliskPublicTerms(cdp,source)
@@ -1267,7 +1268,7 @@ async function harvestSource(cdp, source) {
     result = await collect();
   }
   if (!Array.isArray(result?.items) || result.items.length === 0) {
-    throw new Error(`${source.school_name}: rendered page contained no date-bearing approved nodes`);
+    throw new Error(`${source.school_name}: rendered page contained no date-bearing approved nodes; ${JSON.stringify(result?.diagnostics||{})}`);
   }
   const expandedItems = result.items.flatMap(item => publicCourseItems(source.school_id, item));
   const availableItems = expandedItems.filter((item) => !isUnavailableTerm(item.text));
@@ -1566,6 +1567,7 @@ try {
     await wait(2000);
   }
   if (observations.length === 0) {
+    process.stdout.write(JSON.stringify({harvest_failures:results})+"\n");
     throw new Error("No approved browser source produced a publishable observation");
   }
   const signingKey = process.env.VZI_CPP_MANIFEST_SIGNING_KEY;
