@@ -1,0 +1,79 @@
+{
+  "reviewed_at": "2026-11-21",
+  "scope": "Public first-party pages and registration selectors. No private RPO access.",
+  "new_source_school_ids": [
+    3086,
+    3087,
+    3096,
+    3097,
+    3118,
+    3063,
+    3172,
+    3147,
+    3184,
+    3133,
+    3174,
+    3111
+  ],
+  "fixed_source_school_ids": [
+    3092,
+    3103,
+    3137
+  ],
+  "manual_findings": [
+    {
+      "school_id": 3087,
+      "finding": "Seven public CPP cards; C and CE prerequisite categories excluded from target categories; shared-year session lists normalized."
+    },
+    {
+      "school_id": 3096,
+      "finding": "Sixteen future CPP event cards, excluding first aid. Each detail has public JSON-LD full dates and location; E retained as unspecified category."
+    },
+    {
+      "school_id": 3097,
+      "finding": "Five future category starts at 16:30 plus three future school-semester courses at 12:00 on the SIC Ljubljana institutional page."
+    },
+    {
+      "school_id": 3092,
+      "finding": "New .tp-term form replaces old Ninja Forms. Public ranges 14–21 December 2026, 18–25 January 2027, 15–22 February 2027."
+    },
+    {
+      "school_id": 3172,
+      "finding": "All nine categories selected through public GET filter; A, B, BE published. BE 00:00 treated as unspecified time."
+    },
+    {
+      "school_id": 3184,
+      "finding": "First-party PE Velenje page explicitly identifies Plomos as owner of Velenje and Mozirje. Those branches removed from Relax Trans source."
+    },
+    {
+      "school_id": 3173,
+      "finding": "Official domain found by school/business-name match; live site returns WordPress critical error. Keep as reachable-URL candidate, no fabricated course."
+    },
+    {
+      "school_id": 3115,
+      "finding": "Pek public cards give 23 November, 1 December and 3 December without year; no public full datetime found."
+    },
+    {
+      "school_id": 3085,
+      "finding": "Fancy /tecaj-cpp gives 7 December and 11 January without year, including form option values."
+    },
+    {
+      "school_id": 3171,
+      "finding": "Stop Ajdovscina expanded public schedule gives 1–10 December without year; option contains no year."
+    },
+    {
+      "school_id": 3134,
+      "finding": "Prednost /tecaji.php lists Ptuj and Ormoz 8 December and 4 January without year; date-card DOM has no full datetime."
+    },
+    {
+      "school_id": 3098,
+      "finding": "Korelat homepage course 2–11 November 2026 is past; not a future term."
+    }
+  ],
+  "national_crawl": {
+    "schools": 130,
+    "read_pages": 401,
+    "generated_at": "2026-11-21T22:11:40.845Z",
+    "note": "One additional website (ABC) was identified manually and returned a public WordPress error."
+  }
+}

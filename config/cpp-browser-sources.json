@@ -154,10 +154,10 @@
       "homepage_url": "https://avtosolatilia.si/",
       "url": "https://avtosolatilia.si/prijava-cpp/",
       "selectors": [
-        "#nf-field-15-wrap .nf-field-element label"
+        ".tp-term"
       ],
       "context_text": "Termini tečajev CPP",
-      "max_nodes": 10,
+      "max_nodes": 100,
       "extractor": "date-nodes-v1",
       "priority": 2,
       "approved": true,
@@ -826,6 +826,312 @@
       ],
       "context_text": "Tečaji CPP",
       "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3097,
+      "school_name": "Strokovni izobraževalni center Ljubljana",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "asjezica.si",
+      "homepage_url": "https://www.asjezica.si/",
+      "url": "https://www.asjezica.si/",
+      "selectors": [
+        ".list-item"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 20,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3097,
+      "school_name": "Strokovni izobraževalni center Ljubljana",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "siclj.si",
+      "homepage_url": "https://www.siclj.si/",
+      "url": "https://www.siclj.si/obvestila/termini-tecaja-cpp-na-sic-ljubljana/",
+      "selectors": [
+        ".elementor-widget-text-editor strong"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 20,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3086,
+      "school_name": "AMTK Plus",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "as-amtk.si",
+      "homepage_url": "https://www.as-amtk.si/",
+      "url": "https://www.as-amtk.si/",
+      "selectors": [
+        ".wpr-slider-description"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 20,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3087,
+      "school_name": "Avtošola Brulc",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "neja74.wixsite.com",
+      "homepage_url": "https://neja74.wixsite.com/website",
+      "url": "https://neja74.wixsite.com/website/cpp-te%C4%8Daji",
+      "selectors": [
+        "li[data-hook=\"side-by-side-item\"]"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3096,
+      "school_name": "Prometni center Blisk",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "blisk-as.si",
+      "homepage_url": "https://www.blisk-as.si/",
+      "url": "https://www.blisk-as.si/cpp-pp-termini",
+      "selectors": [
+        "li[data-hook=\"event-list-item\"]"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3118,
+      "school_name": "Laura Kreslin",
+      "school_locality": "Maribor",
+      "school_location": "",
+      "domain": "solavoznjelaura.com",
+      "homepage_url": "https://solavoznjelaura.com/",
+      "url": "https://solavoznjelaura.com/tecaji",
+      "selectors": [
+        ".courses-images-test"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3063,
+      "school_name": "Vojko Verdev",
+      "school_locality": "Šempeter",
+      "school_location": "",
+      "domain": "solavoznje-verdev.si",
+      "homepage_url": "https://www.solavoznje-verdev.si/",
+      "url": "https://www.solavoznje-verdev.si/",
+      "selectors": [
+        ".elementor-image-box-description"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 20,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3172,
+      "school_name": "Šola vožnje Ferdo",
+      "school_locality": "Nova Gorica",
+      "school_location": "",
+      "domain": "ferdo.si",
+      "homepage_url": "https://www.ferdo.si/",
+      "url": "https://www.ferdo.si/prijava-na-cpp/",
+      "selectors": [
+        "#termin-select option"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3147,
+      "school_name": "Šola vožnje ILKE",
+      "school_locality": "Koper",
+      "school_location": "",
+      "domain": "ilke.si",
+      "homepage_url": "https://ilke.si/",
+      "url": "https://ilke.si/",
+      "selectors": [
+        ".elementor-icon-box-description"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 50,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3184,
+      "school_name": "Plomos — Šola vožnje Relax Velenje in Mozirje",
+      "school_locality": "Velenje",
+      "school_location": "",
+      "domain": "solavoznje-relax.si",
+      "homepage_url": "https://solavoznje-relax.si/sl/poslovne-enote/pe-velenje",
+      "url": "https://solavoznje-relax.si/sl/termini-tecajev",
+      "selectors": [
+        "a[href*=\"/termin=\"]"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "relax-registration-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3103,
+      "school_name": "Zavod Modrivoznik.Si",
+      "school_locality": "Kranj",
+      "school_location": "",
+      "domain": "modrivoznik.si",
+      "homepage_url": "https://modrivoznik.si/avtosola/kranj",
+      "url": "https://modrivoznik.si/avtosola/kranj",
+      "selectors": [
+        "button"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3103,
+      "school_name": "Zavod Modrivoznik.Si",
+      "school_locality": "Novo mesto",
+      "school_location": "",
+      "domain": "modrivoznik.si",
+      "homepage_url": "https://modrivoznik.si/avtosola/novo-mesto",
+      "url": "https://modrivoznik.si/avtosola/novo-mesto",
+      "selectors": [
+        "button"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3103,
+      "school_name": "Zavod Modrivoznik.Si",
+      "school_locality": "Grosuplje",
+      "school_location": "",
+      "domain": "modrivoznik.si",
+      "homepage_url": "https://modrivoznik.si/avtosola/grosuplje",
+      "url": "https://modrivoznik.si/avtosola/grosuplje",
+      "selectors": [
+        "button"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3103,
+      "school_name": "Zavod Modrivoznik.Si",
+      "school_locality": "Ljubljana",
+      "school_location": "",
+      "domain": "modrivoznik.si",
+      "homepage_url": "https://modrivoznik.si/",
+      "url": "https://modrivoznik.si/cpp/lj",
+      "selectors": [
+        "button"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3133,
+      "school_name": "Kampl De & Ma",
+      "school_locality": "Kidričevo",
+      "school_location": "",
+      "domain": "kampl.si",
+      "homepage_url": "https://www.kampl.si/",
+      "url": "https://www.kampl.si/tecaj%20cpp.htm",
+      "selectors": [
+        "span.xr_tl.Normal_text"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3174,
+      "school_name": "Moto VV",
+      "school_locality": "Črnomelj",
+      "school_location": "",
+      "domain": "motovv.com",
+      "homepage_url": "https://motovv.com/",
+      "url": "https://motovv.com/",
+      "selectors": [
+        "div.prose"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3111,
+      "school_name": "Videčnik",
+      "school_locality": "Slovenska Bistrica",
+      "school_location": "",
+      "domain": "videcnik.si",
+      "homepage_url": "https://videcnik.si/",
+      "url": "https://videcnik.si/sl/",
+      "selectors": [
+        ".single-news"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
       "extractor": "date-nodes-v1",
       "priority": 2,
       "approved": true,
