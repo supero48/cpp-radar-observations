@@ -632,6 +632,204 @@
       "priority": 2,
       "approved": true,
       "enabled": true
+    },
+    {
+      "school_id": 3190,
+      "school_name": "Alma Top šola vožnje d.o.o...",
+      "school_locality": "Ljutomer",
+      "school_location": "",
+      "domain": "avtosola-alma.si",
+      "homepage_url": "https://www.avtosola-alma.si/avtosola/urnik-tecajev",
+      "url": "https://www.avtosola-alma.si/avtosola/urnik-tecajev",
+      "selectors": [
+        ".urnik2"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3083,
+      "school_name": "Inti Prah, izobraževanje in usposabljanje",
+      "school_locality": "Leskovec pri Krškem",
+      "school_location": "",
+      "domain": "prah.si",
+      "homepage_url": "https://www.prah.si/si/544/68/tecaj-cestno-prometnih-predpisov---cpp.aspx",
+      "url": "https://www.prah.si/si/544/68/tecaj-cestno-prometnih-predpisov---cpp.aspx",
+      "selectors": [
+        ".vsebina .text u"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3162,
+      "school_name": "Fortuna šola vožnje",
+      "school_locality": "Maribor",
+      "school_location": "",
+      "domain": "avtosola-fortuna.si",
+      "homepage_url": "https://www.avtosola-fortuna.si/prijavnica/",
+      "url": "https://www.avtosola-fortuna.si/prijavnica/",
+      "selectors": [
+        "#wpforms-form-2652 select:not(#wpforms-2652-field_7) option"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3156,
+      "school_name": "Izobraževalno Prometni Center Moste, šola vožnje",
+      "school_locality": "Ljubjana",
+      "school_location": "",
+      "domain": "amdmoste.si",
+      "homepage_url": "https://www.amdmoste.si/tecaj-in-cpp-izpit/",
+      "url": "https://www.amdmoste.si/tecaj-in-cpp-izpit/",
+      "selectors": [
+        "select[name=\"Upcoming-termin\"] option"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3188,
+      "school_name": "Lešnik Group, šola vožnje, Avtobusni prevozi, izobraževanje in storitve d.o.o...",
+      "school_locality": "Maribor",
+      "school_location": "",
+      "domain": "solavoznje-lesnik.si",
+      "homepage_url": "https://www.solavoznje-lesnik.si/",
+      "url": "https://www.solavoznje-lesnik.si/",
+      "selectors": [
+        ".slot-item__date"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3125,
+      "school_name": "Pob, Prevoz Oseb in Blaga",
+      "school_locality": "Nova Gorica",
+      "school_location": "",
+      "domain": "solapob.si",
+      "homepage_url": "https://solapob.si/prijavi-se/",
+      "url": "https://solapob.si/prijavi-se/",
+      "selectors": [
+        "a.changecpplocation"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3056,
+      "school_name": "ZŠAM Celje",
+      "school_locality": "Ljubečna",
+      "school_location": "",
+      "domain": "zsam-celje.si",
+      "homepage_url": "https://zsam-celje.si/sola-voznje/tecaj-cpp",
+      "url": "https://zsam-celje.si/sola-voznje/tecaj-cpp",
+      "selectors": [
+        "#tablepress-5 tbody tr"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3178,
+      "school_name": "Šola vožnje, Voznik 1a, d.o.o...",
+      "school_locality": "Novo Mesto",
+      "school_location": "",
+      "domain": "voznik1a.si",
+      "homepage_url": "https://voznik1a.si/",
+      "url": "https://voznik1a.si/",
+      "selectors": [
+        "p.text-default-600"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3064,
+      "school_name": "Bortan Žagar & Co.",
+      "school_locality": "Kamnik",
+      "school_location": "",
+      "domain": "trgovina.avtosola-smarca.com",
+      "homepage_url": "https://trgovina.avtosola-smarca.com/prijava-na-cpp/",
+      "url": "https://trgovina.avtosola-smarca.com/prijava-na-cpp/",
+      "selectors": [
+        "#form-field-datum option"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 80,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3074,
+      "school_name": "Gjd, Prometni Center",
+      "school_locality": "Izola",
+      "school_location": "",
+      "domain": "gjd.si",
+      "homepage_url": "https://gjd.si/wordpress/",
+      "url": "https://gjd.si/wordpress/",
+      "selectors": [
+        "h4.entry-title"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3180,
+      "school_name": "Šola vožnje Slavi, Slaviša Dakić s.p...",
+      "school_locality": "Postojna",
+      "school_location": "",
+      "domain": "slavi.si",
+      "homepage_url": "https://www.slavi.si/si/",
+      "url": "https://www.slavi.si/si/",
+      "selectors": [
+        "h1"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 40,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
     }
   ]
 }
