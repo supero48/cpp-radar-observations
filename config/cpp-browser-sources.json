@@ -1082,6 +1082,60 @@
       "priority": 2,
       "approved": true,
       "enabled": true
+    },
+    {
+      "school_id": 3133,
+      "school_name": "Kampl De & Ma",
+      "school_locality": "Kidričevo",
+      "school_location": "",
+      "domain": "kampl.si",
+      "homepage_url": "https://www.kampl.si/",
+      "url": "https://www.kampl.si/tecaj%20cpp.htm",
+      "selectors": [
+        "span.xr_tl.Normal_text"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3174,
+      "school_name": "Moto VV",
+      "school_locality": "Črnomelj",
+      "school_location": "",
+      "domain": "motovv.com",
+      "homepage_url": "https://motovv.com/",
+      "url": "https://motovv.com/",
+      "selectors": [
+        "div.prose"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3111,
+      "school_name": "Videčnik",
+      "school_locality": "Slovenska Bistrica",
+      "school_location": "",
+      "domain": "videcnik.si",
+      "homepage_url": "https://videcnik.si/",
+      "url": "https://videcnik.si/sl/",
+      "selectors": [
+        ".single-news"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 100,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
     }
   ]
 }

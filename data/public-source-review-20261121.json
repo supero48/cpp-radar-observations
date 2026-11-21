@@ -10,7 +10,10 @@
     3063,
     3172,
     3147,
-    3184
+    3184,
+    3133,
+    3174,
+    3111
   ],
   "fixed_source_school_ids": [
     3092,
@@ -66,5 +69,11 @@
       "school_id": 3098,
       "finding": "Korelat homepage course 2–11 November 2026 is past; not a future term."
     }
-  ]
+  ],
+  "national_crawl": {
+    "schools": 130,
+    "read_pages": 401,
+    "generated_at": "2026-11-21T22:11:40.845Z",
+    "note": "One additional website (ABC) was identified manually and returned a public WordPress error."
+  }
 }

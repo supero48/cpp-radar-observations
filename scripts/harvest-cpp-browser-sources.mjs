@@ -843,17 +843,21 @@ async function collectModriPublicTerms(cdp) {
   return evaluate(cdp, `(async()=>{
     const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
     const items=[];
-    for(const label of ['V predavalnici','Online (Zoom)']) {
+    const labels=['V predavalnici','Online (Zoom)'].filter(label=>Array.from(document.querySelectorAll('button')).some(n=>n.innerText.trim()===label));
+    if(!labels.length) labels.push(null);
+    for(const label of labels) {
       const toggle=Array.from(document.querySelectorAll('button')).find(n=>n.innerText.trim()===label);
-      if(!toggle || toggle.disabled) continue;
-      toggle.click();await pause(1600);
+      if(label && (!toggle || toggle.disabled)) continue;
+      if(toggle)toggle.click();await pause(1600);
       for(const node of document.querySelectorAll('button')) {
         const text=node.innerText.trim();
         if(!/\\b\\d{1,2}\\.\\s*[a-zč]+\\.?.*20\\d{2}/iu.test(text)||!/\\d{1,2}:\\d{2}/u.test(text)) continue;
         if(/termin poln/iu.test(text)) continue;
         const titleText='Tečaj CPP — B kategorija';
         const online=label==='Online (Zoom)' || /online|zoom|na daljavo/iu.test(text);
-        items.push({text,titleText,categoryText:titleText,mode:online?'ONLINE':'CLASSROOM',...(online?{explicitLocation:{name:'Na daljavo — Modrivoznik.si',streetAddress:'',addressLocality:'Na daljavo'}}:{}),registrationUrl:location.href+'#prijava'});
+        const publishedPlace=text.split(/\\n/u).map(s=>s.trim()).find(s=>s.includes(',')&&!/20\\d{2}|Prijave do/iu.test(s));
+        const classroomPlace=publishedPlace?{name:publishedPlace,streetAddress:publishedPlace.split(',')[0].trim(),addressLocality:publishedPlace.split(',').at(-1).trim()}:null;
+        items.push({text,titleText,categoryText:titleText,mode:online?'ONLINE':'CLASSROOM',...(online?{explicitLocation:{name:'Na daljavo — Modrivoznik.si',streetAddress:'',addressLocality:'Na daljavo'}}:classroomPlace?{explicitLocation:classroomPlace}:{}),registrationUrl:location.href+'#prijava'});
       }
     }
     return {title:document.title,items};
@@ -862,7 +866,7 @@ async function collectModriPublicTerms(cdp) {
 
 async function harvestSource(cdp, source) {
   await assertRobotsAllowed(source);
-  await navigate(cdp, source.url, 3500);
+  await navigate(cdp, source.url, [3063,3190].includes(source.school_id)?8000:3500);
   const expression = `(() => {
     const selectors = ${JSON.stringify(source.selectors)};
     const maxNodes = ${source.max_nodes};
@@ -883,7 +887,36 @@ async function harvestSource(cdp, source) {
           }
           return '';
         };
-        if (schoolId === 3097) {
+        if (schoolId === 3133) {
+          if(!/dne.*20\\d{2}/iu.test(text)) continue;
+          item.titleText='Tečaj CPP — A, B, AM kategorije';
+          item.categoryText=item.titleText;
+          item.explicitLocation={name:'Učilnica v Kidričevem',streetAddress:'',addressLocality:'Kidričevo'};
+          item.mode='CLASSROOM';
+          item.registrationUrl=location.href;
+        } else if (schoolId === 3174) {
+          if(!/Pričetek CPP tečaja/iu.test(text)) continue;
+          item.titleText='Splošni in dodatni del tečaja CPP — B kategorija';
+          item.categoryText=item.titleText;
+          item.unknownTime=true;
+          item.explicitLocation={name:'Ulica Otona Župančiča 4, Črnomelj',streetAddress:'Ulica Otona Župančiča 4',addressLocality:'Črnomelj'};
+          item.mode='CLASSROOM';
+          item.registrationUrl=Array.from(document.querySelectorAll('a')).find(n=>/Prijava na (?:tečaj )?CPP/iu.test(n.innerText))?.href;
+        } else if (schoolId === 3111) {
+          if(!/Tečaj CPP/iu.test(text)) continue;
+          const category=clean(node.querySelector('.single-news__name')?.innerText);
+          const lines=Array.from(node.querySelectorAll('.right-col .d-flex')).map(n=>clean(n.innerText));
+          const rawPlace=lines.find(s=>/^Šola vožnje/iu.test(s))||'';
+          const locality=rawPlace.replace(/^Šola vožnje\\s*/iu,'').replace('Slov. Bistrica','Slovenska Bistrica').replace('Slov. Konjice','Slovenske Konjice');
+          if(!category||!locality) continue;
+          item.titleText='Tečaj CPP — kategorija '+category;
+          item.categoryText=item.titleText;
+          item.timeText=lines.find(s=>/^\\d{1,2}:\\d{2}$/u.test(s))||'';
+          item.explicitLocation={name:locality,streetAddress:'',addressLocality:locality};
+          item.mode=/splet/iu.test(locality)?'ONLINE':'CLASSROOM';
+          item.registrationUrl=location.href+'#application-main';
+        } else
+ if (schoolId === 3097) {
           if (location.hostname.endsWith('siclj.si')) {
             const section=node.closest('.elementor-widget-text-editor');
             if(!/Tečaji CPP/iu.test(section?.innerText||'')) continue;
@@ -921,7 +954,7 @@ async function harvestSource(cdp, source) {
           item.explicitLocation={name:place,streetAddress:lenart?'Maistrova ulica 11':'Komenskega ulica 2',addressLocality:lenart?'Lenart':'Maribor'};
           item.registrationUrl=node.querySelector('a[href*="prijavnica"]')?.href;
         } else if (schoolId === 3063) {
-          if(!/Prihajajoči CPP termini/iu.test(node.closest('.elementor-image-box-content')?.innerText||'')) continue;
+          if(!/Tečaj CPP/iu.test(text)||!numeric.test(text)) continue;
           item.lines=node.innerText || Array.from(node.childNodes).map(n=>n.nodeName==='BR'?'\\n':n.textContent).join('');
           item.titleText='Tečaj CPP — B, A1, AM kategorije';
           item.categoryText=item.titleText;
@@ -929,8 +962,8 @@ async function harvestSource(cdp, source) {
           item.registrationUrl=node.querySelector('a')?.href;
         } else if (schoolId === 3147) {
           const card=node.closest('.elementor-icon-box-content');
-          const section=node.closest('.e-con-child');
-          const heading=Array.from(section?.querySelectorAll('h1,h2,h3,h4')||[]).map(n=>clean(n.innerText)).find(s=>/^KATEGORIJA/iu.test(s));
+          const section=node.closest('.e-child');
+          const heading=(Array.from(section?.querySelectorAll('h1,h2,h3,h4,h5,h6')||[]).map(n=>clean(n.textContent)).find(s=>/KATEGORIJA/iu.test(s))||'').match(/KATEGORIJA.*$/iu)?.[0];
           const locality=clean(card?.querySelector('.elementor-icon-box-title')?.innerText);
           if(!heading||!locality||!numeric.test(text)) continue;
           item.titleText='Tečaj CPP — '+heading;
@@ -1191,14 +1224,15 @@ async function harvestSource(cdp, source) {
     }
     return { title: document.title, items: found };
   })()`;
-  let result = source.school_id === 3064 ? await collectSmarcaPublicTerms(cdp)
+  const collect = async () => source.school_id === 3064 ? await collectSmarcaPublicTerms(cdp)
     : source.school_id === 3096 ? await collectBliskPublicTerms(cdp,source)
     : source.school_id === 3172 ? await collectFerdoPublicTerms(cdp,source)
     : source.school_id === 3103 ? await collectModriPublicTerms(cdp)
     : await evaluate(cdp, expression);
-  for (let attempt = 0; result?.items?.length === 0 && attempt < 8; attempt += 1) {
+  let result=await collect();
+  for (let attempt = 0; result?.items?.length === 0 && attempt < ([3063,3190].includes(source.school_id)?20:8); attempt += 1) {
     await wait(1000);
-    result = await evaluate(cdp, expression);
+    result = await collect();
   }
   if (!Array.isArray(result?.items) || result.items.length === 0) {
     throw new Error(`${source.school_name}: rendered page contained no date-bearing approved nodes`);
@@ -1420,7 +1454,14 @@ async function auditCandidateSites() {
         } catch(error) {
           const message=String(error?.message||error).slice(0,300);result.errors.push({url,error:message});
           if(/robots\.txt/iu.test(message))blockedHosts.add(host);
-          try{await runtime.cdp.call('Page.stopLoading');}catch{}
+          if (/Chrome CDP (?:timeout|connection closed)/u.test(message)) {
+            // A dead renderer must not stop the national inventory crawl.
+            try{runtime.child.kill('SIGKILL');runtime.cdp.close();}catch{}
+            try{fs.rmSync(runtime.profile,{recursive:true,force:true,maxRetries:4,retryDelay:250});}catch{}
+            Object.assign(runtime,await startChrome());
+          } else {
+            try{await runtime.cdp.call('Page.stopLoading');}catch{}
+          }
         }
       }
       if(result.status!=='UPCOMING_EVIDENCE') {
