@@ -377,7 +377,37 @@ function manifestSignatureMessage(manifest) {
   return lines.join("\n");
 }
 
+// A targeted repair can retain recent observations only after authenticating
+// their complete registry/signature and independently checking every HTML hash.
+function reuseVerifiedObservations(previous, fresh, currentRegistry, publicKey, now, schoolId) {
+  const expected=crypto.createHash('sha256').update(JSON.stringify(currentRegistry)).digest('hex');
+  if(previous.registry_sha256!==expected || crypto.createHash('sha256').update(JSON.stringify(previous.registry)).digest('hex')!==expected) throw new Error('Cached registry mismatch');
+  const generated=Date.parse(previous.generated_at);
+  if(!Number.isFinite(generated)||generated<now-2*3600000||generated>now+300000)throw new Error('Cached manifest is not recent');
+  if(previous.signature?.algorithm!=='Ed25519'||!crypto.verify(null,Buffer.from(manifestSignatureMessage(previous),'utf8'),publicKey,Buffer.from(previous.signature.value||'','base64')))throw new Error('Cached signature failed');
+  const allowed=new Set(currentRegistry.sources.filter(s=>s.approved&&s.enabled).map(s=>s.school_id+'|'+s.url));
+  for(const observation of previous.observations) {
+    const observed=Date.parse(observation.observed_at);
+    if(!allowed.has(observation.school_id+'|'+observation.source_url)||!Number.isFinite(observed)||observed<now-2*3600000||observed>now+300000)throw new Error('Cached observation is not eligible');
+    if(crypto.createHash('sha256').update(observation.rendered_html||'').digest('hex')!==observation.content_sha256)throw new Error('Cached observation hash failed');
+  }
+  if(!fresh.length || fresh.some(o=>o.school_id!==schoolId))throw new Error('Targeted refresh did not succeed');
+  return [...previous.observations.filter(o=>o.school_id!==schoolId),...fresh];
+}
+
 validateRegistry(registry);
+// These sources require a normal public browser review. Do not request their
+// blocked headless route or restamp an older reviewed capture as a new visit.
+const publicBrowserReviewSchools = new Set([3147]);
+function reviewedPublicCapture(source, record, now = Date.now()) {
+  if (record?.version !== 1 || record.method !== 'agent_public_browser_review' || record.school_id !== source.school_id || record.source_url !== source.url) throw new Error('Public review identity mismatch');
+  const observed = Date.parse(record.observed_at);
+  if (!Number.isFinite(observed) || observed > now + 300000 || observed < now - 7*86400000) throw new Error('Public browser review is missing or stale; refresh in the normal public browser');
+  if (typeof record.rendered_html !== 'string' || !record.rendered_html || crypto.createHash('sha256').update(record.rendered_html).digest('hex') !== record.content_sha256) throw new Error('Public review content hash failed');
+  if (!Number.isSafeInteger(record.course_count) || record.course_count < 1 || record.course_count > source.max_nodes) throw new Error('Public review course count is invalid');
+  return {html: record.rendered_html, observedAt: record.observed_at, nodeCount: record.course_count, skippedUnavailable: 0, method: record.method};
+}
+
 if (process.argv.includes("--self-test")) {
   const firstRange = canonicalDateRange("23. sep. – 29. sep. 2026 Termin poln");
   const secondRange = canonicalDateRange("15. okt. – 21. okt. 2026");
@@ -465,7 +495,31 @@ if (process.argv.includes("--self-test")) {
     locationText: "Novi trg 7, NOVO MESTO",
     suppressContextTime: true
   });
+  const cacheRegistry={sources:[{school_id:1,url:'https://school.example/a',approved:true,enabled:true},{school_id:2,url:'https://school.example/b',approved:true,enabled:true}]};
+  const cacheNow=Date.parse('2026-11-21T22:00:00Z');
+  const cacheObservation=id=>({school_id:id,source_url:'https://school.example/'+(id===1?'a':'b'),observed_at:'2026-11-21T21:50:00Z',rendered_html:'public term '+id,content_sha256:crypto.createHash('sha256').update('public term '+id).digest('hex')});
+  const cacheFixture={version:2,generated_at:'2026-11-21T21:55:00Z',registry:cacheRegistry,registry_sha256:crypto.createHash('sha256').update(JSON.stringify(cacheRegistry)).digest('hex'),observations:[cacheObservation(1),cacheObservation(2)]};
+  cacheFixture.signature={algorithm:'Ed25519',value:crypto.sign(null,Buffer.from(manifestSignatureMessage(cacheFixture),'utf8'),signatureKeys.privateKey).toString('base64')};
+  const refuses=fn=>{try{fn();return false;}catch{return true;}};
+  const changedHtml=structuredClone(cacheFixture);changedHtml.observations[1].rendered_html='tampered term';
+  const changedSignature=structuredClone(cacheFixture);changedSignature.signature.value='AAAA';
+  const reviewSource={school_id:3147,url:'https://ilke.si/',max_nodes:50};
+  const reviewFixture={version:1,method:'agent_public_browser_review',school_id:3147,source_url:'https://ilke.si/',observed_at:'2026-11-21T21:50:00Z',rendered_html:'reviewed public course',course_count:1};
+  reviewFixture.content_sha256=crypto.createHash('sha256').update(reviewFixture.rendered_html).digest('hex');
   const checks = [
+    reviewedPublicCapture(reviewSource,reviewFixture,cacheNow).observedAt===reviewFixture.observed_at,
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,school_id:1},cacheNow)),
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,source_url:'https://other.example/'},cacheNow)),
+    refuses(()=>reviewedPublicCapture(reviewSource,reviewFixture,cacheNow+8*86400000)),
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,observed_at:'2026-11-22T21:50:00Z'},cacheNow)),
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,rendered_html:'tampered'},cacheNow)),
+    refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,course_count:0},cacheNow)),
+    reuseVerifiedObservations(cacheFixture,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1).length===2,
+    refuses(()=>reuseVerifiedObservations(changedHtml,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1)),
+    refuses(()=>reuseVerifiedObservations(changedSignature,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow,1)),
+    refuses(()=>reuseVerifiedObservations(cacheFixture,[cacheObservation(1)],cacheRegistry,signatureKeys.publicKey,cacheNow+3*3600000,1)),
+    refuses(()=>reuseVerifiedObservations(cacheFixture,[cacheObservation(1)],{sources:cacheRegistry.sources.slice(0,1)},signatureKeys.publicKey,cacheNow,1)),
+    refuses(()=>reuseVerifiedObservations(cacheFixture,[],cacheRegistry,signatureKeys.publicKey,cacheNow,1)),
     firstRange?.startDate === "2026-09-23" && firstRange?.endDate === "2026-09-29",
     secondRange?.startDate === "2026-10-15" && secondRange?.endDate === "2026-10-21",
     singleDate?.startDate === "2026-09-02" && singleDate?.endDate === null,
@@ -740,7 +794,7 @@ async function assertRobotsAllowed(source) {
 
 async function evaluate(cdp, expression) {
   const result = await cdp.call("Runtime.evaluate", { expression, awaitPromise: true, returnByValue: true });
-  if (result.exceptionDetails) throw new Error(result.exceptionDetails.text || "Chrome evaluation failed");
+  if (result.exceptionDetails) throw new Error(result.exceptionDetails.exception?.description || result.exceptionDetails.text || "Chrome evaluation failed");
   return result.result?.value;
 }
 
@@ -843,17 +897,21 @@ async function collectModriPublicTerms(cdp) {
   return evaluate(cdp, `(async()=>{
     const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
     const items=[];
-    for(const label of ['V predavalnici','Online (Zoom)']) {
+    const labels=['V predavalnici','Online (Zoom)'].filter(label=>Array.from(document.querySelectorAll('button')).some(n=>n.innerText.trim()===label));
+    if(!labels.length) labels.push(null);
+    for(const label of labels) {
       const toggle=Array.from(document.querySelectorAll('button')).find(n=>n.innerText.trim()===label);
-      if(!toggle || toggle.disabled) continue;
-      toggle.click();await pause(1600);
+      if(label && (!toggle || toggle.disabled)) continue;
+      if(toggle)toggle.click();await pause(1600);
       for(const node of document.querySelectorAll('button')) {
         const text=node.innerText.trim();
         if(!/\\b\\d{1,2}\\.\\s*[a-zč]+\\.?.*20\\d{2}/iu.test(text)||!/\\d{1,2}:\\d{2}/u.test(text)) continue;
         if(/termin poln/iu.test(text)) continue;
         const titleText='Tečaj CPP — B kategorija';
         const online=label==='Online (Zoom)' || /online|zoom|na daljavo/iu.test(text);
-        items.push({text,titleText,categoryText:titleText,mode:online?'ONLINE':'CLASSROOM',...(online?{explicitLocation:{name:'Na daljavo — Modrivoznik.si',streetAddress:'',addressLocality:'Na daljavo'}}:{}),registrationUrl:location.href+'#prijava'});
+        const publishedPlace=text.split(/\\n/u).map(s=>s.trim()).find(s=>s.includes(',')&&!/20\\d{2}|Prijave do/iu.test(s));
+        const classroomPlace=publishedPlace?{name:publishedPlace,streetAddress:publishedPlace.split(',')[0].trim(),addressLocality:publishedPlace.split(',').at(-1).trim()}:null;
+        items.push({text,titleText,categoryText:titleText,mode:online?'ONLINE':'CLASSROOM',...(online?{explicitLocation:{name:'Na daljavo — Modrivoznik.si',streetAddress:'',addressLocality:'Na daljavo'}}:classroomPlace?{explicitLocation:classroomPlace}:{}),registrationUrl:location.href+'#prijava'});
       }
     }
     return {title:document.title,items};
@@ -861,9 +919,15 @@ async function collectModriPublicTerms(cdp) {
 }
 
 async function harvestSource(cdp, source) {
+  if (publicBrowserReviewSchools.has(source.school_id)) {
+    const file = `data/public-browser-reviews/${source.school_id}.json`;
+    if (!fs.existsSync(file)) throw new Error('Public browser review required; headless access is blocked');
+    return reviewedPublicCapture(source, JSON.parse(fs.readFileSync(file, 'utf8')));
+  }
   await assertRobotsAllowed(source);
-  await navigate(cdp, source.url, 3500);
+  await navigate(cdp, source.url, [3063,3190].includes(source.school_id)?8000:3500);
   const expression = `(() => {
+    const clean=value=>String(value||'').replace(/\\s+/gu,' ').trim();
     const selectors = ${JSON.stringify(source.selectors)};
     const maxNodes = ${source.max_nodes};
     const extractor = ${JSON.stringify(source.extractor || 'date-nodes-v1')};
@@ -950,17 +1014,18 @@ async function harvestSource(cdp, source) {
           item.explicitLocation={name:place,streetAddress:lenart?'Maistrova ulica 11':'Komenskega ulica 2',addressLocality:lenart?'Lenart':'Maribor'};
           item.registrationUrl=node.querySelector('a[href*="prijavnica"]')?.href;
         } else if (schoolId === 3063) {
-          if(!/Prihajajoči CPP termini/iu.test(node.closest('.elementor-image-box-content')?.innerText||'')) continue;
+          if(!/Tečaj CPP/iu.test(text)||!numeric.test(text)) continue;
           item.lines=node.innerText || Array.from(node.childNodes).map(n=>n.nodeName==='BR'?'\\n':n.textContent).join('');
           item.titleText='Tečaj CPP — B, A1, AM kategorije';
           item.categoryText=item.titleText;
           item.explicitLocation={name:'Petrov trg 7, Šempeter',streetAddress:'Petrov trg 7',addressLocality:'Šempeter'};
           item.registrationUrl=node.querySelector('a')?.href;
         } else if (schoolId === 3147) {
+          text=clean(node.textContent);item.text=text;
           const card=node.closest('.elementor-icon-box-content');
-          const section=node.closest('.e-con-child');
-          const heading=Array.from(section?.querySelectorAll('h1,h2,h3,h4')||[]).map(n=>clean(n.innerText)).find(s=>/^KATEGORIJA/iu.test(s));
-          const locality=clean(card?.querySelector('.elementor-icon-box-title')?.innerText);
+          const section=node.closest('.e-child');
+          const heading=(Array.from(section?.querySelectorAll('h1,h2,h3,h4,h5,h6')||[]).map(n=>clean(n.textContent)).find(s=>/KATEGORIJA/iu.test(s))||'').match(/KATEGORIJA.*$/iu)?.[0];
+          const locality=clean(card?.querySelector('.elementor-icon-box-title')?.textContent);
           if(!heading||!locality||!numeric.test(text)) continue;
           item.titleText='Tečaj CPP — '+heading;
           item.categoryText=/B, AM IN A1/iu.test(heading)?'B, AM, A1 kategorije':heading;
@@ -1218,19 +1283,20 @@ async function harvestSource(cdp, source) {
       }
       if (found.length >= maxNodes) break;
     }
-    return { title: document.title, items: found };
+    return { title: document.title, items: found, ...(schoolId===3147?{diagnostics:{url:location.href,title:document.title,excerpt:clean(document.body?.innerText).slice(0,220),count:document.querySelectorAll('.elementor-icon-box-description').length,nodes:Array.from(document.querySelectorAll('.elementor-icon-box-description')).filter(n=>/20\\d{2}/u.test(n.textContent)).map(n=>({text:clean(n.textContent),place:clean(n.closest('.elementor-icon-box-content')?.querySelector('.elementor-icon-box-title')?.textContent),category:clean(n.closest('.e-child')?.querySelector('h2')?.textContent)}))}}:{}) };
   })()`;
-  let result = source.school_id === 3064 ? await collectSmarcaPublicTerms(cdp)
+  const collect = async () => source.school_id === 3064 ? await collectSmarcaPublicTerms(cdp)
     : source.school_id === 3096 ? await collectBliskPublicTerms(cdp,source)
     : source.school_id === 3172 ? await collectFerdoPublicTerms(cdp,source)
     : source.school_id === 3103 ? await collectModriPublicTerms(cdp)
     : await evaluate(cdp, expression);
-  for (let attempt = 0; result?.items?.length === 0 && attempt < 8; attempt += 1) {
+  let result=await collect();
+  for (let attempt = 0; result?.items?.length === 0 && attempt < ([3063,3190].includes(source.school_id)?20:8); attempt += 1) {
     await wait(1000);
-    result = await evaluate(cdp, expression);
+    result = await collect();
   }
   if (!Array.isArray(result?.items) || result.items.length === 0) {
-    throw new Error(`${source.school_name}: rendered page contained no date-bearing approved nodes`);
+    throw new Error(`${source.school_name}: rendered page contained no date-bearing approved nodes; ${JSON.stringify(result?.diagnostics||{})}`);
   }
   const expandedItems = result.items.flatMap(item => publicCourseItems(source.school_id, item));
   const availableItems = expandedItems.filter((item) => !isUnavailableTerm(item.text));
@@ -1318,7 +1384,7 @@ function censusCourseEvidence(text, context = '') {
 function censusDOMObservation() {
   const clean = value => String(value || '').replace(/\s+/gu,' ').trim();
   const body = clean(document.body?.innerText);
-  const blocked = /verify.{0,30}(?:human|browser)|checking your browser|please wait while your request is being verified|access denied|just a moment/iu.test(body.slice(0,1600));
+  const blocked = /security verification|verification could not be completed|verify.{0,30}(?:human|browser)|checking your browser|please wait while your request is being verified|access denied|just a moment/iu.test(body.slice(0,1600));
   const loginWall = body.length < 2500 && /log in to (?:continue|facebook)|you must log in|prijavite se za nadaljevanje/iu.test(body);
   const dated = /\b\d{1,2}\s*[.\/-]\s*\d{1,2}\s*[.\/-]\s*(?:20\d{2}|\d{2})\b|\b\d{1,2}\.?\s*(?:jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)[a-zč]*\.?\s*,?\s*20\d{2}\b/iu;
   const shortDate = /\b\d{1,2}\.\s*(?:\d{1,2}\.|jan|feb|mar|apr|maj|jun|jul|avg|sep|okt|nov|dec)/iu;
@@ -1392,6 +1458,11 @@ async function auditCandidateSites() {
       const sourceIndex=cursor++;const source=candidates[sourceIndex];
       const result={school_id:source.school_id,school_name:source.school_name,source_url:source.url,pages:[],errors:[],pages_read:0,status:'READ_FAILED'};
       if(!source.url){result.status='WEBSITE_NOT_VERIFIED';record(sourceIndex,result);continue;}
+      if(publicBrowserReviewSchools.has(source.school_id)){
+        result.status='PUBLIC_BROWSER_REVIEW_REQUIRED';
+        result.errors.push({url:source.url,error:'Headless security verification failed; use a dated normal public browser review without bypassing verification'});
+        record(sourceIndex,result);continue;
+      }
       const queue=[{url:source.url,score:1000,kind:'link'}],seen=new Set(),allowedHosts=new Set([new URL(source.url).hostname.replace(/^www\./u,'')]),blockedHosts=new Set();
       let externalHosts=0;
       while(queue.length&&seen.size<maxPages) {
@@ -1489,16 +1560,19 @@ if (process.argv.includes("--audit-candidates")) {
 
 const runtime = await startChrome();
 const results = [];
-const observations = [];
+let observations = [];
 const maxSources = positiveInteger(process.env.VZI_CPP_MAX_SOURCES_PER_RUN, 20, "VZI_CPP_MAX_SOURCES_PER_RUN");
 const defaultRotationSlot = Math.floor(Date.now() / 86400000);
 const rotationSlot = nonNegativeInteger(process.env.VZI_CPP_ROTATION_SLOT, defaultRotationSlot, "VZI_CPP_ROTATION_SLOT");
-const batch = selectHarvestBatch(registry.sources, maxSources, rotationSlot);
+const refreshArgument=process.argv.find(v=>v.startsWith('--refresh-school='));
+const refreshSchool=refreshArgument?Number(refreshArgument.split('=')[1]):null;
+if(refreshArgument&&(!Number.isSafeInteger(refreshSchool)||refreshSchool<=0))throw new Error('Invalid refresh school');
+const batch = selectHarvestBatch(refreshSchool?registry.sources.filter(s=>s.school_id===refreshSchool):registry.sources, maxSources, rotationSlot);
 try {
   for (const source of batch.selected) {
     try {
       const harvested = await harvestSource(runtime.cdp, source);
-      const observedAt = new Date().toISOString();
+      const observedAt = harvested.observedAt || new Date().toISOString();
       const contentSha256 = crypto.createHash("sha256").update(harvested.html).digest("hex");
       observations.push({
         school_id: source.school_id,
@@ -1513,6 +1587,7 @@ try {
         rendered_nodes: harvested.nodeCount,
         skipped_unavailable: harvested.skippedUnavailable,
         status: "HARVESTED",
+        method: harvested.method || "public_headless_browser",
         content_sha256: contentSha256
       });
     } catch (error) {
@@ -1526,7 +1601,14 @@ try {
     await wait(2000);
   }
   if (observations.length === 0) {
+    process.stdout.write(JSON.stringify({harvest_failures:results})+"\n");
     throw new Error("No approved browser source produced a publishable observation");
+  }
+  const signingKey = process.env.VZI_CPP_MANIFEST_SIGNING_KEY;
+  if (!signingKey) throw new Error('Missing secret: VZI_CPP_MANIFEST_SIGNING_KEY');
+  if(refreshSchool){
+    const previous=JSON.parse(fs.readFileSync('data/cpp-browser-observations.json','utf8'));
+    observations=reuseVerifiedObservations(previous,observations,registry,crypto.createPublicKey(signingKey),Date.now(),refreshSchool);
   }
   const generatedAt = new Date().toISOString();
   const manifest = {
@@ -1536,8 +1618,6 @@ try {
     registry_sha256: crypto.createHash("sha256").update(registryCanonical).digest("hex"),
     observations
   };
-  const signingKey = process.env.VZI_CPP_MANIFEST_SIGNING_KEY;
-  if (!signingKey) throw new Error("Missing secret: VZI_CPP_MANIFEST_SIGNING_KEY");
   manifest.signature = {
     algorithm: "Ed25519",
     key_id: "vzi-cpp-radar-2026-01",

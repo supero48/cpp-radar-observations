@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "method": "agent_public_browser_review",
+  "school_id": 3147,
+  "source_url": "https://ilke.si/",
+  "observed_at": "2026-11-21T22:49:20.854Z",
+  "page_title": "Šola vožnje ILKE",
+  "public_evidence": {
+    "context": "Prijava na CPP Kategorija B, AM in A1 osnovni del",
+    "locality": "Koper",
+    "text": "BREZPLAČEN CPP\n14.12.2026 ob 16 uri"
+  },
+  "course_count": 1,
+  "rendered_html": "<!doctype html><html lang=\"sl\"><head><meta charset=\"utf-8\"><title>Šola vožnje ILKE</title><script type=\"application/ld+json\">[{\"@context\":\"https://schema.org\",\"@type\":\"EducationEvent\",\"@id\":\"https://ilke.si/#vzi-browser-cpp-koper-20261214\",\"name\":\"Osnovni del tečaja CPP — kategorije B, AM, A1\",\"organizer\":{\"@type\":\"EducationalOrganization\",\"name\":\"Šola vožnje ILKE\"},\"description\":\"Prijava na CPP Kategorija B, AM in A1 osnovni del. Koper. BREZPLAČEN CPP 14.12.2026 ob 16 uri.\",\"startDate\":\"2026-12-14T16:00:00\",\"url\":\"https://ilke.si/\",\"inLanguage\":\"sl\",\"location\":{\"@type\":\"Place\",\"name\":\"Koper\",\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Koper\",\"addressCountry\":\"SI\"}}}]</script></head><body><main><h1>Tečaji CPP</h1></main></body></html>",
+  "content_sha256": "98730d9d16648455d825f48d7a86804f6c42f51c964f0fc5ec6fdfc55658f847"
+}
