@@ -9,19 +9,26 @@ export function coverageReport(candidates, registry, manifest, audit, now = new 
     const fresh = observations.filter(o => Date.parse(o.observed_at) >= cutOff && Date.parse(o.observed_at) <= now.getTime());
     const evidence = (audit.results || []).find(r => Number(r.school_id) === Number(school.school_id));
     const observedDates = new Set();
+    const observedRanges = [];
     for (const observation of fresh) {
       for (const match of String(observation.rendered_html || '').matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/giu)) {
         const walk = value => {
           if (Array.isArray(value)) { value.forEach(walk); return; }
           if (!value || typeof value !== 'object') return;
-          if (/Event/u.test(String(value['@type'])) && /^20\d{2}-\d{2}-\d{2}/u.test(value.startDate || '')) observedDates.add(value.startDate.slice(0, 10));
+          if (/Event/u.test(String(value['@type'])) && /^20\d{2}-\d{2}-\d{2}/u.test(value.startDate || '')) {
+            const start = value.startDate.slice(0, 10);
+            const end = /^20\d{2}-\d{2}-\d{2}/u.test(value.endDate || '') ? value.endDate.slice(0, 10) : start;
+            observedDates.add(start);
+            observedRanges.push({start, end: end >= start ? end : start});
+          }
           Object.values(value).filter(v => v && typeof v === 'object').forEach(walk);
         };
         try { walk(JSON.parse(match[1])); } catch { /* malformed evidence is never a confirmed course */ }
       }
     }
     const evidenceDates = new Set((evidence?.pages || []).flatMap(page => (page.upcoming || []).map(item => item.date?.startDate)).filter(date => /^20\d{2}-\d{2}-\d{2}$/u.test(date || '') && date >= today));
-    const missingDates = [...evidenceDates].filter(date => !observedDates.has(date)).sort();
+    // Later lecture days inside an already observed course are not extra courses.
+    const missingDates = [...evidenceDates].filter(date => !observedRanges.some(range => range.start <= date && date <= range.end)).sort();
     const missingSources = sources.filter(source => !fresh.some(o => o.source_url === source.url)).map(s => s.url);
     const futureDates = [...observedDates].filter(date => date >= today).sort();
     const actions = [];
@@ -45,7 +52,7 @@ export function coverageReport(candidates, registry, manifest, audit, now = new 
   });
   return {
     generated_at: now.toISOString(), audit_generated_at: audit.generated_at || null,
-    methodology: 'Discovery worklist for every directory school. Date evidence is a review lead, never publication approval. Manifest dates are not a verified WordPress public event count. Failed or stale reads do not mean the school has no courses.',
+    methodology: 'Discovery worklist for every directory school. Date evidence outside an observed course interval is a review lead, never publication approval or proof of a missing course. Dates inside an observed interval may still belong to other courses; inspect all linked pages and identities. Manifest dates are not a verified WordPress public event count. Failed or stale reads do not mean the school has no courses.',
     summary: {
       schools: rows.length, schools_with_website: rows.filter(r => r.official_url).length,
       approved_sources: rows.reduce((sum, row) => sum + row.approved_sources, 0),
@@ -62,12 +69,12 @@ if (process.argv.includes('--self-test')) {
   const assert = (value, label) => { if (!value) throw new Error(label); };
   const schools = [{school_id: 1, school_name: 'One', url: 'https://one.example/'}, {school_id: 2, school_name: 'Two', url: ''}];
   const registry = {sources: [{school_id: 1, url: 'https://one.example/', approved: true, enabled: true}]};
-  const manifest = {observations: [{school_id: 1, source_url: 'https://one.example/', observed_at: '2026-11-21T10:00:00Z', rendered_html: '<script type="application/ld+json">[{"@type":"EducationEvent","startDate":"2026-12-01"}]</script>'}]};
-  const audit = {generated_at: '2026-11-22T00:00:00Z', results: [{school_id: 1, pages: [{upcoming: [{date: {startDate: '2026-12-01'}}, {date: {startDate: '2026-12-08'}}]}], pending_pages: [{url:'https://one.example/cpp'}]}]};
+  const manifest = {observations: [{school_id: 1, source_url: 'https://one.example/', observed_at: '2026-11-21T10:00:00Z', rendered_html: '<script type="application/ld+json">[{"@type":"EducationEvent","startDate":"2026-12-01","endDate":"2026-12-06"}]</script>'}]};
+  const audit = {generated_at: '2026-11-22T00:00:00Z', results: [{school_id: 1, pages: [{upcoming: [{date: {startDate: '2026-12-01'}}, {date: {startDate: '2026-12-03'}}, {date: {startDate: '2026-12-08'}}]}], pending_pages: [{url:'https://one.example/cpp'}]}]};
   const now = new Date('2026-11-22T10:00:00Z');
   const result = coverageReport(schools, registry, manifest, audit, now);
   assert(result.schools.length === 2 && result.summary.schools_needing_website_discovery === 1, 'all schools, including no website');
-  assert(result.schools[0].unmatched_date_evidence.join() === '2026-12-08', 'only unimported date evidence flagged');
+  assert(result.schools[0].unmatched_date_evidence.join() === '2026-12-08', 'course intervals suppress repeated lecture days, while new dates remain flagged');
   assert(result.schools[0].actions.includes('CONTINUE_UNREAD_PAGES'), 'continuation worklist');
   manifest.observations[0].observed_at = '2026-11-01T10:00:00Z';
   const stale = coverageReport(schools, registry, manifest, audit, now);
