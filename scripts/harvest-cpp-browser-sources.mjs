@@ -5,6 +5,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { spawn } from "node:child_process";
+import {resumeCensusFrontier, saveCensusFrontier, weeklyPageBudget} from "./cpp-census-frontier.mjs";
 
 const registryPath = process.env.VZI_CPP_BROWSER_REGISTRY || "config/cpp-browser-sources.json";
 const registryBody = fs.readFileSync(registryPath, "utf8");
@@ -640,6 +641,7 @@ if (process.argv.includes("--self-test")) {
     dateNodePayloadItem({text:'Tečaj CPP — kategorija CE 16.12.2026 ob 15.30 (možno tudi online)'}).categoryText === 'CE',
     dateNodePayloadItem({text:'30.11.2026 ob 16:00',titleText:'Tečaj CPP — B kategorija',explicitLocation:{name:'Tolmin',streetAddress:'',addressLocality:'Tolmin'}}).location.addressLocality === 'Tolmin',
     censusLinkScore({text:'CPP tečaji',url:'https://neja74.wixsite.com/website/cpp-te%C4%8Daji'}) > censusLinkScore({text:'Urnik pouka',url:'https://school.example/izobrazevanje-odraslih/urnik/'}),
+    censusLinkScore({text:'Novice',url:'https://school.example/novice/'}) >= 50,
     censusLinkScore({text:'Zaščita prijaviteljev',url:'https://school.example/zascita-prijaviteljev/'}) < 0,
     censusLinkScore({text:'CPP urnik PDF',url:'https://school.example/files/cpp.pdf'}) >= 100,
     censusLinkScore({text:'Prijava na CPP',url:'https://forms.gle/public-form',nearby:'Tečaj CPP'}) >= 100,
@@ -1417,6 +1419,7 @@ function censusLinkScore(link) {
   if (/mailto:|tel:|javascript:|\/login|\/wp-admin|shareArticle|\/share\b|prijavitelj|koda.?95|temeljnih.?kvalifikacij|tahograf|ADR\b|prv[aeo].?pomo|varn[aoe].?vožnj|gradivo|testi.in|izpitn[ei].?rok|zascita|zaščita/iu.test(direct)) return -100;
   let score = /cpp|cestno.?promet/iu.test(direct) ? 100 : /prijav/iu.test(direct) ? 55 : /termin|urnik|tečaj|tecaj/iu.test(direct) ? 35 : 0;
   if (/CPP|cestno.?promet/iu.test(link.nearby || '')) score += 25;
+  if (/novic|novost|aktualno|obvestil|news|dogodk/iu.test(direct)) score = Math.max(score, 50);
   if (/event-details|prijav|termin|urnik/iu.test(direct)) score += 15;
   if (/\.pdf(?:[?#]|$)/iu.test(link.url || '') && /cpp|cestno|tečaj|tecaj|urnik|termin/iu.test(value)) score += 35;
   return score;
@@ -1458,7 +1461,7 @@ function censusDOMObservation() {
     url:node.tagName==='IFRAME'?node.src:node.href,
     nearby:clean(node.parentElement?.innerText).slice(0,600),
     kind:node.tagName==='IFRAME'?'iframe':'link'
-  })).filter(x=>/^https?:/u.test(x.url)&&!/recaptcha|googletagmanager|doubleclick|youtube|google\.com\/maps/iu.test(x.url)).filter(x=>/cpp|cestno|prijav|termin|urnik|tečaj|tecaj|\.pdf\b/iu.test(x.text+' '+x.url+' '+x.nearby));
+  })).filter(x=>/^https?:/u.test(x.url)&&!/recaptcha|googletagmanager|doubleclick|youtube|google\.com\/maps/iu.test(x.url)).filter(x=>/cpp|cestno|prijav|termin|urnik|tečaj|tecaj|novic|novost|aktualno|obvestil|news|dogodk|\.pdf\b/iu.test(x.text+' '+x.url+' '+x.nearby));
   const images=Array.from(document.querySelectorAll('img[src]')).map(node=>({url:node.currentSrc||node.src,alt:clean(node.alt),nearby:clean(node.parentElement?.innerText).slice(0,650)})).filter(x=>/^https?:/u.test(x.url)&&/CPP|cestno|urnik|termin|tečaj|tecaj|20(?:26|27)/iu.test(x.alt+' '+x.nearby+' '+x.url)&&!/logo|icon|avatar|placeholder/iu.test(x.alt+' '+x.url)).slice(0,20);
   const structured=[];
   for(const node of document.querySelectorAll('script[type="application/ld+json"]')) {
@@ -1492,7 +1495,13 @@ async function censusPublicPdf(source, url) {
 async function auditCandidateSites() {
   const candidates=JSON.parse(fs.readFileSync('config/cpp-browser-candidates.json','utf8'));
   if(!Array.isArray(candidates)||candidates.length>500)throw new Error('Invalid candidate inventory');
-  const maxPages=positiveInteger(process.env.VZI_CPP_CENSUS_MAX_PAGES,8,'VZI_CPP_CENSUS_MAX_PAGES');
+  const maxPages=Math.min(32,positiveInteger(process.env.VZI_CPP_CENSUS_MAX_PAGES,weeklyPageBudget(),'VZI_CPP_CENSUS_MAX_PAGES'));
+  let previousResults=[];
+  if(fs.existsSync('data/cpp-source-audit.json')) {
+    try {previousResults=JSON.parse(fs.readFileSync('data/cpp-source-audit.json','utf8')).results || [];}
+    catch(error) {process.stderr.write('Previous census unavailable; starting a fresh public crawl: '+String(error.message)+'\n');}
+  }
+  const previousBySchool=new Map(previousResults.map(result=>[Number(result.school_id),result]));
   const workers=Math.min(4,positiveInteger(process.env.VZI_CPP_CENSUS_WORKERS,3,'VZI_CPP_CENSUS_WORKERS'));
   const runtimes=await Promise.all(Array.from({length:workers},()=>startChrome()));
   const results=new Array(candidates.length);let cursor=0,completed=0;
@@ -1509,7 +1518,7 @@ async function auditCandidateSites() {
         result.errors.push({url:source.url,error:'Headless security verification failed; use a dated normal public browser review without bypassing verification'});
         record(sourceIndex,result);continue;
       }
-      const queue=[{url:source.url,score:1000,kind:'link'}],seen=new Set(),allowedHosts=new Set([new URL(source.url).hostname.replace(/^www\./u,'')]),blockedHosts=new Set();
+      const queue=[{url:source.url,score:1000,kind:'link'},...resumeCensusFrontier(previousBySchool.get(Number(source.school_id)),source)],seen=new Set(),allowedHosts=new Set([new URL(source.url).hostname.replace(/^www\./u,'')]),blockedHosts=new Set();
       let externalHosts=0;
       while(queue.length&&seen.size<maxPages) {
         queue.sort((a,b)=>b.score-a.score);
@@ -1561,7 +1570,7 @@ async function auditCandidateSites() {
               allowedHosts.add(targetHost);externalHosts++;
             }
             if(/\.wixsite\.com$/u.test(target.hostname)&&target.pathname.split('/').filter(Boolean)[0]!==finalUrl.pathname.split('/').filter(Boolean)[0])continue;
-            queue.push({...link,url:target.href});
+            queue.push({...link,url:target.href,discovered_on:page.url});
           }
         } catch(error) {
           const message=String(error?.message||error).slice(0,300);result.errors.push({url,error:message});
@@ -1582,6 +1591,8 @@ async function auditCandidateSites() {
       }
       result.pages_read=result.pages.filter(p=>!p.blocked&&!p.login_required).length;
       result.unread_linked_pages=queue.length;
+      result.pending_pages=saveCensusFrontier(queue,source,blockedHosts);
+      result.continuation_pages=result.pending_pages.length;
       record(sourceIndex,result);
       process.stdout.write(JSON.stringify({audit_progress:completed,total:candidates.length,school_id:source.school_id,pages:result.pages_read,status:result.status})+'\n');
       await wait(250);
