@@ -185,7 +185,26 @@ function dateNodePayloadItem(item) {
   };
 }
 
+function amzsTermFields(value) {
+  const text=String(value).replace(/\s+/gu,' ').trim();
+  const range=text.match(/(\d{1,2}\.\s*\d{1,2}\.\s*20\d{2})\s*\((\d{1,2}:\d{2})\)\s*[-–—]\s*(\d{1,2}\.\s*\d{1,2}\.\s*20\d{2})\s*\((\d{1,2}:\d{2})\)/u);
+  if(!range)return null;
+  const first=canonicalDateRange(range[1]),last=canonicalDateRange(range[3]);
+  if(!first||!last||last.startDate<first.startDate)return null;
+  // The date-range widget repeats the start time as its end time. The
+  // published session hours supply the actual finish (e.g. 18:30, not 15:30).
+  const hours=[...text.matchAll(/(?:\bod\s*)?(\d{1,2}:\d{2})\s*(?:do|[-–—])\s*(\d{1,2}:\d{2})/giu)].at(-1);
+  const place=text.match(/\blokacija:\s*([^\)]+?)(?:,\s*Datumi:|\s*\(|$)/iu)?.[1];
+  const pieces=String(place||'').split(',').map(s=>s.trim());
+  const locality=pieces[1]?.replace(/^\d{4}\s+/u,'');
+  const location=pieces.length===2&&/\d/u.test(pieces[0])&&locality&&/^[\p{L} .'-]+$/u.test(locality)?{name:pieces[0]+', '+locality,streetAddress:pieces[0],addressLocality:locality}:null;
+  if(!location)return null;
+  return {startDateText:range[1],endDateText:range[3],timeText:'ob '+range[2]+'-'+(hours?.[2]||range[4]),explicitLocation:location,mode:'CLASSROOM'};
+}
+
 function publicCourseItems(schoolId, item) {
+  if(schoolId===3158){const fields=amzsTermFields(item.text);return fields?[{...item,...fields}]:[];}
+
   if (schoolId === 3086) {
     // Numbered paragraphs are separate courses; days within each are sessions.
     return String(item.lines || item.text).split(/(?:^|\n)\s*\d+\.\s+/u).filter(t=>/20\d{2}/u.test(t)).map(text=>{
@@ -506,7 +525,22 @@ if (process.argv.includes("--self-test")) {
   const reviewSource={school_id:3147,url:'https://ilke.si/',max_nodes:50};
   const reviewFixture={version:1,method:'agent_public_browser_review',school_id:3147,source_url:'https://ilke.si/',observed_at:'2026-11-21T21:50:00Z',rendered_html:'reviewed public course',course_count:1};
   reviewFixture.content_sha256=crypto.createHash('sha256').update(reviewFixture.rendered_html).digest('hex');
+  const amzsLj='24.11.2026 (15:30) - 2.12.2026 (15:30) (lokacija: Dunajska 128, Ljubljana, Datumi: 24., 25., 26., 27.,01. in 02.12.2026 od 15:30 do 18:30)';
+  const amzsTr='7.12.2026 (16:00) - 15.12.2026 (16:00) (Lokacija: Trubarjeva ulica 2, Trebnje, Datumi: 7., 8., 9., 10., 14., 15.12.2026, 16:00-19:00)';
+  const amzsA='25.1.2027 (15:30) - 26.1.2027 (15:30) (lokacija: Dunajska 128, Ljubljana (25. in 26.1.2027 od 15:30 do 18:30)';
+  const amzsPayload=text=>dateNodePayloadItem(publicCourseItems(3158,{text,titleText:'Splošni del tečaja CPP',categoryText:'',courseType:'CPP_GENERAL'})[0]);
   const checks = [
+    amzsPayload(amzsLj).dates.startDate==='2026-11-24'&&amzsPayload(amzsLj).dates.endDate==='2026-12-02',
+    amzsPayload(amzsLj).times.startTime==='15:30:00'&&amzsPayload(amzsLj).times.endTime==='18:30:00',
+    amzsPayload(amzsLj).location.addressLocality==='Ljubljana',
+    amzsPayload(amzsTr).dates.endDate==='2026-12-15'&&amzsPayload(amzsTr).times.endTime==='19:00:00',
+    amzsPayload(amzsTr).location.streetAddress==='Trubarjeva ulica 2',
+    amzsPayload(amzsA).dates.endDate==='2027-01-26'&&amzsPayload(amzsA).location.addressLocality==='Ljubljana',
+    amzsPayload(amzsLj).categoryText===''&&amzsPayload(amzsLj).mode==='CLASSROOM',
+    amzsTermFields(amzsLj.replace('24.11.2026','31.11.2026'))===null,
+    amzsTermFields(amzsLj.replaceAll('2026',''))===null,
+    amzsTermFields('Sprejemna pisarna 23.11.2026 ZAPRTA')===null,
+
     reviewedPublicCapture(reviewSource,reviewFixture,cacheNow).observedAt===reviewFixture.observed_at,
     refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,school_id:1},cacheNow)),
     refuses(()=>reviewedPublicCapture(reviewSource,{...reviewFixture,source_url:'https://other.example/'},cacheNow)),
@@ -947,7 +981,18 @@ async function harvestSource(cdp, source) {
           }
           return '';
         };
-        if (schoolId === 3133) {
+        if (schoolId === 3158) {
+          const section=node.closest('.tr');
+          const heading=clean(section?.querySelector('h3,h4,h5')?.textContent);
+          if(!/CPP|predavanje.*kategorij/iu.test(heading))continue;
+          // Maribor has its own approved source. Do not duplicate its snapshot.
+          if(location.pathname.includes('/tecaji-cpp')&&/Maribor/iu.test(heading))continue;
+          const additional=/Dopolnilno predavanje.*A kategorij/iu.test(heading);
+          item.titleText=additional?'Dodatni del tečaja CPP — kategorije A1, A2, A':'Splošni del tečaja CPP';
+          item.categoryText=additional?'A1, A2, A kategorije':'';
+          item.courseType=additional?'CPP_ADDITIONAL':'CPP_GENERAL';
+          item.registrationUrl=section?.querySelector('a[href*="/amzs-dogodki/"]')?.href||location.href;
+        } else if (schoolId === 3133) {
           if(!/dne.*20\\d{2}/iu.test(text)) continue;
           item.titleText='Tečaj CPP — A, B, AM kategorije';
           item.categoryText=item.titleText;
@@ -1173,6 +1218,7 @@ async function harvestSource(cdp, source) {
         } else if (schoolId === 3112) {
           if (!/organiziramo tečaj CPP/iu.test(text)) continue;
           item.titleText = 'Tečaj CPP in eCPP';
+          item.mode = 'HYBRID';
           const section = node.closest('article,.entry-content') || node.parentElement;
           const sessions = Array.from(section.querySelectorAll('p')).map(n=>clean(n.innerText)).filter(s=>/^(?:Torek|Sreda|Četrtek|Ponedeljek|Petek),/iu.test(s)&&numeric.test(s));
           item.endDateText = sessions.at(-1);

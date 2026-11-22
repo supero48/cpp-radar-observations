@@ -1,0 +1,97 @@
+{
+  "reviewed_at": "2026-11-22",
+  "scope": "Additional public CPP schedules on already verified first-party school domains; no private RPO access or candidate submissions.",
+  "registry_sources_before": 63,
+  "registry_sources_after": 67,
+  "findings": [
+    {
+      "school_id": 3112,
+      "added_source_months": [
+        "2027-02",
+        "2027-03",
+        "2027-04"
+      ],
+      "starts": [
+        "2027-02-16",
+        "2027-03-16",
+        "2027-04-13"
+      ],
+      "mode": "classroom or online; the publisher requires one mode for the whole course",
+      "note": "Course days grouped into a single course interval per monthly announcement."
+    },
+    {
+      "school_id": 3158,
+      "added_overview_url": "https://www.amzs.si/solavoznje/tecaji-cpp",
+      "added_courses": [
+        {
+          "date": "2026-11-24",
+          "end": "2026-12-02",
+          "locality": "Ljubljana"
+        },
+        {
+          "date": "2026-12-08",
+          "end": "2026-12-17",
+          "locality": "Ljubljana"
+        },
+        {
+          "date": "2026-12-07",
+          "end": "2026-12-15",
+          "locality": "Trebnje"
+        },
+        {
+          "date": "2027-01-25",
+          "end": "2027-01-26",
+          "locality": "Ljubljana",
+          "categories": [
+            "A1",
+            "A2",
+            "A"
+          ]
+        }
+      ],
+      "notes": [
+        "Office closure is excluded.",
+        "The overview excludes the Maribor course because its existing separate source is retained.",
+        "Actual end time comes from published daily hours; repeated start times in the date widget are not treated as daily finish times.",
+        "The course is attributed to the AMZS publisher, not to the separate Eproh franchise without a first-party attribution."
+      ]
+    }
+  ],
+  "rechecked_not_published": [
+    {
+      "school_id": 3070,
+      "reason": "K&D's public registration iframe is free text and supplies no year; the public table also omits years."
+    },
+    {
+      "school_id": 3171,
+      "reason": "Expanded Stop Ajdovščina schedule and public select values omit years."
+    },
+    {
+      "school_id": 3134,
+      "reason": "Prednost course detail page and clicked course card omit years."
+    },
+    {
+      "school_id": 3102,
+      "reason": "One future 30 November 2026 label is explicitly tentative; a different group has already started; linked materials require a password."
+    },
+    {
+      "school_id": 3114,
+      "reason": "Oman dates still omit year."
+    },
+    {
+      "school_id": 3104,
+      "reason": "Uradno povezana prijavnica cpp-tecaj.si za Jarše trenutno navaja le že začeti 9.11.2026 za Gimnazijo Vič; ni novega prihodnjega tečaja."
+    }
+  ],
+  "validation": {
+    "local_parser_self_tests": 129,
+    "registry_sources": 67,
+    "live_harvest_observations": 66,
+    "live_harvest_status": "PASS_WITH_ERRORS",
+    "known_failed_source_school_ids": [
+      3190
+    ],
+    "workflow_run_id": 44995928601,
+    "generated_at": "2026-11-22T07:06:24.911Z"
+  }
+}
