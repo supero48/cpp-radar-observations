@@ -1136,6 +1136,78 @@
       "priority": 2,
       "approved": true,
       "enabled": true
+    },
+    {
+      "school_id": 3112,
+      "school_name": "Prometna šola Maribor",
+      "school_locality": "Maribor",
+      "school_location": "",
+      "domain": "prometna.net",
+      "homepage_url": "https://prometna.net/",
+      "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-februar-2027/",
+      "selectors": [
+        "p"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3112,
+      "school_name": "Prometna šola Maribor",
+      "school_locality": "Maribor",
+      "school_location": "",
+      "domain": "prometna.net",
+      "homepage_url": "https://prometna.net/",
+      "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-marec-2027/",
+      "selectors": [
+        "p"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3112,
+      "school_name": "Prometna šola Maribor",
+      "school_locality": "Maribor",
+      "school_location": "",
+      "domain": "prometna.net",
+      "homepage_url": "https://prometna.net/",
+      "url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-april-2027/",
+      "selectors": [
+        "p"
+      ],
+      "context_text": "Tečaji CPP",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
+    },
+    {
+      "school_id": 3158,
+      "school_name": "AMZS šola vožnje",
+      "school_locality": "Ljubljana",
+      "school_location": "Dunajska cesta 128, Ljubljana",
+      "domain": "www.amzs.si",
+      "homepage_url": "https://www.amzs.si/solavoznje",
+      "url": "https://www.amzs.si/solavoznje/tecaji-cpp",
+      "selectors": [
+        ".termin label"
+      ],
+      "context_text": "Tečaji CPP AMZS Ljubljana in Trebnje ter dodatni del A",
+      "max_nodes": 30,
+      "extractor": "date-nodes-v1",
+      "priority": 2,
+      "approved": true,
+      "enabled": true
     }
   ]
 }

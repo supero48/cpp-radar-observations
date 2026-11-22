@@ -3,7 +3,7 @@ name: Publish signed CPP browser observations
 on:
   push:
     branches:
-      - main
+      - agent/cpp-additional-public-20261122
     paths:
       - "config/cpp-browser-sources.json"
       - "scripts/harvest-cpp-browser-sources.mjs"
@@ -25,7 +25,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: cpp-radar-observation-publisher
+  group: cpp-radar-additional-public-20261122
   cancel-in-progress: false
 
 jobs:
@@ -71,7 +71,7 @@ jobs:
             exit 0
           fi
           git commit -m "chore: record public CPP website coverage review"
-          git push origin HEAD:main
+          git push origin HEAD:agent/cpp-additional-public-20261122
 
       - name: Harvest and sign approved browser sources
         if: github.event_name != 'pull_request'
@@ -93,4 +93,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore: publish signed CPP observations"
-          git push origin HEAD:main
+          git push origin HEAD:agent/cpp-additional-public-20261122
