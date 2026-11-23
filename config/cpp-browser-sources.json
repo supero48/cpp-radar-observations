@@ -639,10 +639,10 @@
       "school_locality": "Ljutomer",
       "school_location": "",
       "domain": "avtosola-alma.si",
-      "homepage_url": "https://www.avtosola-alma.si/avtosola/urnik-tecajev",
-      "url": "https://www.avtosola-alma.si/avtosola/urnik-tecajev",
+      "homepage_url": "https://www.avtosola-alma.si/",
+      "url": "https://www.avtosola-alma.si/urnik-tecajev/",
       "selectors": [
-        ".urnik2"
+        "#alma-schedule-list"
       ],
       "context_text": "Tečaji CPP",
       "max_nodes": 40,
