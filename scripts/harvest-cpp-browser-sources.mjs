@@ -44,6 +44,10 @@ function isoDate(year, month, day) {
   return `${Number(year)}-${String(Number(month)).padStart(2, "0")}-${String(Number(day)).padStart(2, "0")}`;
 }
 
+function cleanText(value) {
+  return String(value || "").replace(/\s+/gu, " ").trim();
+}
+
 function canonicalDateRange(value) {
   const text = String(value).replace(/\s+/g, " ").trim();
   const sharedNamed = text.match(/\b(\d{1,2})\.\s*(?:do|–|—|-)\s*(\d{1,2})\.\s*([\p{L}.]+)\s*(20\d{2})\b/iu);
@@ -138,6 +142,50 @@ function canonicalLocation(value) {
     streetAddress,
     addressLocality
   };
+}
+
+function almaApiItems(items, today = new Date().toISOString().slice(0, 10)) {
+  return (Array.isArray(items) ? items : []).flatMap((item) => {
+    const acf = item?.acf || {};
+    const rawStart = String(acf.zacetni_datum || "").trim();
+    if (!/^20\d{6}$/u.test(rawStart)) return [];
+    const startDate = isoDate(rawStart.slice(0, 4), rawStart.slice(4, 6), rawStart.slice(6, 8));
+    if (!startDate || startDate < today) return [];
+
+    const meetings = Array.from({ length: 10 }, (_, index) => cleanText(acf[`srecanje_${index + 1}`])).filter(Boolean);
+    const meetingDates = meetings.map((meeting) => canonicalDateRange(meeting)?.startDate).filter(Boolean);
+    if (!meetingDates.length || meetingDates[0] !== startDate) return [];
+
+    const lastDate = meetingDates.filter((date) => date >= startDate).at(-1) || startDate;
+    const firstTime = canonicalTimeRange(meetings[0]).startTime;
+    const lastTime = canonicalTimeRange(meetings.at(-1)).startTime;
+    const locationText = cleanText(acf.lokacija || item?.title?.rendered);
+    const locality = locationText
+      .replace(/^ALMA(?:\s+PE)?\s+/iu, "")
+      .replace(/^Gimnazija\s+/iu, "")
+      .trim();
+    const combined = meetings.join(" ");
+    const publishedAddress = combined.match(/((?:\p{Lu}[\p{L}'-]*\s+){1,3}(?:ulica|cesta|trg)\s+\d+[A-Za-z]?),\s*([\p{L} .'-]+?)(?=\s+(?:\d+\.?\s*srečanje|B\s+kategorija)|$)/u);
+    const address = publishedAddress ? cleanText(`${publishedAddress[1]}, ${publishedAddress[2]}`) : locationText;
+    const titleText = "Tečaj CPP — splošni del in dodatni del B kategorije";
+    return [{
+      text: `${titleText} ${combined}`,
+      titleText,
+      categoryText: "B",
+      courseType: "CPP_COMBINED",
+      startDateText: `${Number(rawStart.slice(6, 8))}.${Number(rawStart.slice(4, 6))}.${rawStart.slice(0, 4)}`,
+      endDateText: lastDate.split("-").reverse().map(Number).join("."),
+      timeText: firstTime ? `ob ${firstTime.slice(0, 5)}` : "",
+      endTimeText: lastTime ? `ob ${lastTime.slice(0, 5)}` : "",
+      explicitLocation: {
+        name: address,
+        streetAddress: publishedAddress ? cleanText(publishedAddress[1]) : "",
+        addressLocality: publishedAddress ? cleanText(publishedAddress[2]) : locality
+      },
+      registrationUrl: "https://www.avtosola-alma.si/prijava-na-tecaj/",
+      sourceEventId: `alma-${item.id}`
+    }];
+  });
 }
 
 function isUnavailableTerm(value) {
@@ -634,6 +682,10 @@ if (process.argv.includes("--self-test")) {
     dateNodePayloadItem(publicCourseItems(3099, {text:'Tečaj CPP - C kategorije 03.12.2026 ob 16h 04.12.2026 ob 16h'})[0]).times.endTime === null,
     publicCourseItems(3190, {text:'1. Srečanje: 7.12.2026 ob 17:00 2. Srečanje: 8.12.2026 ob 17:00 6. Srečanje: 14.12.2026 ob 17:00'}).length === 1,
     dateNodePayloadItem(publicCourseItems(3190, {text:'1. Srečanje: 7.12.2026 ob 17:00 6. Srečanje: 14.12.2026 ob 17:00',titleText:'Tečaj CPP — splošni del in dodatni del B kategorije'})[0]).dates.endDate === '2026-12-14',
+    almaApiItems([{id:43,title:{rendered:'ALMA Ljutomer'},acf:{lokacija:'Ljutomer',zacetni_datum:'20261207',srecanje_1:'ponedeljek 7.12.2026 ob 17:00 (Začetek tečaja!) B kategorija',srecanje_2:'08.12.2026 ob 17.00 uri Kolodvorska ulica 16, Ljutomer B kategorija',srecanje_6:'14.12.2026 ob 17.00 uri Kolodvorska ulica 16, Ljutomer B kategorija'}}], '2026-11-23').length === 1,
+    almaApiItems([{id:43,title:{rendered:'ALMA Ljutomer'},acf:{lokacija:'Ljutomer',zacetni_datum:'20261207',srecanje_1:'ponedeljek 7.12.2026 ob 17:00 (Začetek tečaja!) B kategorija',srecanje_2:'08.12.2026 ob 17.00 uri Kolodvorska ulica 16, Ljutomer B kategorija',srecanje_6:'14.12.2026 ob 17.00 uri Kolodvorska ulica 16, Ljutomer B kategorija'}}], '2026-11-23')[0]?.explicitLocation.name === 'Kolodvorska ulica 16, Ljutomer',
+    almaApiItems([{id:44,title:{rendered:'Gimnazija Ljutomer'},acf:{lokacija:'Gimnazija Ljutomer',zacetni_datum:'20261022',srecanje_1:'22.10.2026 ob 14:00'}}], '2026-11-23').length === 0,
+    almaApiItems([{id:67,title:{rendered:'ADM Križevci'},acf:{lokacija:'Križevci',zacetni_datum:'20261207',srecanje_1:'29.6.2026 ob 18:00'}}], '2026-11-23').length === 0,
     dateNodePayloadItem({text:'1. december ob 15.30'}) === null,
     dateNodePayloadItem({text:'Tečaj CPP — kategorije A, A1, A2, AM 13/1/2027 19:15 Na daljavo'}).categoryText === 'A, A1, A2, AM',
     dateNodePayloadItem({text:'Tečaj CPP — kategorije A, A1, A2, AM 13/1/2027 19:15 Na daljavo'}).times.startTime === '19:15:00',
@@ -952,6 +1004,22 @@ async function collectModriPublicTerms(cdp) {
     }
     return {title:document.title,items};
   })()`);
+}
+
+async function collectAlmaPublicTerms(cdp, source) {
+  const apiUrl = new URL("/wp-json/wp/v2/tecaji", source.url);
+  apiUrl.searchParams.set("per_page", "100");
+  apiUrl.searchParams.set("status", "publish");
+  apiUrl.searchParams.set("orderby", "date");
+  apiUrl.searchParams.set("order", "desc");
+  apiUrl.searchParams.set("_fields", "id,title,acf,modified");
+  await assertRobotsAllowed({ ...source, url: apiUrl.href });
+  const items = await evaluate(cdp, `(async () => {
+    const response = await fetch(${JSON.stringify(apiUrl.href)}, {credentials:'same-origin', cache:'no-store'});
+    if (!response.ok) throw new Error('ALMA public schedule HTTP ' + response.status);
+    return response.json();
+  })()`);
+  return { title: "ALMA — javni termini CPP", items: almaApiItems(items) };
 }
 
 async function harvestSource(cdp, source) {
@@ -1337,6 +1405,7 @@ async function harvestSource(cdp, source) {
     : source.school_id === 3096 ? await collectBliskPublicTerms(cdp,source)
     : source.school_id === 3172 ? await collectFerdoPublicTerms(cdp,source)
     : source.school_id === 3103 ? await collectModriPublicTerms(cdp)
+    : source.school_id === 3190 ? await collectAlmaPublicTerms(cdp,source)
     : await evaluate(cdp, expression);
   let result=await collect();
   for (let attempt = 0; result?.items?.length === 0 && attempt < ([3063,3190].includes(source.school_id)?20:8); attempt += 1) {
