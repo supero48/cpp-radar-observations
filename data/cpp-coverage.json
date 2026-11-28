@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-11-27T02:50:08.909Z",
-  "audit_generated_at": "2026-11-27T02:50:08.327Z",
+  "generated_at": "2026-11-28T02:48:45.620Z",
+  "audit_generated_at": "2026-11-28T02:48:45.053Z",
   "methodology": "Discovery worklist for every directory school. Date evidence outside an observed course interval is a review lead, never publication approval or proof of a missing course. Dates inside an observed interval may still belong to other courses; inspect all linked pages and identities. Manifest dates are not a verified WordPress public event count. Failed or stale reads do not mean the school has no courses.",
   "summary": {
     "schools": 130,
     "schools_with_website": 108,
     "approved_sources": 67,
-    "schools_with_fresh_observation": 57,
+    "schools_with_fresh_observation": 55,
     "schools_needing_website_discovery": 22,
-    "schools_with_unmatched_date_evidence": 10,
-    "schools_with_unread_pages": 29,
-    "schools_with_missing_or_stale_source": 1
+    "schools_with_unmatched_date_evidence": 15,
+    "schools_with_unread_pages": 27,
+    "schools_with_missing_or_stale_source": 3
   },
   "schools": [
     {
@@ -19,7 +19,7 @@
       "official_url": "https://3-d.si/prijava-na-tecaj-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:27:17.437Z",
+      "latest_observed_at": "2026-11-28T02:26:08.644Z",
       "future_dates_in_manifest": [
         "2026-12-07",
         "2027-01-04",
@@ -27,11 +27,11 @@
       ],
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
-      "audit_status": "UPCOMING_EVIDENCE",
-      "pages_read": 8,
-      "pending_pages": 1,
+      "audit_status": "VERIFICATION_OR_LOGIN_REQUIRED",
+      "pages_read": 0,
+      "pending_pages": 0,
       "actions": [
-        "CONTINUE_UNREAD_PAGES"
+        "REVIEW_ACCESS_LIMIT"
       ]
     },
     {
@@ -74,7 +74,7 @@
       "official_url": "https://alfago.si/urniki-tecajev/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:26:05.270Z",
+      "latest_observed_at": "2026-11-28T02:24:59.183Z",
       "future_dates_in_manifest": [
         "2026-12-14"
       ],
@@ -91,7 +91,7 @@
       "official_url": "https://www.avtosola-alma.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:30:12.322Z",
+      "latest_observed_at": "2026-11-28T02:29:08.468Z",
       "future_dates_in_manifest": [
         "2026-12-07"
       ],
@@ -99,7 +99,7 @@
       "missing_observation_sources": [],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
       "pages_read": 8,
-      "pending_pages": 2,
+      "pending_pages": 3,
       "actions": [
         "CONTINUE_UNREAD_PAGES"
       ]
@@ -110,7 +110,7 @@
       "official_url": "https://www.as-amtk.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:32:05.643Z",
+      "latest_observed_at": "2026-11-28T02:31:05.209Z",
       "future_dates_in_manifest": [
         "2026-11-30"
       ],
@@ -127,7 +127,7 @@
       "official_url": "https://www.amzs.si/solavoznje/o-soli/maribor",
       "approved_sources": 2,
       "fresh_observations": 2,
-      "latest_observed_at": "2026-11-27T02:35:23.662Z",
+      "latest_observed_at": "2026-11-28T02:34:37.850Z",
       "future_dates_in_manifest": [
         "2026-11-30",
         "2026-12-07",
@@ -138,7 +138,7 @@
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 87,
+      "pending_pages": 81,
       "actions": [
         "CONTINUE_UNREAD_PAGES"
       ]
@@ -149,7 +149,7 @@
       "official_url": "https://www.solavoznjeandrej.si/tecaji",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:26:51.834Z",
+      "latest_observed_at": "2026-11-28T02:25:44.496Z",
       "future_dates_in_manifest": [
         "2026-12-14"
       ],
@@ -157,7 +157,7 @@
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 49,
+      "pending_pages": 46,
       "actions": [
         "CONTINUE_UNREAD_PAGES"
       ]
@@ -253,7 +253,7 @@
       "official_url": "https://amdpostojna.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:27:24.813Z",
+      "latest_observed_at": "2026-11-28T02:26:16.029Z",
       "future_dates_in_manifest": [
         "2026-12-01",
         "2026-12-14",
@@ -297,7 +297,7 @@
       "official_url": "https://avtosola-loncar.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:28:22.282Z",
+      "latest_observed_at": "2026-11-28T02:27:12.699Z",
       "future_dates_in_manifest": [
         "2026-12-14",
         "2027-01-11",
@@ -316,7 +316,7 @@
       "official_url": "https://maxima.si/tecaj-cestno-prometnih-predpisov/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:28:30.421Z",
+      "latest_observed_at": "2026-11-28T02:27:21.486Z",
       "future_dates_in_manifest": [],
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
@@ -333,7 +333,7 @@
       "official_url": "https://avtosola-triglav.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:27:32.061Z",
+      "latest_observed_at": "2026-11-28T02:26:23.210Z",
       "future_dates_in_manifest": [
         "2027-01-18"
       ],
@@ -373,7 +373,7 @@
       "missing_observation_sources": [],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
       "pages_read": 8,
-      "pending_pages": 4,
+      "pending_pages": 3,
       "actions": [
         "FIND_PUBLISHABLE_SOURCE",
         "CONTINUE_UNREAD_PAGES"
@@ -385,7 +385,7 @@
       "official_url": "https://www.solavoznjemurskasobota.si/App/Vsebina/urnik-predavanj-o-cestno-prometnih-predpisih/Podrobno",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:26:58.876Z",
+      "latest_observed_at": "2026-11-28T02:25:51.582Z",
       "future_dates_in_manifest": [
         "2026-12-09",
         "2026-12-14",
@@ -395,7 +395,7 @@
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 3,
+      "pending_pages": 8,
       "actions": [
         "CONTINUE_UNREAD_PAGES"
       ]
@@ -406,7 +406,7 @@
       "official_url": "https://neja74.wixsite.com/website/cpp-te%C4%8Daji",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:32:11.251Z",
+      "latest_observed_at": "2026-11-28T02:31:10.816Z",
       "future_dates_in_manifest": [
         "2026-12-02",
         "2026-12-14",
@@ -482,7 +482,7 @@
       "official_url": "https://avtosola-nino.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:25:58.039Z",
+      "latest_observed_at": "2026-11-28T02:24:50.777Z",
       "future_dates_in_manifest": [
         "2026-12-01",
         "2026-12-10"
@@ -500,7 +500,7 @@
       "official_url": "https://www.avtosolazulic.com/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:27:37.705Z",
+      "latest_observed_at": "2026-11-28T02:26:28.899Z",
       "future_dates_in_manifest": [
         "2026-12-03"
       ],
@@ -534,7 +534,7 @@
       "official_url": "https://cpp-online.si/tecaj-cpp-termini/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:26:19.751Z",
+      "latest_observed_at": "2026-11-28T02:25:13.969Z",
       "future_dates_in_manifest": [
         "2026-12-08",
         "2026-12-15",
@@ -545,15 +545,12 @@
         "2027-02-09",
         "2027-02-22"
       ],
-      "unmatched_date_evidence": [
-        "2026-12-03"
-      ],
+      "unmatched_date_evidence": [],
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 96,
+      "pending_pages": 95,
       "actions": [
-        "REVIEW_UNIMPORTED_DATE_EVIDENCE",
         "CONTINUE_UNREAD_PAGES"
       ]
     },
@@ -563,7 +560,7 @@
       "official_url": "https://trgovina.avtosola-smarca.com/prijava-na-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:31:27.941Z",
+      "latest_observed_at": "2026-11-28T02:30:28.885Z",
       "future_dates_in_manifest": [
         "2026-11-30",
         "2026-12-02",
@@ -582,7 +579,7 @@
       "missing_observation_sources": [],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
       "pages_read": 8,
-      "pending_pages": 6,
+      "pending_pages": 8,
       "actions": [
         "CONTINUE_UNREAD_PAGES"
       ]
@@ -678,7 +675,7 @@
       "official_url": "https://www.formula.si/sola-voznje/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:25:50.729Z",
+      "latest_observed_at": "2026-11-28T02:24:43.559Z",
       "future_dates_in_manifest": [
         "2026-12-01",
         "2026-12-15",
@@ -702,7 +699,7 @@
       "official_url": "https://www.avtosola-fortuna.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:30:32.014Z",
+      "latest_observed_at": "2026-11-28T02:29:27.271Z",
       "future_dates_in_manifest": [
         "2026-12-01",
         "2026-12-15",
@@ -722,19 +719,18 @@
       "official_url": "https://gjd.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:31:35.069Z",
+      "latest_observed_at": "2026-11-28T02:30:36.053Z",
       "future_dates_in_manifest": [
         "2026-12-02",
         "2026-12-08"
       ],
       "unmatched_date_evidence": [
+        "2026-12-03",
+        "2026-12-04",
+        "2026-12-05",
+        "2026-12-07",
         "2026-12-09",
-        "2026-12-10",
-        "2026-12-11",
-        "2026-12-14",
-        "2026-12-15",
-        "2026-12-17",
-        "2026-12-18"
+        "2026-12-10"
       ],
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
@@ -756,8 +752,8 @@
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
-      "pages_read": 8,
-      "pending_pages": 35,
+      "pages_read": 6,
+      "pending_pages": 36,
       "actions": [
         "FIND_PUBLISHABLE_SOURCE",
         "CONTINUE_UNREAD_PAGES"
@@ -787,9 +783,8 @@
       "official_url": "https://avtosola-ideal.si/tecaji-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:26:29.436Z",
+      "latest_observed_at": "2026-11-28T02:25:22.271Z",
       "future_dates_in_manifest": [
-        "2026-11-27",
         "2026-12-11"
       ],
       "unmatched_date_evidence": [],
@@ -805,7 +800,7 @@
       "official_url": "https://www.prah.si/si/544/68/tecaj-cestno-prometnih-predpisov---cpp.aspx",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:30:23.902Z",
+      "latest_observed_at": "2026-11-28T02:29:19.259Z",
       "future_dates_in_manifest": [
         "2026-12-01",
         "2026-12-07",
@@ -827,7 +822,7 @@
       "official_url": "https://www.amdmoste.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:30:39.333Z",
+      "latest_observed_at": "2026-11-28T02:29:34.549Z",
       "future_dates_in_manifest": [
         "2026-12-14"
       ],
@@ -880,7 +875,7 @@
       "official_url": "https://www.kampl.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:34:42.726Z",
+      "latest_observed_at": "2026-11-28T02:33:47.291Z",
       "future_dates_in_manifest": [
         "2026-12-07"
       ],
@@ -914,7 +909,7 @@
       "official_url": "https://solavoznjekos.si/prijava-cpp.html",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:28:37.860Z",
+      "latest_observed_at": "2026-11-28T02:27:29.001Z",
       "future_dates_in_manifest": [
         "2026-12-07"
       ],
@@ -931,13 +926,13 @@
       "official_url": "https://lmark.si/cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:28:45.952Z",
+      "latest_observed_at": "2026-11-28T02:27:37.266Z",
       "future_dates_in_manifest": [],
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
       "pages_read": 8,
-      "pending_pages": 2,
+      "pending_pages": 1,
       "actions": [
         "CONTINUE_UNREAD_PAGES",
         "CHECK_FOR_NEW_FUTURE_COURSES"
@@ -966,7 +961,7 @@
       "official_url": "https://solavoznjelaura.com/tecaji",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:33:17.855Z",
+      "latest_observed_at": "2026-11-28T02:32:21.994Z",
       "future_dates_in_manifest": [
         "2026-12-07"
       ],
@@ -983,7 +978,7 @@
       "official_url": "https://leze.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:27:08.064Z",
+      "latest_observed_at": "2026-11-28T02:25:59.613Z",
       "future_dates_in_manifest": [],
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
@@ -999,20 +994,25 @@
       "school_name": "Lešnik Group, šola vožnje, Avtobusni prevozi, izobraževanje in storitve d.o.o...",
       "official_url": "https://www.solavoznje-lesnik.si/",
       "approved_sources": 1,
-      "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:30:46.959Z",
-      "future_dates_in_manifest": [
+      "fresh_observations": 0,
+      "latest_observed_at": null,
+      "future_dates_in_manifest": [],
+      "unmatched_date_evidence": [
         "2026-12-01",
         "2026-12-03",
         "2026-12-07"
       ],
-      "unmatched_date_evidence": [],
-      "missing_observation_sources": [],
+      "missing_observation_sources": [
+        "https://www.solavoznje-lesnik.si/"
+      ],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 4,
+      "pending_pages": 2,
       "actions": [
-        "CONTINUE_UNREAD_PAGES"
+        "REVIEW_UNIMPORTED_DATE_EVIDENCE",
+        "RECHECK_MISSING_OR_STALE_SOURCE",
+        "CONTINUE_UNREAD_PAGES",
+        "CHECK_FOR_NEW_FUTURE_COURSES"
       ]
     },
     {
@@ -1029,7 +1029,7 @@
       ],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
       "pages_read": 8,
-      "pending_pages": 35,
+      "pending_pages": 34,
       "actions": [
         "RECHECK_MISSING_OR_STALE_SOURCE",
         "CONTINUE_UNREAD_PAGES",
@@ -1145,7 +1145,7 @@
       "official_url": "https://motovv.com/prijava/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:34:49.698Z",
+      "latest_observed_at": "2026-11-28T02:33:54.421Z",
       "future_dates_in_manifest": [
         "2026-12-09"
       ],
@@ -1162,9 +1162,8 @@
       "official_url": "https://www.nada-tours.com/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:27:44.506Z",
+      "latest_observed_at": "2026-11-28T02:26:35.724Z",
       "future_dates_in_manifest": [
-        "2026-11-27",
         "2026-12-03",
         "2026-12-04",
         "2026-12-07",
@@ -1218,7 +1217,7 @@
       "official_url": "https://www.solavoznje-relax.si/sl/tecaj-cestno-prometnih-predpisov-cpp",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:34:02.843Z",
+      "latest_observed_at": "2026-11-28T02:33:06.976Z",
       "future_dates_in_manifest": [
         "2026-12-02",
         "2026-12-08",
@@ -1231,12 +1230,16 @@
       ],
       "unmatched_date_evidence": [
         "2026-11-28",
-        "2026-11-30"
+        "2026-11-30",
+        "2026-12-01",
+        "2026-12-03",
+        "2026-12-07",
+        "2026-12-09"
       ],
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 51,
+      "pending_pages": 100,
       "actions": [
         "REVIEW_UNIMPORTED_DATE_EVIDENCE",
         "CONTINUE_UNREAD_PAGES"
@@ -1248,7 +1251,7 @@
       "official_url": "https://solapob.si/prijavi-se/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:30:55.227Z",
+      "latest_observed_at": "2026-11-28T02:29:56.924Z",
       "future_dates_in_manifest": [
         "2026-11-30",
         "2027-01-11",
@@ -1287,10 +1290,11 @@
       "latest_observed_at": null,
       "future_dates_in_manifest": [],
       "unmatched_date_evidence": [
-        "2026-11-27",
         "2026-12-02",
+        "2026-12-03",
         "2026-12-16",
-        "2026-12-17"
+        "2026-12-17",
+        "2026-12-22"
       ],
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
@@ -1307,7 +1311,7 @@
       "official_url": "https://www.solavoznje-verdev.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:33:31.259Z",
+      "latest_observed_at": "2026-11-28T02:32:35.308Z",
       "future_dates_in_manifest": [
         "2026-12-07"
       ],
@@ -1393,7 +1397,7 @@
       "official_url": "https://prihajam.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:27:51.651Z",
+      "latest_observed_at": "2026-11-28T02:26:42.789Z",
       "future_dates_in_manifest": [
         "2026-12-07"
       ],
@@ -1444,7 +1448,7 @@
       "official_url": "https://prometna.net/sola-voznje/aktualni-dogodki/tecaj-cpp-in-ecpp-januar-2027/",
       "approved_sources": 4,
       "fresh_observations": 4,
-      "latest_observed_at": "2026-11-27T02:35:16.644Z",
+      "latest_observed_at": "2026-11-28T02:34:30.706Z",
       "future_dates_in_manifest": [
         "2027-01-12",
         "2027-02-16",
@@ -1455,7 +1459,7 @@
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 86,
+      "pending_pages": 89,
       "actions": [
         "CONTINUE_UNREAD_PAGES"
       ]
@@ -1483,7 +1487,7 @@
       "official_url": "https://www.blisk-as.si/cpp-pp-termini",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:33:11.073Z",
+      "latest_observed_at": "2026-11-28T02:32:15.244Z",
       "future_dates_in_manifest": [
         "2026-12-08",
         "2026-12-10",
@@ -1523,7 +1527,7 @@
       "official_url": "https://solavoznje-relax.si/sl/termini-tecajev",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:25:42.969Z",
+      "latest_observed_at": "2026-11-28T02:24:35.795Z",
       "future_dates_in_manifest": [
         "2026-11-28",
         "2026-11-30",
@@ -1536,12 +1540,15 @@
         "2026-12-14"
       ],
       "unmatched_date_evidence": [
-        "2026-12-15"
+        "2026-12-15",
+        "2026-12-16",
+        "2027-01-06",
+        "2027-01-20"
       ],
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 78,
+      "pending_pages": 94,
       "actions": [
         "REVIEW_UNIMPORTED_DATE_EVIDENCE",
         "CONTINUE_UNREAD_PAGES"
@@ -1572,12 +1579,16 @@
       "fresh_observations": 0,
       "latest_observed_at": null,
       "future_dates_in_manifest": [],
-      "unmatched_date_evidence": [],
+      "unmatched_date_evidence": [
+        "2026-12-02",
+        "2026-12-07"
+      ],
       "missing_observation_sources": [],
-      "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
+      "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 3,
       "pending_pages": 0,
       "actions": [
+        "REVIEW_UNIMPORTED_DATE_EVIDENCE",
         "FIND_PUBLISHABLE_SOURCE"
       ]
     },
@@ -1589,12 +1600,15 @@
       "fresh_observations": 0,
       "latest_observed_at": null,
       "future_dates_in_manifest": [],
-      "unmatched_date_evidence": [],
+      "unmatched_date_evidence": [
+        "2026-12-07"
+      ],
       "missing_observation_sources": [],
-      "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
+      "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 2,
       "pending_pages": 0,
       "actions": [
+        "REVIEW_UNIMPORTED_DATE_EVIDENCE",
         "FIND_PUBLISHABLE_SOURCE"
       ]
     },
@@ -1604,7 +1618,7 @@
       "official_url": "https://alfa-b.si/urniki-tecajev/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:01.241Z",
+      "latest_observed_at": "2026-11-28T02:27:52.605Z",
       "future_dates_in_manifest": [
         "2026-11-28",
         "2026-12-02",
@@ -1619,7 +1633,7 @@
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 1,
+      "pending_pages": 3,
       "actions": [
         "REVIEW_UNIMPORTED_DATE_EVIDENCE",
         "CONTINUE_UNREAD_PAGES"
@@ -1648,7 +1662,7 @@
       "official_url": "https://vezi.si/prijava-na-tecaj-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:09.232Z",
+      "latest_observed_at": "2026-11-28T02:28:00.955Z",
       "future_dates_in_manifest": [
         "2026-12-15"
       ],
@@ -1682,7 +1696,7 @@
       "official_url": "https://solavoznjecadej.si/tecaji-prijava/prijavnica-tecaj-iz-cestnoprometnih-predpisov-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:15.733Z",
+      "latest_observed_at": "2026-11-28T02:28:07.440Z",
       "future_dates_in_manifest": [
         "2026-12-02",
         "2026-12-07",
@@ -1721,18 +1735,16 @@
       "official_url": "https://www.solavoznjefelix.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:28:00.728Z",
+      "latest_observed_at": "2026-11-28T02:26:52.184Z",
       "future_dates_in_manifest": [
         "2026-12-02"
       ],
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
-      "pages_read": 8,
-      "pending_pages": 20,
-      "actions": [
-        "CONTINUE_UNREAD_PAGES"
-      ]
+      "pages_read": 3,
+      "pending_pages": 0,
+      "actions": []
     },
     {
       "school_id": 3172,
@@ -1740,7 +1752,7 @@
       "official_url": "https://www.ferdo.si/prijava-na-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:33:54.095Z",
+      "latest_observed_at": "2026-11-28T02:32:58.254Z",
       "future_dates_in_manifest": [
         "2026-12-07",
         "2026-12-14",
@@ -1784,7 +1796,7 @@
       "missing_observation_sources": [],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
       "pages_read": 8,
-      "pending_pages": 1,
+      "pending_pages": 92,
       "actions": [
         "FIND_PUBLISHABLE_SOURCE",
         "CONTINUE_UNREAD_PAGES"
@@ -1847,7 +1859,7 @@
       "official_url": "https://www.avtosola-maselj.si/#urnikicppteajev",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:21.966Z",
+      "latest_observed_at": "2026-11-28T02:28:13.652Z",
       "future_dates_in_manifest": [],
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
@@ -1898,7 +1910,7 @@
       "official_url": "https://www.nomago.si/sola-voznje/tecaj-cpp",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:29.052Z",
+      "latest_observed_at": "2026-11-28T02:28:20.753Z",
       "future_dates_in_manifest": [
         "2026-11-30",
         "2026-12-09",
@@ -1908,7 +1920,7 @@
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 8,
-      "pending_pages": 72,
+      "pending_pages": 65,
       "actions": [
         "CONTINUE_UNREAD_PAGES"
       ]
@@ -1936,7 +1948,7 @@
       "official_url": "https://aspolo.si/tecaj-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:37.769Z",
+      "latest_observed_at": "2026-11-28T02:28:29.253Z",
       "future_dates_in_manifest": [
         "2026-12-15",
         "2027-01-11",
@@ -1956,14 +1968,17 @@
       "official_url": "https://www.avto-prah.si/sola-voznje/tecaji-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:28:09.489Z",
+      "latest_observed_at": "2026-11-28T02:26:59.936Z",
       "future_dates_in_manifest": [],
-      "unmatched_date_evidence": [],
+      "unmatched_date_evidence": [
+        "2026-12-14"
+      ],
       "missing_observation_sources": [],
-      "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
+      "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 3,
       "pending_pages": 0,
       "actions": [
+        "REVIEW_UNIMPORTED_DATE_EVIDENCE",
         "CHECK_FOR_NEW_FUTURE_COURSES"
       ]
     },
@@ -1973,7 +1988,7 @@
       "official_url": "https://www.solavoznje.sapac.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:44.905Z",
+      "latest_observed_at": "2026-11-28T02:28:36.426Z",
       "future_dates_in_manifest": [],
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
@@ -2007,7 +2022,7 @@
       "official_url": "https://www.slavi.si/si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:31:42.321Z",
+      "latest_observed_at": "2026-11-28T02:30:43.317Z",
       "future_dates_in_manifest": [
         "2026-12-09"
       ],
@@ -2092,9 +2107,8 @@
       "official_url": "https://www.avtosola-vito.si/tecaj-cpp-2/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:52.268Z",
+      "latest_observed_at": "2026-11-28T02:28:43.766Z",
       "future_dates_in_manifest": [
-        "2026-11-27",
         "2026-12-18"
       ],
       "unmatched_date_evidence": [
@@ -2131,9 +2145,10 @@
       "official_url": "https://voznik1a.si/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:31:13.609Z",
+      "latest_observed_at": "2026-11-28T02:30:14.521Z",
       "future_dates_in_manifest": [
-        "2026-12-07"
+        "2026-12-07",
+        "2027-01-19"
       ],
       "unmatched_date_evidence": [],
       "missing_observation_sources": [],
@@ -2205,7 +2220,7 @@
       "missing_observation_sources": [],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
       "pages_read": 8,
-      "pending_pages": 21,
+      "pending_pages": 19,
       "actions": [
         "FIND_PUBLISHABLE_SOURCE",
         "CONTINUE_UNREAD_PAGES"
@@ -2223,7 +2238,7 @@
       "missing_observation_sources": [],
       "audit_status": "NO_CONFIRMED_FUTURE_CPP_IN_READ_PAGES",
       "pages_read": 8,
-      "pending_pages": 80,
+      "pending_pages": 90,
       "actions": [
         "FIND_PUBLISHABLE_SOURCE",
         "CONTINUE_UNREAD_PAGES"
@@ -2235,7 +2250,7 @@
       "official_url": "https://www.solavoznje-steflic.net/tecaj-cpp",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:28:15.178Z",
+      "latest_observed_at": "2026-11-28T02:27:05.610Z",
       "future_dates_in_manifest": [
         "2026-12-07",
         "2027-02-01",
@@ -2254,18 +2269,22 @@
       "official_url": "https://stop.si/prijava-na-cpp/",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:29:59.501Z",
+      "latest_observed_at": "2026-11-28T02:28:52.018Z",
       "future_dates_in_manifest": [
         "2026-12-14",
-        "2027-01-18",
+        "2027-01-27",
         "2027-02-22"
       ],
-      "unmatched_date_evidence": [],
+      "unmatched_date_evidence": [
+        "2027-01-18"
+      ],
       "missing_observation_sources": [],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 4,
       "pending_pages": 0,
-      "actions": []
+      "actions": [
+        "REVIEW_UNIMPORTED_DATE_EVIDENCE"
+      ]
     },
     {
       "school_id": 3097,
@@ -2273,7 +2292,7 @@
       "official_url": "https://www.asjezica.si/",
       "approved_sources": 2,
       "fresh_observations": 2,
-      "latest_observed_at": "2026-11-27T02:31:58.269Z",
+      "latest_observed_at": "2026-11-28T02:30:57.825Z",
       "future_dates_in_manifest": [
         "2026-12-02",
         "2026-12-07",
@@ -2314,22 +2333,27 @@
       "school_name": "Videčnik",
       "official_url": "https://videcnik.si/sl/",
       "approved_sources": 1,
-      "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:34:56.724Z",
-      "future_dates_in_manifest": [
-        "2026-11-27",
+      "fresh_observations": 0,
+      "latest_observed_at": null,
+      "future_dates_in_manifest": [],
+      "unmatched_date_evidence": [
         "2026-11-30",
-        "2026-12-07",
+        "2026-12-08",
         "2026-12-10",
         "2026-12-14",
         "2026-12-15"
       ],
-      "unmatched_date_evidence": [],
-      "missing_observation_sources": [],
+      "missing_observation_sources": [
+        "https://videcnik.si/sl/"
+      ],
       "audit_status": "UPCOMING_EVIDENCE",
       "pages_read": 2,
       "pending_pages": 0,
-      "actions": []
+      "actions": [
+        "REVIEW_UNIMPORTED_DATE_EVIDENCE",
+        "RECHECK_MISSING_OR_STALE_SOURCE",
+        "CHECK_FOR_NEW_FUTURE_COURSES"
+      ]
     },
     {
       "school_id": 3090,
@@ -2391,7 +2415,7 @@
       "official_url": "https://modrivoznik.si/avtosola/maribor",
       "approved_sources": 5,
       "fresh_observations": 5,
-      "latest_observed_at": "2026-11-27T02:34:35.414Z",
+      "latest_observed_at": "2026-11-28T02:33:39.956Z",
       "future_dates_in_manifest": [
         "2026-12-01",
         "2026-12-02",
@@ -2437,13 +2461,15 @@
       "official_url": "https://zsam-celje.si/sola-voznje/tecaj-cpp",
       "approved_sources": 1,
       "fresh_observations": 1,
-      "latest_observed_at": "2026-11-27T02:31:07.213Z",
+      "latest_observed_at": "2026-11-28T02:30:08.154Z",
       "future_dates_in_manifest": [
         "2026-11-30",
-        "2026-12-01",
+        "2026-12-08",
+        "2026-12-10",
         "2026-12-14",
         "2026-12-16",
         "2026-12-21",
+        "2026-12-23",
         "2027-01-18"
       ],
       "unmatched_date_evidence": [],
